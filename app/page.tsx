@@ -1,13 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
 import { RadioKnob } from "@/components/radio-knob"
 import { SplashModal } from "@/components/splash-modal"
 import Image from "next/image"
 import { ArrowUp } from "lucide-react"
 
-export default function SplashPage() {
-  const [showSplash, setShowSplash] = useState(true)
+function SplashPageContent() {
+  const searchParams = useSearchParams()
+  const skipSplash = searchParams.get("contactos") === "true"
+  const [showSplash, setShowSplash] = useState(!skipSplash)
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
@@ -164,5 +167,13 @@ export default function SplashPage() {
         <ArrowUp className="w-6 h-6" />
       </button>
     </main>
+  )
+}
+
+export default function SplashPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-100"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div></div>}>
+      <SplashPageContent />
+    </Suspense>
   )
 }

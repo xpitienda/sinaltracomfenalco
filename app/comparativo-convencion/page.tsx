@@ -574,7 +574,7 @@ export default function ComparativoConvencionPage() {
           {/* Contactos Button */}
           <div className="p-4 border-t border-white/10">
             <Link
-              href="/contacto"
+              href="/?contactos=true"
               className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-bold text-white transition-all hover:scale-105"
               style={{
                 background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
