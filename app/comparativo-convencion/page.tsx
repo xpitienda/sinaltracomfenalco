@@ -781,15 +781,15 @@ export default function ComparativoConvencionPage() {
                       </div>
 
                       {/* 2026-2027 */}
-                      {articulosData[expandedArticle].data2026_2027 && (
-                        <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50">
-                          <h4 className="font-bold text-purple-800 mb-2 flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                            2026 - 2027
-                          </h4>
-                          <p className="text-gray-700">{articulosData[expandedArticle].data2026_2027}</p>
-                        </div>
-                      )}
+                      <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50">
+                        <h4 className="font-bold text-purple-800 mb-2 flex items-center gap-2">
+                          <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                          2026 - 2027
+                        </h4>
+                        <p className="text-gray-700">
+                          {articulosData[expandedArticle].data2026_2027 || "Pendiente de definir en proxima negociacion"}
+                        </p>
+                      </div>
 
                       {/* Analisis */}
                       <div
