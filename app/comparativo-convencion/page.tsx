@@ -13,7 +13,7 @@ const articulosData = [
     data2020_2024: "Se establecen derechos laborales y sindicales",
     prorroga: "Se mantienen",
     data2025_2026: "Se mantienen",
-    data2026_2027: "Continuidad sin regresion",
+    data2026_2027: "Se mantienen",
     analisis: "Continuidad sin regresion"
   },
   {
@@ -22,7 +22,7 @@ const articulosData = [
     data2020_2024: "Afiliados a SINALTRACOMFENALCO",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -31,7 +31,7 @@ const articulosData = [
     data2020_2024: "4 anos",
     prorroga: "Prorroga 1 ano",
     data2025_2026: "1 ano",
-    data2026_2027: "Reduccion de vigencia (estrategico)",
+    data2026_2027: "1 ano",
     analisis: "Reduccion de vigencia (estrategico)"
   },
   {
@@ -40,7 +40,7 @@ const articulosData = [
     data2020_2024: "18, 24, 30, 36, 42, 48 horas",
     prorroga: "Igual",
     data2025_2026: "18, 24, 30, 36, 42 horas",
-    data2026_2027: "Ajuste tecnico",
+    data2026_2027: "18, 24, 30, 36, 42 horas",
     analisis: "Ajuste tecnico"
   },
   {
@@ -49,7 +49,7 @@ const articulosData = [
     data2020_2024: "Participacion sindical",
     prorroga: "Igual",
     data2025_2026: "Se mantiene + criterios promocion",
-    data2026_2027: "Mejora movilidad laboral",
+    data2026_2027: "Se mantiene + criterios promocion",
     analisis: "Mejora movilidad laboral"
   },
   {
@@ -58,7 +58,7 @@ const articulosData = [
     data2020_2024: "Garantizado",
     prorroga: "Igual",
     data2025_2026: "Se fortalece (doble instancia)",
-    data2026_2027: "Consolidacion",
+    data2026_2027: "Se fortalece (doble instancia)",
     analisis: "Consolidacion"
   },
   {
@@ -67,7 +67,7 @@ const articulosData = [
     data2020_2024: "No explicita",
     prorroga: "No",
     data2025_2026: "Reubicacion en reestructuracion",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Reubicacion en reestructuracion",
     analisis: "Nuevo logro"
   },
   {
@@ -76,7 +76,7 @@ const articulosData = [
     data2020_2024: "Dias adicionales a la ley",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se conserva logro historico",
+    data2026_2027: "Igual",
     analisis: "Se conserva logro historico"
   },
   {
@@ -85,7 +85,7 @@ const articulosData = [
     data2020_2024: "IPC o salario minimo",
     prorroga: "Se mantiene",
     data2025_2026: "Se mantiene",
-    data2026_2027: "Proteccion del ingreso",
+    data2026_2027: "Se mantiene",
     analisis: "Proteccion del ingreso"
   },
   {
@@ -94,7 +94,7 @@ const articulosData = [
     data2020_2024: "9 dias salario",
     prorroga: "Igual",
     data2025_2026: "9 dias salario",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "9 dias salario",
     analisis: "Se mantiene"
   },
   {
@@ -103,7 +103,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Se mejora. Para personal nivel Operativo el auxilio sera por valor de $86.800. Para personal nivel Administrativo Asistencial el auxilio sera por valor de $72.500. Para personal nivel Profesional el auxilio sera por valor de $58.000",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Para personal nivel Operativo el auxilio sera por valor de $86.800. Para personal nivel Administrativo Asistencial el auxilio sera por valor de $72.500. Para personal nivel Profesional el auxilio sera por valor de $58.000",
     analisis: "Se mejora"
   },
   {
@@ -112,7 +112,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Blindaje de derechos",
+    data2026_2027: "Igual",
     analisis: "Blindaje de derechos"
   },
   {
@@ -121,7 +121,7 @@ const articulosData = [
     data2020_2024: "Escala progresiva",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -130,7 +130,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "A partir de 25 anos 3 dias",
-    data2026_2027: "Se mejora",
+    data2026_2027: "A partir de 25 anos 3 dias",
     analisis: "Se mejora"
   },
   {
@@ -139,7 +139,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Un (1) dia de descanso remunerado por Cumpleanos, sin perjuicio del descanso por vacaciones. Un (1) dia de descanso remunerado por ano de servicio, sin perjuicio del descanso por vacaciones.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Un (1) dia de descanso remunerado por Cumpleanos, sin perjuicio del descanso por vacaciones. Un (1) dia de descanso remunerado por ano de servicio, sin perjuicio del descanso por vacaciones.",
     analisis: "Nuevo logro"
   },
   {
@@ -148,7 +148,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -157,7 +157,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Existia",
     data2025_2026: "Paragrafo. En caso de muerte del hijo por nacer del trabajador sindicalizado despues de dos (2) meses de concebido, la Caja reconocera un auxilio no salarial, equivalente a DOSCIENTOS MIL PESOS M/cte ($200.000), valor que aumentara para el 2027 en un porcentaje igual al IPC nacional certificado por el DANE.",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Paragrafo. En caso de muerte del hijo por nacer del trabajador sindicalizado despues de dos (2) meses de concebido, la Caja reconocera un auxilio no salarial, equivalente a DOSCIENTOS MIL PESOS M/cte ($200.000), valor que aumentara para el 2027 en un porcentaje igual al IPC nacional certificado por el DANE.",
     analisis: "Se mejora"
   },
   {
@@ -166,7 +166,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -175,7 +175,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Existia",
     data2025_2026: "Pasa de 200.000 a 220.000 por muerte de padre o madre",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Pasa de 200.000 a 220.000 por muerte de padre o madre",
     analisis: "Se mejora"
   },
   {
@@ -184,7 +184,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -193,7 +193,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -202,7 +202,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -211,7 +211,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Comfenalco Antioquia reconocera al trabajador por cada beneficiario con discapacidad certificada que tenga en su grupo familiar afiliado a la Caja de Compensacion Familiar Comfenalco Antioquia hasta el segundo grado de consanguinidad un salario minimo legal vigente (1) SMLMV por ano. PARAGRAFO: Tanto el vinculo familiar, la discapacidad y la dependencia economica deberan ser acreditados.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Comfenalco Antioquia reconocera al trabajador por cada beneficiario con discapacidad certificada que tenga en su grupo familiar afiliado a la Caja de Compensacion Familiar Comfenalco Antioquia hasta el segundo grado de consanguinidad un salario minimo legal vigente (1) SMLMV por ano. PARAGRAFO: Tanto el vinculo familiar, la discapacidad y la dependencia economica deberan ser acreditados.",
     analisis: "Nuevo logro"
   },
   {
@@ -220,7 +220,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -229,7 +229,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Credito de Vivienda pasa del 0,8% al 0,4%. Credito Multiproposito pasa del 0,7% al 0,5%",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Credito de Vivienda pasa del 0,8% al 0,4%. Credito Multiproposito pasa del 0,7% al 0,5%",
     analisis: "Se mejora"
   },
   {
@@ -238,7 +238,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -247,7 +247,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -256,7 +256,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -265,7 +265,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Se ajusta al 100%",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Se ajusta al 100%",
     analisis: "Se mejora"
   },
   {
@@ -274,7 +274,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igualmente, se suministraran medios de transporte o su valor hasta el lugar de acopio mas cercano para llegar a las residencias en los casos en que se labore hasta despues de las 10 pm o se ingrese antes de las 5 AM.",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Igualmente, se suministraran medios de transporte o su valor hasta el lugar de acopio mas cercano para llegar a las residencias en los casos en que se labore hasta despues de las 10 pm o se ingrese antes de las 5 AM.",
     analisis: "Se mejora"
   },
   {
@@ -283,7 +283,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -292,7 +292,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -301,7 +301,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -310,7 +310,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Paragrafo: El valor asegurado de la poliza de seguro de vida grupo y accidentes personales para los miembros de la Junta Directiva de SINALTRACOMFENALCO sera equivalente a treinta (30) salarios basicos mensuales del respectivo colaborador, conforme a las coberturas, condiciones y exclusiones vigentes en la poliza contratada a la fecha.",
-    data2026_2027: "Se mejora",
+    data2026_2027: "Paragrafo: El valor asegurado de la poliza de seguro de vida grupo y accidentes personales para los miembros de la Junta Directiva de SINALTRACOMFENALCO sera equivalente a treinta (30) salarios basicos mensuales del respectivo colaborador, conforme a las coberturas, condiciones y exclusiones vigentes en la poliza contratada a la fecha.",
     analisis: "Se mejora"
   },
   {
@@ -319,7 +319,7 @@ const articulosData = [
     data2020_2024: "Existian",
     prorroga: "+70 bonos adicionales",
     data2025_2026: "280 bonos",
-    data2026_2027: "Mejora bienestar",
+    data2026_2027: "280 bonos",
     analisis: "Mejora bienestar"
   },
   {
@@ -328,7 +328,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -337,7 +337,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "La Caja establecera una categoria especifica dentro de la Gala de Reconocimientos, orientada a destacar a los colaboradores que demuestren un desempeno sobresaliente en el cumplimiento de los indicadores propios de su rol y en la ejecucion efectiva de la polivalencia formalizada por su lider. Cuando un colaborador sindicalizado por temas de polivalencia deba realizar actividades propias de otro rol en polivalencia debera contar con la dotacion y elementos de proteccion personal necesarios.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "La Caja establecera una categoria especifica dentro de la Gala de Reconocimientos, orientada a destacar a los colaboradores que demuestren un desempeno sobresaliente en el cumplimiento de los indicadores propios de su rol y en la ejecucion efectiva de la polivalencia formalizada por su lider. Cuando un colaborador sindicalizado por temas de polivalencia deba realizar actividades propias de otro rol en polivalencia debera contar con la dotacion y elementos de proteccion personal necesarios.",
     analisis: "Nuevo logro"
   },
   {
@@ -346,7 +346,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Las partes acuerdan crear una comision paritaria conformada por representantes de la Caja, el Jefe del Departamento de Gestion Laboral o su delegado y dos integrantes del sindicato, Presidente y Vicepresidente, que se reuniran por lo menos una vez cada dos (2) meses con el proposito de asegurar en el marco del dialogo social, movilizar el Bienestar y Desarrollo de los colaboradores afiliados.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Las partes acuerdan crear una comision paritaria conformada por representantes de la Caja, el Jefe del Departamento de Gestion Laboral o su delegado y dos integrantes del sindicato, Presidente y Vicepresidente, que se reuniran por lo menos una vez cada dos (2) meses con el proposito de asegurar en el marco del dialogo social, movilizar el Bienestar y Desarrollo de los colaboradores afiliados.",
     analisis: "Nuevo logro"
   },
   {
@@ -355,7 +355,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Comfenalco Antioquia reconocera a los trabajadores beneficiarios de la presente Convencion Colectiva de Trabajo dos (2) dias de calamidad domestica remunerada para atender la situacion derivada del fallecimiento de su mascota debidamente acreditada y relacionada en el censo de mascotas que para tal fin realice la Caja.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Comfenalco Antioquia reconocera a los trabajadores beneficiarios de la presente Convencion Colectiva de Trabajo dos (2) dias de calamidad domestica remunerada para atender la situacion derivada del fallecimiento de su mascota debidamente acreditada y relacionada en el censo de mascotas que para tal fin realice la Caja.",
     analisis: "Nuevo logro"
   },
   {
@@ -364,7 +364,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Durante la vigencia de la presente convencion 2026-2027 la Caja reconocera para las colaboradoras afiliadas al sindicato y beneficiarias del presente capitulo por cada mes de vida del hijo(a) (incluye hijos adoptados), a la madre trabajadora de la Caja el equivalente en horas laborales, hasta completar los nueve meses. Este beneficio se trasladara a los padres en los casos de fallecimiento de la madre.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Durante la vigencia de la presente convencion 2026-2027 la Caja reconocera para las colaboradoras afiliadas al sindicato y beneficiarias del presente capitulo por cada mes de vida del hijo(a) (incluye hijos adoptados), a la madre trabajadora de la Caja el equivalente en horas laborales, hasta completar los nueve meses. Este beneficio se trasladara a los padres en los casos de fallecimiento de la madre.",
     analisis: "Nuevo logro"
   },
   {
@@ -373,7 +373,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Comfenalco Antioquia reconocera a los trabajadores beneficiarios de la presente Convencion Colectiva de Trabajo un dia semestral remunerado denominado Dia de la Familia, con el fin de promover la integracion, el esparcimiento y el fortalecimiento de los lazos familiares. El beneficio se otorgara dos (2) veces al ano. Este dia sera programado de comun acuerdo con su lider.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Comfenalco Antioquia reconocera a los trabajadores beneficiarios de la presente Convencion Colectiva de Trabajo un dia semestral remunerado denominado Dia de la Familia, con el fin de promover la integracion, el esparcimiento y el fortalecimiento de los lazos familiares. El beneficio se otorgara dos (2) veces al ano. Este dia sera programado de comun acuerdo con su lider.",
     analisis: "Nuevo logro"
   },
   {
@@ -382,7 +382,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "Con el proposito de contribuir al bienestar economico, la calidad de vida y la salud de los trabajadores afiliados a SINALTRACOMFENALCO y sus familias, COMFENALCO ANTIOQUIA apoyara la realizacion de la Feria Sindical SINALTRACOMFENALCO, la cual estara orientada a facilitar el acceso a productos y servicios esenciales para el hogar y la salud.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "Con el proposito de contribuir al bienestar economico, la calidad de vida y la salud de los trabajadores afiliados a SINALTRACOMFENALCO y sus familias, COMFENALCO ANTIOQUIA apoyara la realizacion de la Feria Sindical SINALTRACOMFENALCO, la cual estara orientada a facilitar el acceso a productos y servicios esenciales para el hogar y la salud.",
     analisis: "Nuevo logro"
   },
   {
@@ -391,7 +391,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -400,7 +400,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -409,7 +409,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -418,7 +418,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -427,7 +427,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -436,7 +436,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   },
   {
@@ -445,7 +445,7 @@ const articulosData = [
     data2020_2024: "No existia",
     prorroga: "No existia",
     data2025_2026: "COMFENALCO Antioquia reconocera a SINALTRACOMFENALCO un auxilio de Un Millon de pesos ($1.000.000), por una sola vez con el fin de cubrir los gastos de publicacion y divulgacion de la convencion.",
-    data2026_2027: "Nuevo logro",
+    data2026_2027: "COMFENALCO Antioquia reconocera a SINALTRACOMFENALCO un auxilio de Un Millon de pesos ($1.000.000), por una sola vez con el fin de cubrir los gastos de publicacion y divulgacion de la convencion.",
     analisis: "Nuevo logro"
   },
   {
@@ -454,7 +454,7 @@ const articulosData = [
     data2020_2024: "Existia",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mantiene",
+    data2026_2027: "Igual",
     analisis: "Se mantiene"
   }
 ]
