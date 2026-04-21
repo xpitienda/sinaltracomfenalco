@@ -1,10 +1,25 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Mail, Phone, ArrowLeft } from "lucide-react"
+import { MapPin, Mail, Phone, ArrowLeft, ArrowUp } from "lucide-react"
 
 export default function ContactoPage() {
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   return (
     <main 
       className="min-h-screen flex flex-col items-center justify-center p-6 relative"
@@ -30,14 +45,22 @@ export default function ContactoPage() {
       </div>
 
       <div className="relative z-10 w-full max-w-2xl">
-        {/* Boton volver */}
-        <Link 
-          href="/"
-          className="inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-900 font-semibold mb-8 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          Volver al inicio
-        </Link>
+        {/* Botones navegacion */}
+        <div className="flex flex-wrap gap-4 mb-8">
+          <Link 
+            href="/comparativo-convencion"
+            className="inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-900 font-semibold transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Volver al Sistema de Datos
+          </Link>
+          <Link 
+            href="/"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition-colors"
+          >
+            SINALTRACOMFENALCO
+          </Link>
+        </div>
 
         {/* Card de contacto */}
         <div 
@@ -135,6 +158,23 @@ export default function ContactoPage() {
           </div>
         </div>
       </div>
+
+      {/* Floating Back to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full text-white transition-all duration-300 ${
+          showScrollTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-10 pointer-events-none"
+        }`}
+        style={{
+          background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+          boxShadow: "0 10px 30px rgba(34,197,94,0.4)"
+        }}
+        aria-label="Volver al inicio"
+      >
+        <ArrowUp className="w-6 h-6" />
+      </button>
     </main>
   )
 }
