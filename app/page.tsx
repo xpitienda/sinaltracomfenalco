@@ -1,12 +1,29 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
 import { RadioKnob } from "@/components/radio-knob"
 import { SplashModal } from "@/components/splash-modal"
 import Image from "next/image"
+import { ArrowUp } from "lucide-react"
 
-export default function SplashPage() {
-  const [showSplash, setShowSplash] = useState(true)
+function SplashPageContent() {
+  const searchParams = useSearchParams()
+  const skipSplash = searchParams.get("contactos") === "true"
+  const [showSplash, setShowSplash] = useState(!skipSplash)
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   // Si el splash está visible, solo mostrar el splash sin ningún fondo de la app
   if (showSplash) {
@@ -132,6 +149,31 @@ export default function SplashPage() {
           <p>Haz clic y arrastra para girar - Usa las flechas del teclado - Toca y desliza en movil</p>
         </footer>
       </div>
+
+      {/* Floating Back to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full text-white transition-all duration-300 ${
+          showScrollTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-10 pointer-events-none"
+        }`}
+        style={{
+          background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+          boxShadow: "0 10px 30px rgba(34,197,94,0.4)"
+        }}
+        aria-label="Volver al inicio"
+      >
+        <ArrowUp className="w-6 h-6" />
+      </button>
     </main>
+  )
+}
+
+export default function SplashPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-100"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div></div>}>
+      <SplashPageContent />
+    </Suspense>
   )
 }

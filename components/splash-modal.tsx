@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 
 interface SplashModalProps {
@@ -10,11 +11,12 @@ interface SplashModalProps {
 export function SplashModal({ onEnter }: SplashModalProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isExiting, setIsExiting] = useState(false)
+  const router = useRouter()
 
   const handleEnter = () => {
     setIsExiting(true)
     setTimeout(() => {
-      onEnter()
+      router.push("/comparativo-convencion")
     }, 500)
   }
 
