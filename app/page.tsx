@@ -9,16 +9,9 @@ import { ArrowUp } from "lucide-react"
 
 function SplashPageContent() {
   const searchParams = useSearchParams()
-  const [showSplash, setShowSplash] = useState(true)
+  const skipSplash = searchParams.get("contactos") === "true"
+  const [showSplash, setShowSplash] = useState(!skipSplash)
   const [showScrollTop, setShowScrollTop] = useState(false)
-
-  // Verificar si viene con el parametro contactos=true para saltar el splash
-  useEffect(() => {
-    const skipSplash = searchParams.get("contactos") === "true"
-    if (skipSplash) {
-      setShowSplash(false)
-    }
-  }, [searchParams])
 
   useEffect(() => {
     const handleScroll = () => {
