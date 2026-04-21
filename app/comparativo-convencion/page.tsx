@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone } from "lucide-react"
+import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play } from "lucide-react"
 
 // Datos del cuadro comparativo
 const articulosData = [
@@ -465,6 +465,7 @@ export default function ComparativoConvencionPage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("presentacion")
   const [comparativoExpanded, setComparativoExpanded] = useState(false)
+  const [showVideoModal, setShowVideoModal] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -524,6 +525,15 @@ export default function ComparativoConvencionPage() {
             >
               <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
               <span className="font-medium">Presentacion</span>
+            </button>
+
+            {/* Convencion - Video Button */}
+            <button
+              onClick={() => setShowVideoModal(true)}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-white/10 hover:text-white"
+            >
+              <Play className="w-4 h-4 text-blue-400" />
+              <span className="font-medium">Convencion</span>
             </button>
 
             {/* Comparativo Convencion - Dropdown */}
@@ -853,6 +863,43 @@ export default function ComparativoConvencionPage() {
       >
         <ArrowUp className="w-6 h-6" />
       </button>
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setShowVideoModal(false)}
+        >
+          <div 
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowVideoModal(false)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              aria-label="Cerrar video"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+
+            {/* Video Player */}
+            <video
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4"
+              controls
+              autoPlay
+              className="w-full aspect-video"
+            >
+              Tu navegador no soporta el elemento de video.
+            </video>
+
+            {/* Title */}
+            <div className="p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
+              <h3 className="text-white font-bold text-lg text-center">Convencion SINALTRACOMFENALCO</h3>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
