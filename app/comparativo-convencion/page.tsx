@@ -821,9 +821,9 @@ export default function ComparativoConvencionPage() {
                 </div>
               )}
 
-              {/* Quick Navigation */}
+              {/* Quick Navigation - All 50 Articles */}
               <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-3">
-                {articulosData.slice(0, 10).map((articulo) => (
+                {articulosData.map((articulo) => (
                   <button
                     key={articulo.id}
                     onClick={() => toggleArticle(articulo.id)}
@@ -833,10 +833,7 @@ export default function ComparativoConvencionPage() {
                         : "bg-white text-gray-700 hover:bg-orange-50 shadow"
                     }`}
                   >
-                    <span className="font-bold text-sm">Art. {articulo.id}</span>
-                    <p className="text-xs mt-1 truncate opacity-80">
-                      {articulo.tema}
-                    </p>
+                    <span className="font-bold text-sm">{articulo.id}. {articulo.tema.length > 20 ? articulo.tema.substring(0, 20) + "..." : articulo.tema}</span>
                   </button>
                 ))}
               </div>
