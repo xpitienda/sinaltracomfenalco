@@ -571,9 +571,7 @@ export default function ComparativoConvencionPage() {
                       }`}
                     >
                       <span className="font-semibold text-orange-300">{articulo.id}.</span>{" "}
-                      {articulo.tema.length > 35
-                        ? articulo.tema.substring(0, 35) + "..."
-                        : articulo.tema}
+                      {articulo.tema}
                     </button>
                   ))}
                 </div>
