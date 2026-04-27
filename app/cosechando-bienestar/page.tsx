@@ -5,26 +5,26 @@ import Image from "next/image"
 import Link from "next/link"
 import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowUp } from "lucide-react"
 
-// Imágenes del catálogo S1 a S15 desde GitHub
+// Imágenes del catálogo S1 a S15 desde GitHub con títulos específicos
 const catalogImages = [
-  { id: 1, title: "Beneficio 1", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S1.png" },
-  { id: 2, title: "Beneficio 2", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S2.png" },
-  { id: 3, title: "Beneficio 3", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S3.png" },
-  { id: 4, title: "Beneficio 4", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S4.png" },
-  { id: 5, title: "Beneficio 5", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S5.png" },
-  { id: 6, title: "Beneficio 6", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S6.png" },
-  { id: 7, title: "Beneficio 7", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S7.png" },
-  { id: 8, title: "Beneficio 8", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S8.png" },
-  { id: 9, title: "Beneficio 9", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S9.png" },
-  { id: 10, title: "Beneficio 10", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S10.png" },
-  { id: 11, title: "Beneficio 11", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S11.png" },
-  { id: 12, title: "Beneficio 12", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S12.png" },
-  { id: 13, title: "Beneficio 13", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S13.png" },
-  { id: 14, title: "Beneficio 14", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S14.png" },
-  { id: 15, title: "Beneficio 15", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S15.png" },
+  { id: 1, title: "Convención Colectiva 2026-2027", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S1.png" },
+  { id: 2, title: "Resumen de la Negociación", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S2.png" },
+  { id: 3, title: "Beneficios Salariales", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S3.png" },
+  { id: 4, title: "Auxilios Educativos", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S4.png" },
+  { id: 5, title: "Bonificaciones", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S5.png" },
+  { id: 6, title: "Primas Extralegales", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S6.png" },
+  { id: 7, title: "Auxilios de Vivienda", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S7.png" },
+  { id: 8, title: "Beneficios de Salud", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S8.png" },
+  { id: 9, title: "Permisos y Licencias", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S9.png" },
+  { id: 10, title: "Recreación y Deporte", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S10.png" },
+  { id: 11, title: "Capacitación y Formación", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S11.png" },
+  { id: 12, title: "Auxilios por Fallecimiento", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S12.png" },
+  { id: 13, title: "Préstamos y Créditos", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S13.png" },
+  { id: 14, title: "Bienestar Familiar", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S14.png" },
+  { id: 15, title: "Resumen General", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S15.png" },
 ]
 
-// Componente de caja de imagen 3D con borde animado tipo manecillas de reloj
+// Componente de caja de imagen 3D con borde animado tipo manecillas de reloj y título
 function AnimatedImageBox({ 
   image, 
   index, 
@@ -42,7 +42,7 @@ function AnimatedImageBox({
   
   return (
     <div 
-      className={`relative group cursor-pointer transition-all duration-700 perspective-1000 ${
+      className={`relative group cursor-pointer transition-all duration-700 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       style={{ 
@@ -53,25 +53,25 @@ function AnimatedImageBox({
     >
       {/* Contenedor 3D */}
       <div 
-        className="relative transition-all duration-500 transform-gpu group-hover:scale-105"
+        className="relative transition-all duration-500 transform-gpu"
         style={{
           transformStyle: "preserve-3d",
-          transform: "rotateX(5deg) rotateY(-5deg)",
+          transform: "rotateX(8deg) rotateY(-5deg)",
           transition: "transform 0.5s ease-out, box-shadow 0.5s ease-out",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(20px)"
+          e.currentTarget.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(30px) scale(1.05)"
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "rotateX(5deg) rotateY(-5deg)"
+          e.currentTarget.style.transform = "rotateX(8deg) rotateY(-5deg)"
         }}
       >
         {/* Borde animado con efecto de manecillas de reloj */}
         <div 
-          className={`absolute inset-0 rounded-xl pointer-events-none z-10 ${animationClass}`}
+          className={`absolute -inset-1 rounded-2xl pointer-events-none z-10 ${animationClass}`}
           style={{
             background: `conic-gradient(from 0deg, ${borderColor} 0deg, ${borderColor} 90deg, transparent 90deg, transparent 360deg)`,
-            padding: "3px",
+            padding: "4px",
             WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
             WebkitMaskComposite: "xor",
             maskComposite: "exclude",
@@ -80,62 +80,80 @@ function AnimatedImageBox({
         
         {/* Borde estático suave de fondo */}
         <div 
-          className="absolute inset-0 rounded-xl pointer-events-none"
+          className="absolute -inset-1 rounded-2xl pointer-events-none"
           style={{
-            border: `2px solid ${borderColor}30`,
+            border: `3px solid ${borderColor}40`,
           }}
         />
 
         {/* Sombra 3D inferior */}
         <div 
-          className="absolute -bottom-2 left-2 right-2 h-4 rounded-xl blur-md opacity-40 transition-opacity duration-300 group-hover:opacity-60"
+          className="absolute -bottom-4 left-4 right-4 h-8 rounded-2xl blur-xl opacity-50 transition-opacity duration-300 group-hover:opacity-70"
           style={{
-            background: `linear-gradient(to bottom, ${borderColor}, transparent)`,
-            transform: "rotateX(90deg) translateZ(-10px)",
+            background: borderColor,
           }}
         />
 
-        {/* Contenedor de imagen con efecto 3D */}
+        {/* Contenedor principal con título y imagen */}
         <div 
           className="relative bg-white rounded-xl overflow-hidden transition-all duration-300"
           style={{
             boxShadow: `
-              0 10px 30px ${borderColor}40,
-              0 5px 15px rgba(0,0,0,0.2),
-              inset 0 1px 0 rgba(255,255,255,0.5),
-              0 -2px 5px rgba(0,0,0,0.05)
+              0 20px 40px ${borderColor}50,
+              0 10px 20px rgba(0,0,0,0.25),
+              inset 0 2px 0 rgba(255,255,255,0.8),
+              0 -3px 8px rgba(0,0,0,0.1)
             `,
             transform: "translateZ(0)",
+            width: "280px",
           }}
         >
+          {/* Título superior */}
+          <div 
+            className="relative z-20 px-3 py-2 text-center font-bold text-white text-xs leading-tight"
+            style={{
+              background: `linear-gradient(135deg, ${borderColor} 0%, ${isFirstHalf ? '#16a34a' : '#2563eb'} 100%)`,
+              textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+              minHeight: "36px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {image.title}
+          </div>
+
           {/* Reflejo superior 3D */}
           <div 
-            className="absolute top-0 left-0 right-0 h-1/3 pointer-events-none z-30 opacity-20"
+            className="absolute top-9 left-0 right-0 h-1/4 pointer-events-none z-30 opacity-15"
             style={{
-              background: "linear-gradient(to bottom, rgba(255,255,255,0.8), transparent)",
+              background: "linear-gradient(to bottom, rgba(255,255,255,0.9), transparent)",
             }}
           />
 
-          {/* Imagen */}
-          <div className="relative w-full aspect-[4/3]">
+          {/* Imagen - contenida completamente con altura fija */}
+          <div 
+            className="relative w-full bg-gray-50"
+            style={{ height: "360px" }}
+          >
             <Image
               src={image.src}
               alt={image.title}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              className="object-contain transition-transform duration-500 group-hover:scale-105 p-2"
             />
           </div>
 
           {/* Overlay de zoom */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-all duration-300 z-20">
-            <ZoomIn className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-all duration-300 z-20">
+            <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
           </div>
 
-          {/* Borde inferior 3D */}
+          {/* Borde inferior 3D decorativo */}
           <div 
-            className="absolute bottom-0 left-0 right-0 h-2"
+            className="absolute bottom-0 left-0 right-0 h-1"
             style={{
-              background: `linear-gradient(to top, ${borderColor}40, transparent)`,
+              background: `linear-gradient(to right, ${borderColor}, ${isFirstHalf ? '#16a34a' : '#2563eb'})`,
             }}
           />
         </div>
@@ -324,14 +342,10 @@ export default function CosechandoBienestarPage() {
             </p>
           </div>
 
-          {/* Grid horizontal tipo brochure */}
-          <div className="overflow-x-auto pb-8">
+          {/* Grid 3 columnas x 5 filas tipo brochure */}
+          <div className="pb-8 flex justify-center">
             <div 
-              className="grid gap-6"
-              style={{
-                gridTemplateColumns: "repeat(5, minmax(280px, 1fr))",
-                gridTemplateRows: "repeat(3, auto)",
-              }}
+              className="grid gap-8 justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             >
               {catalogImages.map((image, index) => (
                 <AnimatedImageBox
