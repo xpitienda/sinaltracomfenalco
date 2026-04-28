@@ -577,6 +577,17 @@ export default function ComparativoConvencionPage() {
                 </div>
               )}
             </div>
+
+            {/* Cosechando Bienestar - Link */}
+            <Link
+              href="/cosechando-bienestar"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-emerald-500/20 hover:to-blue-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-blue-400"></div>
+              <span className="font-medium bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent group-hover:from-emerald-300 group-hover:to-blue-300">
+                Cosechando Bienestar
+              </span>
+            </Link>
           </nav>
 
           {/* Contactos Button */}

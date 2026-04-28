@@ -164,7 +164,7 @@ export function RadioKnob() {
         className="relative w-80 h-80 md:w-[420px] md:h-[420px]"
         style={{ perspective: "1000px" }}
       >
-        {/* Marcadores de posicion */}
+        {/* Marcadores de posicion - Botones clickeables */}
         {NAV_ITEMS.map((item, index) => {
           const angle = (index * STEP_ANGLE - 90) * (Math.PI / 180)
           const radius = 175
@@ -173,10 +173,19 @@ export function RadioKnob() {
           const isActive = index === selectedIndex
           const isHovered = index === hoveredIndex
 
+          const handleNavigation = (e: React.MouseEvent) => {
+            e.stopPropagation()
+            if (item.isExternal) {
+              window.open(item.href, "_blank", "noopener,noreferrer")
+            } else {
+              window.location.href = item.href
+            }
+          }
+
           return (
             <div
               key={item.label}
-              className="absolute flex flex-col items-center transition-all duration-500 cursor-pointer group"
+              className="absolute flex flex-col items-center transition-all duration-500 group z-20"
               style={{
                 left: `calc(50% + ${x}px)`,
                 top: `calc(50% + ${y}px)`,
@@ -184,31 +193,10 @@ export function RadioKnob() {
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => {
-                setSelectedIndex(index)
-                setRotation(index * STEP_ANGLE)
-              }}
             >
-              {/* Tooltip con descripcion */}
-              {(isHovered || isActive) && item.description && (
-                <div 
-                  className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap z-50 transition-all duration-300"
-                  style={{
-                    backgroundColor: item.color,
-                    color: "#000",
-                    boxShadow: `0 4px 15px ${item.color}60`,
-                    opacity: isHovered ? 1 : 0.8
-                  }}
-                >
-                  {item.description}
-                  <div 
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent"
-                    style={{ borderTopColor: item.color }}
-                  />
-                </div>
-              )}
+              {/* Punto indicador */}
               <div
-                className="w-4 h-4 rounded-full transition-all duration-500"
+                className="w-4 h-4 rounded-full transition-all duration-500 cursor-pointer"
                 style={{ 
                   backgroundColor: item.color,
                   boxShadow: isActive 
@@ -219,17 +207,31 @@ export function RadioKnob() {
                   transform: isActive ? "scale(1.5)" : isHovered ? "scale(1.3)" : "scale(1)",
                   opacity: isActive ? 1 : isHovered ? 0.9 : 0.5
                 }}
+                onClick={() => {
+                  setSelectedIndex(index)
+                  setRotation(index * STEP_ANGLE)
+                }}
               />
-              <span
-                className="text-xs mt-2 font-bold tracking-wider transition-all duration-500 whitespace-nowrap uppercase"
+              
+              {/* Boton con nombre - Clickeable para navegar */}
+              <button
+                onClick={handleNavigation}
+                className="mt-2 px-3 py-1.5 rounded-lg font-bold text-xs tracking-wider transition-all duration-300 uppercase whitespace-nowrap hover:scale-110 active:scale-95"
                 style={{ 
-                  color: isActive ? item.color : isHovered ? item.color : "#666",
-                  textShadow: isActive || isHovered ? `0 0 10px ${item.color}` : "none",
-                  transform: isActive ? "scale(1.1)" : isHovered ? "scale(1.05)" : "scale(1)"
+                  backgroundColor: isActive || isHovered ? item.color : "rgba(255,255,255,0.9)",
+                  color: isActive || isHovered ? "#000" : "#666",
+                  boxShadow: isActive 
+                    ? `0 4px 15px ${item.color}60, 0 0 20px ${item.color}40` 
+                    : isHovered
+                    ? `0 4px 12px ${item.color}50`
+                    : "0 2px 8px rgba(0,0,0,0.15)",
+                  border: `2px solid ${item.color}`,
+                  minWidth: "80px",
+                  textAlign: "center",
                 }}
               >
                 {item.label}
-              </span>
+              </button>
             </div>
           )
         })}
