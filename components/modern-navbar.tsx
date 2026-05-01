@@ -41,7 +41,6 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
   // Efecto de llenado cuando cambia de posicion
   useEffect(() => {
     if (prevIndexRef.current !== currentIndex) {
-      setIsMoving(true)
       setFillProgress(0)
       
       // Animacion de llenado en 1 segundo
@@ -55,8 +54,6 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
         
         if (progress < 100) {
           requestAnimationFrame(animate)
-        } else {
-          setIsMoving(false)
         }
       }
       
