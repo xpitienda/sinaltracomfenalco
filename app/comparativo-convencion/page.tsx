@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, Suspense, useRef, useCallback } from "react"
+import { useState, useEffect, Suspense, useRef, useCallback } from "react"
 import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -855,7 +855,7 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
 // Componente que detecta el parametro showVideo
 function VideoModalTrigger({ onShowVideo }: { onShowVideo: () => void }) {
   const searchParams = useSearchParams()
-  const hasTriggered = React.useRef(false)
+  const hasTriggered = useRef(false)
   
   useEffect(() => {
     if (searchParams.get("showVideo") === "true" && !hasTriggered.current) {
