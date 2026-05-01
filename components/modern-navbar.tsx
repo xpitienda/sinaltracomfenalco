@@ -17,7 +17,7 @@ const navItems: NavItem[] = [
   { id: "convencion", label: "Convención", href: "/comparativo-convencion?section=convencion", icon: <FileText className="w-5 h-5" />, color: "#3b82f6" },
   { id: "comparativo", label: "Comparativo", href: "/comparativo-convencion?section=comparativo", icon: <GitCompare className="w-5 h-5" />, color: "#f59e0b" },
   { id: "bienestar", label: "Bienestar", href: "/cosechando-bienestar", icon: <Leaf className="w-5 h-5" />, color: "#10b981" },
-  { id: "contactos", label: "Contactos", href: "/contacto", icon: <Phone className="w-5 h-5" />, color: "#8b5cf6" },
+  { id: "contactos", label: "Contactos", href: "/?contactos=true", icon: <Phone className="w-5 h-5" />, color: "#8b5cf6" },
 ]
 
 interface ModernNavbarProps {
