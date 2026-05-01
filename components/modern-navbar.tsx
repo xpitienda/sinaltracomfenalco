@@ -54,28 +54,25 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
   }
 
   const itemWidth = 70
-  const notchRadius = 35
 
   return (
-    <div className="relative pt-8 pb-2">
-      {/* Esfera indicador - Simple con linea de circulo y color dinamico */}
+    <div className="relative pt-10 pb-2">
+      {/* Esfera indicador - Simple solo linea de circulo */}
       <div 
         className="absolute z-30 transition-all duration-500 ease-out"
         style={{
           left: `${indicatorPosition}px`,
           transform: "translateX(-50%)",
-          top: "-5px",
+          top: "-2px",
         }}
       >
         <div 
-          className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500"
+          className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 bg-white"
           style={{
-            background: currentColor,
-            border: "4px solid #0a2540",
-            boxShadow: `0 4px 15px ${currentColor}60`,
+            border: `3px solid ${currentColor}`,
           }}
         >
-          <div className="text-white">
+          <div style={{ color: currentColor }} className="transition-colors duration-500">
             {navItems[currentIndex]?.icon}
           </div>
         </div>
@@ -89,78 +86,15 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
         </div>
       </div>
 
-      {/* Barra contenedora con hendidura ondulada */}
+      {/* Barra contenedora - Borde verde, fondo naranja con blanco */}
       <div 
         ref={navRef}
-        className="relative h-16 overflow-visible"
+        className="relative h-14 rounded-xl overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #f97316 0%, #fdba74 50%, #ffffff 100%)",
+          border: "3px solid #22c55e",
+        }}
       >
-        {/* SVG que dibuja el rectangulo con la hendidura ondulada hacia adentro */}
-        <svg 
-          className="absolute inset-0 w-full h-full"
-          preserveAspectRatio="none"
-          style={{ overflow: "visible" }}
-        >
-          <defs>
-            <linearGradient id="navbarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00d4ff" />
-              <stop offset="100%" stopColor="#e0e0e0" />
-            </linearGradient>
-            <clipPath id="notchClip">
-              <path 
-                d={`
-                  M 0,0 
-                  L ${Math.max(0, indicatorPosition - notchRadius - 10)},0 
-                  Q ${indicatorPosition - notchRadius},0 ${indicatorPosition - notchRadius + 5},${notchRadius * 0.3}
-                  Q ${indicatorPosition - notchRadius * 0.5},${notchRadius * 0.8} ${indicatorPosition},${notchRadius}
-                  Q ${indicatorPosition + notchRadius * 0.5},${notchRadius * 0.8} ${indicatorPosition + notchRadius - 5},${notchRadius * 0.3}
-                  Q ${indicatorPosition + notchRadius},0 ${indicatorPosition + notchRadius + 10},0
-                  L 100%,0 
-                  L 100%,100% 
-                  L 0,100% 
-                  Z
-                `}
-              />
-            </clipPath>
-          </defs>
-          
-          {/* Fondo del rectangulo con hendidura */}
-          <rect 
-            x="0" 
-            y="0" 
-            width="100%" 
-            height="100%" 
-            rx="12" 
-            fill="url(#navbarGradient)"
-            clipPath="url(#notchClip)"
-            className="transition-all duration-500"
-          />
-          
-          {/* Borde superior con la curva de hendidura */}
-          <path 
-            d={`
-              M 12,0 
-              L ${Math.max(12, indicatorPosition - notchRadius - 10)},0 
-              Q ${indicatorPosition - notchRadius},0 ${indicatorPosition - notchRadius + 5},${notchRadius * 0.3}
-              Q ${indicatorPosition - notchRadius * 0.5},${notchRadius * 0.8} ${indicatorPosition},${notchRadius}
-              Q ${indicatorPosition + notchRadius * 0.5},${notchRadius * 0.8} ${indicatorPosition + notchRadius - 5},${notchRadius * 0.3}
-              Q ${indicatorPosition + notchRadius},0 ${indicatorPosition + notchRadius + 10},0
-              L calc(100% - 12),0
-            `}
-            fill="none"
-            stroke="#0a2540"
-            strokeWidth="3"
-            className="transition-all duration-500"
-          />
-          
-          {/* Bordes laterales e inferior */}
-          <path 
-            d="M 12,0 Q 0,0 0,12 L 0,calc(100% - 12) Q 0,100% 12,100% L calc(100% - 12),100% Q 100%,100% 100%,calc(100% - 12) L 100%,12 Q 100%,0 calc(100% - 12),0"
-            fill="none"
-            stroke="#0a2540"
-            strokeWidth="3"
-          />
-        </svg>
-
         {/* Items de navegacion */}
         <div className="relative z-10 flex items-center justify-center h-full px-4 gap-1">
           {navItems.map((item, index) => {
@@ -172,12 +106,12 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
                 key={item.id}
                 ref={el => { itemRefs.current[index] = el }}
                 onClick={() => handleClick(item)}
-                className="relative flex items-center justify-center transition-all duration-300 rounded-lg hover:bg-white/30"
+                className="relative flex items-center justify-center transition-all duration-300 rounded-lg hover:bg-white/40"
                 style={{
                   width: `${itemWidth}px`,
-                  height: "50px",
+                  height: "44px",
                   opacity: isCurrent ? 0.3 : 1,
-                  transform: isCurrent ? "translateY(5px) scale(0.85)" : "translateY(0) scale(1)",
+                  transform: isCurrent ? "translateY(3px) scale(0.9)" : "translateY(0) scale(1)",
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -185,7 +119,7 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
                 <div 
                   className="transition-colors duration-300"
                   style={{
-                    color: isActive ? "#0a2540" : "#4a5568",
+                    color: isActive ? "#166534" : "#1f2937",
                   }}
                 >
                   {item.icon}
