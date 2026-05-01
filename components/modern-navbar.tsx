@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { Home, Play, GitCompare, Leaf, Phone, Search } from "lucide-react"
+import { Home, GitCompare, Leaf, Phone, Search } from "lucide-react"
 
 interface NavItem {
   id: string
@@ -14,7 +14,6 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: "presentacion", label: "Presentación", href: "/", icon: <Home className="w-5 h-5" />, color: "#22c55e" },
-  { id: "video", label: "Video", href: "/comparativo-convencion?showVideo=true", icon: <Play className="w-5 h-5" />, color: "#3b82f6" },
   { id: "comparativo", label: "Comparativo", href: "/comparativo-convencion?section=comparativo", icon: <GitCompare className="w-5 h-5" />, color: "#f59e0b" },
   { id: "bienestar", label: "Bienestar", href: "/cosechando-bienestar", icon: <Leaf className="w-5 h-5" />, color: "#10b981" },
   { id: "consulta", label: "Consulta", href: "/consulta.html", icon: <Search className="w-5 h-5" />, color: "#f97316" },

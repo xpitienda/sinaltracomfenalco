@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect, Suspense, useRef, useCallback } from "react"
-import { useSearchParams } from "next/navigation"
+import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play } from "lucide-react"
@@ -852,23 +851,6 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
   )
 }
 
-// Componente que detecta el parametro showVideo
-function VideoModalTrigger({ onShowVideo }: { onShowVideo: () => void }) {
-  const searchParams = useSearchParams()
-  const hasTriggered = useRef(false)
-  
-  useEffect(() => {
-    if (searchParams.get("showVideo") === "true" && !hasTriggered.current) {
-      hasTriggered.current = true
-      onShowVideo()
-      // Limpiar URL para evitar re-trigger
-      window.history.replaceState({}, '', '/comparativo-convencion')
-    }
-  }, [searchParams, onShowVideo])
-  
-  return null
-}
-
 export default function ComparativoConvencionPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [expandedArticle, setExpandedArticle] = useState<number | null>(null)
@@ -908,11 +890,6 @@ export default function ComparativoConvencionPage() {
 
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: "#f8fafc" }}>
-      {/* Detector de parametro showVideo en URL */}
-      <Suspense fallback={null}>
-        <VideoModalTrigger onShowVideo={() => setShowVideoModal(true)} />
-      </Suspense>
-      
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-full z-40 transition-all duration-300 ${
