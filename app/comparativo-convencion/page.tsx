@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play } from "lucide-react"
+import { ModernNavbar } from "@/components/modern-navbar"
 
 // Datos del cuadro comparativo
 const articulosData = [
@@ -459,6 +460,397 @@ const articulosData = [
   }
 ]
 
+// Componente de Presentacion con botones 3D
+function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => void }) {
+  const [activeButton, setActiveButton] = useState<number | null>(null)
+  const [colorToggle, setColorToggle] = useState(false)
+
+  // Efecto de colores cambiantes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setColorToggle(prev => !prev)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const buttons = [
+    {
+      id: 0,
+      title: "Acerca de la Convencion",
+      content: "La Convencion Colectiva de Trabajo es el resultado del proceso de negociacion entre SINALTRACOMFENALCO y Comfenalco Antioquia, que establece las condiciones laborales, beneficios y derechos de los trabajadores afiliados al sindicato.",
+      color: "#22c55e"
+    },
+    {
+      id: 1,
+      title: "Comparativo por Periodos",
+      content: "Este sistema presenta un cuadro comparativo detallado que muestra la evolucion de los beneficios y derechos desde el periodo 2020-2024, pasando por la prorroga, hasta las convenciones 2025-2026 y 2026-2027.",
+      color: "#f97316"
+    },
+    {
+      id: 2,
+      title: "Articulos Analizados",
+      content: "Cada uno de los 50 articulos de la convencion ha sido analizado y comparado, destacando los logros obtenidos, las mejoras implementadas y los nuevos beneficios conquistados.",
+      color: "#3b82f6"
+    },
+    {
+      id: 3,
+      title: "Analisis de Logros",
+      content: "La columna de analisis identifica claramente los logros: beneficios que se mantienen, mejoras conseguidas y nuevos derechos incorporados a favor de los trabajadores.",
+      color: "#f59e0b"
+    }
+  ]
+
+  return (
+    <section className="animate-in fade-in duration-500">
+      {/* Header con texto animado */}
+      <div
+        className="rounded-2xl p-6 mb-6"
+        style={{
+          background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+          boxShadow: "0 10px 40px rgba(34,197,94,0.3)"
+        }}
+      >
+        <h1 
+          className="text-2xl md:text-3xl font-bold mb-2 transition-colors duration-500"
+          style={{ color: colorToggle ? "#fff" : "#fde68a" }}
+        >
+          Convencion Colectiva de Trabajo
+        </h1>
+        <p 
+          className="text-base transition-colors duration-500"
+          style={{ color: colorToggle ? "#fde68a" : "#fff" }}
+        >
+          SINALTRACOMFENALCO - Comfenalco Antioquia
+        </p>
+      </div>
+
+      {/* Botones 3D en fila */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        {buttons.map((btn, index) => (
+          <button
+            key={btn.id}
+            onClick={() => setActiveButton(activeButton === btn.id ? null : btn.id)}
+            className={`relative p-3 rounded-xl text-left transition-all duration-300 active:scale-95 ${
+              activeButton === btn.id ? 'scale-105' : 'hover:scale-102'
+            }`}
+            style={{
+              background: activeButton === btn.id 
+                ? `linear-gradient(145deg, ${btn.color}, ${btn.color}dd)`
+                : "linear-gradient(145deg, #ffffff, #f0f0f0)",
+              boxShadow: activeButton === btn.id
+                ? `0 8px 25px ${btn.color}50, inset 0 -2px 5px rgba(0,0,0,0.1)`
+                : "0 6px 15px rgba(0,0,0,0.1), inset 0 -2px 5px rgba(0,0,0,0.05)",
+              transform: activeButton === btn.id ? "translateY(-2px)" : "translateY(0)",
+              border: `2px solid ${activeButton === btn.id ? btn.color : '#e5e7eb'}`,
+            }}
+          >
+            {/* Indicador de color */}
+            <div 
+              className="w-4 h-4 rounded-full mb-2 transition-all duration-300"
+              style={{ 
+                backgroundColor: btn.color,
+                boxShadow: activeButton === btn.id ? `0 0 10px ${btn.color}` : "none"
+              }}
+            />
+            {/* Titulo */}
+            <h3 
+              className={`text-xs font-bold leading-tight transition-colors duration-300 ${
+                activeButton === btn.id ? 'text-white' : 'text-gray-800'
+              }`}
+              style={{
+                color: activeButton !== btn.id && colorToggle && index % 2 === 0 ? '#22c55e' 
+                     : activeButton !== btn.id && !colorToggle && index % 2 === 0 ? '#f97316'
+                     : activeButton !== btn.id && colorToggle && index % 2 !== 0 ? '#f97316'
+                     : activeButton !== btn.id && !colorToggle && index % 2 !== 0 ? '#22c55e'
+                     : 'white'
+              }}
+            >
+              {btn.title}
+            </h3>
+            
+            {/* Efecto 3D inferior */}
+            <div 
+              className="absolute bottom-0 left-2 right-2 h-1 rounded-b-xl"
+              style={{
+                background: `linear-gradient(to top, ${btn.color}40, transparent)`
+              }}
+            />
+          </button>
+        ))}
+      </div>
+
+      {/* Contenido expandido del boton activo */}
+      {activeButton !== null && (
+        <div 
+          className="bg-white rounded-2xl p-5 shadow-lg mb-6 animate-in slide-in-from-top duration-300"
+          style={{
+            borderLeft: `4px solid ${buttons[activeButton].color}`
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <div 
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: `${buttons[activeButton].color}20` }}
+            >
+              <div 
+                className="w-5 h-5 rounded-full"
+                style={{ backgroundColor: buttons[activeButton].color }}
+              />
+            </div>
+            <div>
+              <h3 
+                className="text-lg font-bold mb-2"
+                style={{ color: buttons[activeButton].color }}
+              >
+                {buttons[activeButton].title}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {buttons[activeButton].content}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Boton Ver Comparativo */}
+      <div className="text-center">
+        <button
+          onClick={() => onNavigate("comparativo")}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95"
+          style={{
+            background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+            boxShadow: "0 8px 25px rgba(249,115,22,0.4)"
+          }}
+        >
+          Ver Comparativo Completo
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </section>
+  )
+}
+
+// Componente de linea de tiempo animada
+function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosData[0], showImage: boolean }) {
+  const [timelineProgress, setTimelineProgress] = useState(0)
+  const [showImageWithSpin, setShowImageWithSpin] = useState(false)
+  const [imageSpinComplete, setImageSpinComplete] = useState(false)
+  const [imageZoomed, setImageZoomed] = useState(false)
+  
+  useEffect(() => {
+    // Reset estados
+    setTimelineProgress(0)
+    setShowImageWithSpin(false)
+    setImageSpinComplete(false)
+    
+    // Animacion de llenado de linea de tiempo (4 segundos total, 1 por cada seccion)
+    const duration = 4000
+    const startTime = Date.now()
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const progress = Math.min((elapsed / duration) * 100, 100)
+      setTimelineProgress(progress)
+      
+      if (progress < 100) {
+        requestAnimationFrame(animate)
+      } else {
+        // Al completar, esperar 1 segundo y mostrar imagen con giro
+        if (showImage) {
+          setTimeout(() => {
+            setShowImageWithSpin(true)
+            // Despues de 2 segundos de giro, estabilizar
+            setTimeout(() => {
+              setImageSpinComplete(true)
+            }, 2000)
+          }, 1000)
+        }
+      }
+    }
+    
+    requestAnimationFrame(animate)
+  }, [articulo.id, showImage])
+  
+  // Calcular que secciones estan visibles segun el progreso
+  const section1Visible = timelineProgress >= 0
+  const section2Visible = timelineProgress >= 25
+  const section3Visible = timelineProgress >= 50
+  const section4Visible = timelineProgress >= 75
+  const section5Visible = timelineProgress >= 100
+
+  return (
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-bottom duration-300">
+      <div className="p-6" style={{ backgroundColor: "#1e3a5f" }}>
+        <h2 className="text-2xl font-bold text-white">
+          <span className="text-orange-400">Articulo {articulo.id}:</span>{" "}
+          {articulo.tema}
+        </h2>
+      </div>
+
+      <div className="p-6">
+        <div className="flex gap-6">
+          {/* Linea de tiempo a la izquierda */}
+          <div className="flex-1">
+            <div className="relative">
+              {/* Linea vertical de tiempo - fondo gris */}
+              <div className="absolute left-4 top-0 bottom-0 w-1 bg-gray-200 rounded-full"></div>
+              
+              {/* Linea vertical de tiempo - llenado animado */}
+              <div 
+                className="absolute left-4 top-0 w-1 rounded-full transition-all duration-300"
+                style={{
+                  height: `${timelineProgress}%`,
+                  background: "linear-gradient(to bottom, #22c55e 0%, #3b82f6 25%, #f97316 50%, #a855f7 75%, #fbbf24 100%)"
+                }}
+              ></div>
+              
+              <div className="space-y-6 pl-12">
+                {/* 2020-2024 */}
+                <div 
+                  className={`relative transition-all duration-500 ${section1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 20 ? 'bg-emerald-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-emerald-500 bg-emerald-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-emerald-800 mb-2">2020 - 2024</h4>
+                    <p className="text-gray-700">{articulo.data2020_2024}</p>
+                  </div>
+                </div>
+
+                {/* Prorroga */}
+                <div 
+                  className={`relative transition-all duration-500 ${section2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '250ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 45 ? 'bg-blue-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-blue-500 bg-blue-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-blue-800 mb-2">PRORROGA</h4>
+                    <p className="text-gray-700">{articulo.prorroga}</p>
+                  </div>
+                </div>
+
+                {/* 2025-2026 */}
+                <div 
+                  className={`relative transition-all duration-500 ${section3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '500ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 70 ? 'bg-orange-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-orange-500 bg-orange-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-orange-800 mb-2">2025 - 2026</h4>
+                    <p className="text-gray-700">{articulo.data2025_2026}</p>
+                  </div>
+                </div>
+
+                {/* 2026-2027 */}
+                <div 
+                  className={`relative transition-all duration-500 ${section4Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '750ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 95 ? 'bg-purple-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-purple-800 mb-2">2026 - 2027</h4>
+                    <p className="text-gray-700">{articulo.data2026_2027}</p>
+                  </div>
+                </div>
+
+                {/* Analisis/Logro */}
+                <div 
+                  className={`relative transition-all duration-500 ${section5Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '1000ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 100 ? 'bg-amber-400 scale-125 animate-pulse' : 'bg-gray-300'}`}></div>
+                  <div
+                    className="rounded-xl p-5 shadow-lg"
+                    style={{
+                      background: "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%)"
+                    }}
+                  >
+                    <h4 className="font-bold text-white mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      LOGRO ALCANZADO
+                    </h4>
+                    <p className="text-amber-300 font-semibold text-lg">
+                      {articulo.analisis}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Imagen del capitulo a la derecha - Solo para Articulo 0 */}
+          {showImage && (
+            <div className="hidden lg:block w-80 flex-shrink-0">
+              <div 
+                className={`sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400/50 transition-all duration-1000 cursor-pointer hover:border-amber-400 hover:shadow-2xl ${
+                  showImageWithSpin 
+                    ? 'opacity-100 scale-100' 
+                    : 'opacity-0 scale-75'
+                }`}
+                style={{
+                  transform: showImageWithSpin && !imageSpinComplete 
+                    ? 'rotateY(720deg)' 
+                    : 'rotateY(0deg)',
+                  transition: showImageWithSpin && !imageSpinComplete 
+                    ? 'transform 2s ease-out, opacity 0.5s, scale 0.5s' 
+                    : 'transform 0.5s ease-out, opacity 0.5s, scale 0.5s',
+                }}
+                onClick={() => setImageZoomed(true)}
+              >
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
+                  alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
+                  width={320}
+                  height={600}
+                  className="w-full h-auto object-contain"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-all">
+                  <span className="text-white opacity-0 hover:opacity-100 text-sm font-medium bg-black/50 px-3 py-1 rounded-full">
+                    Click para ampliar
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Modal de imagen ampliada al 65% */}
+      {imageZoomed && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setImageZoomed(false)}
+        >
+          <div 
+            className="relative animate-in zoom-in-75 duration-300"
+            style={{ width: '65vw', maxHeight: '90vh' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setImageZoomed(false)}
+              className="absolute -top-4 -right-4 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
+                alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
+                width={800}
+                height={1500}
+                className="w-full h-auto object-contain max-h-[85vh]"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function ComparativoConvencionPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [expandedArticle, setExpandedArticle] = useState<number | null>(null)
@@ -466,6 +858,18 @@ export default function ComparativoConvencionPage() {
   const [activeSection, setActiveSection] = useState<string>("presentacion")
   const [comparativoExpanded, setComparativoExpanded] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Función para cerrar el video
+  const closeVideoModal = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+    }
+    setShowVideoModal(false)
+    // Limpiar URL
+    window.history.replaceState({}, '', '/comparativo-convencion')
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -527,13 +931,13 @@ export default function ComparativoConvencionPage() {
               <span className="font-medium">Presentacion</span>
             </button>
 
-            {/* Convencion - Video Button */}
+            {/* Video Button */}
             <button
               onClick={() => setShowVideoModal(true)}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-white/10 hover:text-white"
             >
               <Play className="w-4 h-4 text-blue-400" />
-              <span className="font-medium">Convencion</span>
+              <span className="font-medium">Video</span>
             </button>
 
             {/* Comparativo Convencion - Dropdown */}
@@ -588,6 +992,18 @@ export default function ComparativoConvencionPage() {
                 Cosechando Bienestar
               </span>
             </Link>
+
+            {/* Consulta - Link */}
+            <Link
+              href="/consulta.html"
+              target="_blank"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-amber-500/20 hover:to-orange-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-400"></div>
+              <span className="font-medium bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent group-hover:from-amber-300 group-hover:to-orange-300">
+                Consulta
+              </span>
+            </Link>
           </nav>
 
           {/* Contactos Button */}
@@ -628,11 +1044,18 @@ export default function ComparativoConvencionPage() {
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <div className="flex items-center gap-3">
-              <span className="text-white font-bold text-lg">
-                Sistema de Datos
-              </span>
-              <span className="text-emerald-400 font-semibold">SINALTRACOMFENALCO</span>
+            
+{/* Modern Navbar con indicador circular - visible en todas las pantallas */}
+<div className="block">
+<ModernNavbar
+                activeSection={activeSection} 
+                onSectionChange={(section) => {
+                  setActiveSection(section)
+                  if (section === "comparativo") {
+                    setComparativoExpanded(true)
+                  }
+                }} 
+              />
             </div>
           </div>
           <Link
@@ -646,89 +1069,14 @@ export default function ComparativoConvencionPage() {
         {/* Content Area */}
         <div className="p-6">
           {activeSection === "presentacion" && (
-            <section className="animate-in fade-in duration-500">
-              <div
-                className="rounded-2xl p-8 mb-6"
-                style={{
-                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
-                  boxShadow: "0 10px 40px rgba(34,197,94,0.3)"
-                }}
-              >
-                <h1 className="text-4xl font-bold text-white mb-4">
-                  Convencion Colectiva de Trabajo
-                </h1>
-                <p className="text-white/90 text-xl">
-                  SINALTRACOMFENALCO - Comfenalco Antioquia
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    Acerca de la Convencion
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    La Convencion Colectiva de Trabajo es el resultado del proceso de negociacion entre SINALTRACOMFENALCO y Comfenalco Antioquia, que establece las condiciones laborales, beneficios y derechos de los trabajadores afiliados al sindicato.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-orange-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    Comparativo por Periodos
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Este sistema presenta un cuadro comparativo detallado que muestra la evolucion de los beneficios y derechos desde el periodo 2020-2024, pasando por la prorroga, hasta las convenciones 2025-2026 y 2026-2027.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-blue-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    50 Articulos Analizados
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Cada uno de los 50 articulos de la convencion ha sido analizado y comparado, destacando los logros obtenidos, las mejoras implementadas y los nuevos beneficios conquistados.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-amber-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    Analisis de Logros
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    La columna de analisis identifica claramente los logros: beneficios que se mantienen, mejoras conseguidas y nuevos derechos incorporados a favor de los trabajadores.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 text-center">
-                <button
-                  onClick={() => {
-                    setComparativoExpanded(true)
-                    setActiveSection("comparativo")
-                  }}
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105"
-                  style={{
-                    background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
-                    boxShadow: "0 10px 30px rgba(249,115,22,0.4)"
-                  }}
-                >
-                  Ver Comparativo Completo
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </section>
+            <PresentacionSection 
+              onNavigate={(section) => {
+                if (section === "comparativo") {
+                  setComparativoExpanded(true)
+                }
+                setActiveSection(section)
+              }}
+            />
           )}
 
           {activeSection === "comparativo" && (
@@ -749,75 +1097,10 @@ export default function ComparativoConvencionPage() {
               </div>
 
               {expandedArticle !== null ? (
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-bottom duration-300">
-                  <div
-                    className="p-6"
-                    style={{ backgroundColor: "#1e3a5f" }}
-                  >
-                    <h2 className="text-2xl font-bold text-white">
-                      <span className="text-orange-400">Articulo {articulosData[expandedArticle].id}:</span>{" "}
-                      {articulosData[expandedArticle].tema}
-                    </h2>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="grid gap-4">
-                      {/* 2020-2024 */}
-                      <div className="rounded-xl p-5 border-l-4 border-emerald-500 bg-emerald-50">
-                        <h4 className="font-bold text-emerald-800 mb-2 flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                          2020 - 2024
-                        </h4>
-                        <p className="text-gray-700">{articulosData[expandedArticle].data2020_2024}</p>
-                      </div>
-
-                      {/* Prorroga */}
-                      <div className="rounded-xl p-5 border-l-4 border-blue-500 bg-blue-50">
-                        <h4 className="font-bold text-blue-800 mb-2 flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                          PRORROGA
-                        </h4>
-                        <p className="text-gray-700">{articulosData[expandedArticle].prorroga}</p>
-                      </div>
-
-                      {/* 2025-2026 */}
-                      <div className="rounded-xl p-5 border-l-4 border-orange-500 bg-orange-50">
-                        <h4 className="font-bold text-orange-800 mb-2 flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-                          2025 - 2026
-                        </h4>
-                        <p className="text-gray-700">{articulosData[expandedArticle].data2025_2026}</p>
-                      </div>
-
-                      {/* 2026-2027 */}
-                      <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50">
-                        <h4 className="font-bold text-purple-800 mb-2 flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                          2026 - 2027
-                        </h4>
-                        <p className="text-gray-700">
-                          {articulosData[expandedArticle].data2026_2027}
-                        </p>
-                      </div>
-
-                      {/* Analisis */}
-                      <div
-                        className="rounded-xl p-5 mt-2"
-                        style={{
-                          background: "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%)"
-                        }}
-                      >
-                        <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                          ANALISIS (LOGRO)
-                        </h4>
-                        <p className="text-amber-300 font-semibold text-lg">
-                          {articulosData[expandedArticle].analisis}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <TimelineArticle 
+                  articulo={articulosData[expandedArticle]} 
+                  showImage={expandedArticle === 0}
+                />
               ) : (
                 <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
                   <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
@@ -873,35 +1156,75 @@ export default function ComparativoConvencionPage() {
       {/* Video Modal */}
       {showVideoModal && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setShowVideoModal(false)}
+          className="fixed inset-0 flex items-center justify-center bg-black/95 p-4"
+          style={{ zIndex: 9999 }}
+          onClick={closeVideoModal}
         >
+          {/* Boton X flotante en esquina superior derecha */}
+          <button
+            onClick={closeVideoModal}
+            className="fixed top-4 right-4 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shadow-xl border-4 border-white"
+            style={{ zIndex: 10000 }}
+            aria-label="Cerrar video"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
           <div 
-            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden"
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setShowVideoModal(false)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              aria-label="Cerrar video"
-            >
-              <X className="w-6 h-6 text-white" />
-            </button>
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
+              <h3 className="text-white font-bold text-lg">Convencion SINALTRACOMFENALCO 2026-2027</h3>
+              <button
+                onClick={closeVideoModal}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-emerald-700 font-bold hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                <X className="w-5 h-5" />
+                Cerrar
+              </button>
+            </div>
 
             {/* Video Player */}
             <video
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4"
+              ref={videoRef}
+              key="video-convencion"
               controls
               autoPlay
-              className="w-full aspect-video"
+              playsInline
+              preload="auto"
+              className="w-full aspect-video bg-black"
             >
+              <source 
+                src="https://github.com/xpitienda/sinaltracomfenalco/raw/refs/heads/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4" 
+                type="video/mp4" 
+              />
+              <source 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4" 
+                type="video/mp4" 
+              />
               Tu navegador no soporta el elemento de video.
             </video>
 
-            {/* Title */}
-            <div className="p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
-              <h3 className="text-white font-bold text-lg text-center">Convencion SINALTRACOMFENALCO</h3>
+            {/* Footer con botones de navegacion */}
+            <div className="p-4 bg-gray-900 flex flex-wrap justify-center gap-3">
+              <button
+                onClick={closeVideoModal}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-bold hover:from-red-600 hover:to-red-700 transition-all shadow-lg"
+              >
+                <X className="w-5 h-5" />
+                Salir del Video
+              </button>
+              <button
+                onClick={() => {
+                  closeVideoModal()
+                  window.location.href = "/"
+                }}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg"
+              >
+                Ir a Inicio
+              </button>
             </div>
           </div>
         </div>

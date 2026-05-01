@@ -177,4 +177,4 @@ export default function SplashPage() {
     </Suspense>
   )
 }
-// actualizacion
+// forzar actualizacion./ forzar actualizacion.
