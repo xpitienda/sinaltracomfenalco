@@ -460,6 +460,188 @@ const articulosData = [
   }
 ]
 
+// Componente de linea de tiempo animada
+function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosData[0], showImage: boolean }) {
+  const [timelineProgress, setTimelineProgress] = useState(0)
+  const [showImageWithSpin, setShowImageWithSpin] = useState(false)
+  const [imageSpinComplete, setImageSpinComplete] = useState(false)
+  
+  useEffect(() => {
+    // Reset estados
+    setTimelineProgress(0)
+    setShowImageWithSpin(false)
+    setImageSpinComplete(false)
+    
+    // Animacion de llenado de linea de tiempo (4 segundos total, 1 por cada seccion)
+    const duration = 4000
+    const startTime = Date.now()
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const progress = Math.min((elapsed / duration) * 100, 100)
+      setTimelineProgress(progress)
+      
+      if (progress < 100) {
+        requestAnimationFrame(animate)
+      } else {
+        // Al completar, esperar 1 segundo y mostrar imagen con giro
+        if (showImage) {
+          setTimeout(() => {
+            setShowImageWithSpin(true)
+            // Despues de 2 segundos de giro, estabilizar
+            setTimeout(() => {
+              setImageSpinComplete(true)
+            }, 2000)
+          }, 1000)
+        }
+      }
+    }
+    
+    requestAnimationFrame(animate)
+  }, [articulo.id, showImage])
+  
+  // Calcular que secciones estan visibles segun el progreso
+  const section1Visible = timelineProgress >= 0
+  const section2Visible = timelineProgress >= 25
+  const section3Visible = timelineProgress >= 50
+  const section4Visible = timelineProgress >= 75
+  const section5Visible = timelineProgress >= 100
+
+  return (
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-bottom duration-300">
+      <div className="p-6" style={{ backgroundColor: "#1e3a5f" }}>
+        <h2 className="text-2xl font-bold text-white">
+          <span className="text-orange-400">Articulo {articulo.id}:</span>{" "}
+          {articulo.tema}
+        </h2>
+      </div>
+
+      <div className="p-6">
+        <div className="flex gap-6">
+          {/* Linea de tiempo a la izquierda */}
+          <div className="flex-1">
+            <div className="relative">
+              {/* Linea vertical de tiempo - fondo gris */}
+              <div className="absolute left-4 top-0 bottom-0 w-1 bg-gray-200 rounded-full"></div>
+              
+              {/* Linea vertical de tiempo - llenado animado */}
+              <div 
+                className="absolute left-4 top-0 w-1 rounded-full transition-all duration-300"
+                style={{
+                  height: `${timelineProgress}%`,
+                  background: "linear-gradient(to bottom, #22c55e 0%, #3b82f6 25%, #f97316 50%, #a855f7 75%, #fbbf24 100%)"
+                }}
+              ></div>
+              
+              <div className="space-y-6 pl-12">
+                {/* 2020-2024 */}
+                <div 
+                  className={`relative transition-all duration-500 ${section1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 20 ? 'bg-emerald-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-emerald-500 bg-emerald-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-emerald-800 mb-2">2020 - 2024</h4>
+                    <p className="text-gray-700">{articulo.data2020_2024}</p>
+                  </div>
+                </div>
+
+                {/* Prorroga */}
+                <div 
+                  className={`relative transition-all duration-500 ${section2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '250ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 45 ? 'bg-blue-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-blue-500 bg-blue-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-blue-800 mb-2">PRORROGA</h4>
+                    <p className="text-gray-700">{articulo.prorroga}</p>
+                  </div>
+                </div>
+
+                {/* 2025-2026 */}
+                <div 
+                  className={`relative transition-all duration-500 ${section3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '500ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 70 ? 'bg-orange-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-orange-500 bg-orange-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-orange-800 mb-2">2025 - 2026</h4>
+                    <p className="text-gray-700">{articulo.data2025_2026}</p>
+                  </div>
+                </div>
+
+                {/* 2026-2027 */}
+                <div 
+                  className={`relative transition-all duration-500 ${section4Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '750ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 95 ? 'bg-purple-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-purple-800 mb-2">2026 - 2027</h4>
+                    <p className="text-gray-700">{articulo.data2026_2027}</p>
+                  </div>
+                </div>
+
+                {/* Analisis/Logro */}
+                <div 
+                  className={`relative transition-all duration-500 ${section5Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '1000ms' }}
+                >
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 100 ? 'bg-amber-400 scale-125 animate-pulse' : 'bg-gray-300'}`}></div>
+                  <div
+                    className="rounded-xl p-5 shadow-lg"
+                    style={{
+                      background: "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%)"
+                    }}
+                  >
+                    <h4 className="font-bold text-white mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      LOGRO ALCANZADO
+                    </h4>
+                    <p className="text-amber-300 font-semibold text-lg">
+                      {articulo.analisis}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Imagen del capitulo a la derecha - Solo para Articulo 0 */}
+          {showImage && (
+            <div className="hidden lg:block w-80 flex-shrink-0">
+              <div 
+                className={`sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400/50 transition-all duration-1000 ${
+                  showImageWithSpin 
+                    ? 'opacity-100 scale-100' 
+                    : 'opacity-0 scale-75'
+                }`}
+                style={{
+                  transform: showImageWithSpin && !imageSpinComplete 
+                    ? 'rotateY(720deg)' 
+                    : 'rotateY(0deg)',
+                  transition: showImageWithSpin && !imageSpinComplete 
+                    ? 'transform 2s ease-out, opacity 0.5s, scale 0.5s' 
+                    : 'transform 0.5s ease-out, opacity 0.5s, scale 0.5s',
+                }}
+              >
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
+                  alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
+                  width={320}
+                  height={600}
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ComparativoConvencionPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [expandedArticle, setExpandedArticle] = useState<number | null>(null)
@@ -757,103 +939,10 @@ export default function ComparativoConvencionPage() {
               </div>
 
               {expandedArticle !== null ? (
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-bottom duration-300">
-                  <div
-                    className="p-6"
-                    style={{ backgroundColor: "#1e3a5f" }}
-                  >
-                    <h2 className="text-2xl font-bold text-white">
-                      <span className="text-orange-400">Articulo {articulosData[expandedArticle].id}:</span>{" "}
-                      {articulosData[expandedArticle].tema}
-                    </h2>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex gap-6">
-                      {/* Linea de tiempo a la izquierda */}
-                      <div className="flex-1">
-                        <div className="relative">
-                          {/* Linea vertical de tiempo */}
-                          <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 via-blue-500 via-orange-500 to-purple-500 rounded-full"></div>
-                          
-                          <div className="space-y-6 pl-12">
-                            {/* 2020-2024 */}
-                            <div className="relative">
-                              <div className="absolute -left-8 top-2 w-5 h-5 rounded-full bg-emerald-500 border-4 border-white shadow-lg z-10"></div>
-                              <div className="rounded-xl p-5 border-l-4 border-emerald-500 bg-emerald-50 shadow-sm hover:shadow-md transition-shadow">
-                                <h4 className="font-bold text-emerald-800 mb-2">2020 - 2024</h4>
-                                <p className="text-gray-700">{articulosData[expandedArticle].data2020_2024}</p>
-                              </div>
-                            </div>
-
-                            {/* Prorroga */}
-                            <div className="relative">
-                              <div className="absolute -left-8 top-2 w-5 h-5 rounded-full bg-blue-500 border-4 border-white shadow-lg z-10"></div>
-                              <div className="rounded-xl p-5 border-l-4 border-blue-500 bg-blue-50 shadow-sm hover:shadow-md transition-shadow">
-                                <h4 className="font-bold text-blue-800 mb-2">PRORROGA</h4>
-                                <p className="text-gray-700">{articulosData[expandedArticle].prorroga}</p>
-                              </div>
-                            </div>
-
-                            {/* 2025-2026 */}
-                            <div className="relative">
-                              <div className="absolute -left-8 top-2 w-5 h-5 rounded-full bg-orange-500 border-4 border-white shadow-lg z-10"></div>
-                              <div className="rounded-xl p-5 border-l-4 border-orange-500 bg-orange-50 shadow-sm hover:shadow-md transition-shadow">
-                                <h4 className="font-bold text-orange-800 mb-2">2025 - 2026</h4>
-                                <p className="text-gray-700">{articulosData[expandedArticle].data2025_2026}</p>
-                              </div>
-                            </div>
-
-                            {/* 2026-2027 */}
-                            <div className="relative">
-                              <div className="absolute -left-8 top-2 w-5 h-5 rounded-full bg-purple-500 border-4 border-white shadow-lg z-10"></div>
-                              <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50 shadow-sm hover:shadow-md transition-shadow">
-                                <h4 className="font-bold text-purple-800 mb-2">2026 - 2027</h4>
-                                <p className="text-gray-700">{articulosData[expandedArticle].data2026_2027}</p>
-                              </div>
-                            </div>
-
-                            {/* Analisis/Logro */}
-                            <div className="relative">
-                              <div className="absolute -left-8 top-2 w-5 h-5 rounded-full bg-amber-400 border-4 border-white shadow-lg z-10 animate-pulse"></div>
-                              <div
-                                className="rounded-xl p-5 shadow-lg"
-                                style={{
-                                  background: "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%)"
-                                }}
-                              >
-                                <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                                  <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                  </svg>
-                                  LOGRO ALCANZADO
-                                </h4>
-                                <p className="text-amber-300 font-semibold text-lg">
-                                  {articulosData[expandedArticle].analisis}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Imagen del capitulo a la derecha - Solo para Articulo 0 */}
-                      {expandedArticle === 0 && (
-                        <div className="hidden lg:block w-80 flex-shrink-0">
-                          <div className="sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400/50">
-                            <Image
-                              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
-                              alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
-                              width={320}
-                              height={600}
-                              className="w-full h-auto object-contain"
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                <TimelineArticle 
+                  articulo={articulosData[expandedArticle]} 
+                  showImage={expandedArticle === 0}
+                />
               ) : (
                 <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
                   <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
