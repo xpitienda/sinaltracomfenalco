@@ -1163,37 +1163,43 @@ export default function ComparativoConvencionPage() {
       {/* Video Modal */}
       {showVideoModal && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setShowVideoModal(false)}
+          className="fixed inset-0 flex items-center justify-center bg-black/90 p-4"
+          style={{ zIndex: 9999 }}
         >
+          {/* Boton X flotante en esquina superior derecha */}
+          <button
+            onClick={() => setShowVideoModal(false)}
+            className="fixed top-4 right-4 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shadow-xl"
+            style={{ zIndex: 10000 }}
+            aria-label="Cerrar video"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
           <div 
-            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden"
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header con boton cerrar visible */}
+            {/* Header */}
             <div className="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
-              <h3 className="text-white font-bold text-lg">Convencion SINALTRACOMFENALCO</h3>
+              <h3 className="text-white font-bold text-lg">Convencion SINALTRACOMFENALCO 2026-2027</h3>
               <button
                 onClick={() => setShowVideoModal(false)}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-emerald-700 font-bold hover:bg-gray-100 transition-colors shadow-lg"
-                aria-label="Cerrar video"
               >
                 <X className="w-5 h-5" />
                 Cerrar
               </button>
             </div>
 
-            {/* Video Player - Sin loop */}
+            {/* Video Player */}
             <video
               key="video-convencion"
               controls
               autoPlay
               playsInline
-              preload="metadata"
+              preload="auto"
               className="w-full aspect-video bg-black"
-              onEnded={() => {
-                // No hacer nada al terminar, permitir que el usuario cierre
-              }}
             >
               <source 
                 src="https://github.com/xpitienda/sinaltracomfenalco/raw/refs/heads/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4" 
@@ -1206,14 +1212,23 @@ export default function ComparativoConvencionPage() {
               Tu navegador no soporta el elemento de video.
             </video>
 
-            {/* Footer con boton cerrar adicional */}
-            <div className="p-4 bg-gray-900 flex justify-center">
+            {/* Footer con botones de navegacion */}
+            <div className="p-4 bg-gray-900 flex flex-wrap justify-center gap-3">
               <button
                 onClick={() => setShowVideoModal(false)}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-bold hover:from-red-600 hover:to-red-700 transition-all shadow-lg"
               >
                 <X className="w-5 h-5" />
                 Salir del Video
+              </button>
+              <button
+                onClick={() => {
+                  setShowVideoModal(false)
+                  window.location.href = "/"
+                }}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg"
+              >
+                Ir a Inicio
               </button>
             </div>
           </div>
