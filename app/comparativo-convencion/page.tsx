@@ -465,6 +465,7 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
   const [timelineProgress, setTimelineProgress] = useState(0)
   const [showImageWithSpin, setShowImageWithSpin] = useState(false)
   const [imageSpinComplete, setImageSpinComplete] = useState(false)
+  const [imageZoomed, setImageZoomed] = useState(false)
   
   useEffect(() => {
     // Reset estados
@@ -612,7 +613,7 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
           {showImage && (
             <div className="hidden lg:block w-80 flex-shrink-0">
               <div 
-                className={`sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400/50 transition-all duration-1000 ${
+                className={`sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400/50 transition-all duration-1000 cursor-pointer hover:border-amber-400 hover:shadow-2xl ${
                   showImageWithSpin 
                     ? 'opacity-100 scale-100' 
                     : 'opacity-0 scale-75'
@@ -625,6 +626,7 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
                     ? 'transform 2s ease-out, opacity 0.5s, scale 0.5s' 
                     : 'transform 0.5s ease-out, opacity 0.5s, scale 0.5s',
                 }}
+                onClick={() => setImageZoomed(true)}
               >
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
@@ -633,11 +635,48 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
                   height={600}
                   className="w-full h-auto object-contain"
                 />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-all">
+                  <span className="text-white opacity-0 hover:opacity-100 text-sm font-medium bg-black/50 px-3 py-1 rounded-full">
+                    Click para ampliar
+                  </span>
+                </div>
               </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Modal de imagen ampliada al 65% */}
+      {imageZoomed && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setImageZoomed(false)}
+        >
+          <div 
+            className="relative animate-in zoom-in-75 duration-300"
+            style={{ width: '65vw', maxHeight: '90vh' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setImageZoomed(false)}
+              className="absolute -top-4 -right-4 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
+                alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
+                width={800}
+                height={1500}
+                className="w-full h-auto object-contain max-h-[85vh]"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
