@@ -859,6 +859,14 @@ export default function ComparativoConvencionPage() {
   const [comparativoExpanded, setComparativoExpanded] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
 
+  // Detectar parametro showVideo en URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get("showVideo") === "true") {
+      setShowVideoModal(true)
+    }
+  }, [])
+
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300)
@@ -919,13 +927,13 @@ export default function ComparativoConvencionPage() {
               <span className="font-medium">Presentacion</span>
             </button>
 
-            {/* Convencion - Video Button */}
+            {/* Video Button */}
             <button
               onClick={() => setShowVideoModal(true)}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-white/10 hover:text-white"
             >
               <Play className="w-4 h-4 text-blue-400" />
-              <span className="font-medium">Convencion</span>
+              <span className="font-medium">Video</span>
             </button>
 
             {/* Comparativo Convencion - Dropdown */}
@@ -1160,15 +1168,15 @@ export default function ComparativoConvencionPage() {
               <X className="w-6 h-6 text-white" />
             </button>
 
-            {/* Video Player */}
-            <video
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4"
-              controls
-              autoPlay
-              className="w-full aspect-video"
-            >
-              Tu navegador no soporta el elemento de video.
-            </video>
+              {/* Video Player */}
+              <video
+                src="https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4"
+                controls
+                autoPlay
+                className="w-full aspect-video"
+              >
+                Tu navegador no soporta el elemento de video.
+              </video>
 
             {/* Title */}
             <div className="p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
