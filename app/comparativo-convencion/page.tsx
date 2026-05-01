@@ -460,6 +460,176 @@ const articulosData = [
   }
 ]
 
+// Componente de Presentacion con botones 3D
+function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => void }) {
+  const [activeButton, setActiveButton] = useState<number | null>(null)
+  const [colorToggle, setColorToggle] = useState(false)
+
+  // Efecto de colores cambiantes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setColorToggle(prev => !prev)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const buttons = [
+    {
+      id: 0,
+      title: "Acerca de la Convencion",
+      content: "La Convencion Colectiva de Trabajo es el resultado del proceso de negociacion entre SINALTRACOMFENALCO y Comfenalco Antioquia, que establece las condiciones laborales, beneficios y derechos de los trabajadores afiliados al sindicato.",
+      color: "#22c55e"
+    },
+    {
+      id: 1,
+      title: "Comparativo por Periodos",
+      content: "Este sistema presenta un cuadro comparativo detallado que muestra la evolucion de los beneficios y derechos desde el periodo 2020-2024, pasando por la prorroga, hasta las convenciones 2025-2026 y 2026-2027.",
+      color: "#f97316"
+    },
+    {
+      id: 2,
+      title: "Articulos Analizados",
+      content: "Cada uno de los 50 articulos de la convencion ha sido analizado y comparado, destacando los logros obtenidos, las mejoras implementadas y los nuevos beneficios conquistados.",
+      color: "#3b82f6"
+    },
+    {
+      id: 3,
+      title: "Analisis de Logros",
+      content: "La columna de analisis identifica claramente los logros: beneficios que se mantienen, mejoras conseguidas y nuevos derechos incorporados a favor de los trabajadores.",
+      color: "#f59e0b"
+    }
+  ]
+
+  return (
+    <section className="animate-in fade-in duration-500">
+      {/* Header con texto animado */}
+      <div
+        className="rounded-2xl p-6 mb-6"
+        style={{
+          background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+          boxShadow: "0 10px 40px rgba(34,197,94,0.3)"
+        }}
+      >
+        <h1 
+          className="text-2xl md:text-3xl font-bold mb-2 transition-colors duration-500"
+          style={{ color: colorToggle ? "#fff" : "#fde68a" }}
+        >
+          Convencion Colectiva de Trabajo
+        </h1>
+        <p 
+          className="text-base transition-colors duration-500"
+          style={{ color: colorToggle ? "#fde68a" : "#fff" }}
+        >
+          SINALTRACOMFENALCO - Comfenalco Antioquia
+        </p>
+      </div>
+
+      {/* Botones 3D en fila */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        {buttons.map((btn, index) => (
+          <button
+            key={btn.id}
+            onClick={() => setActiveButton(activeButton === btn.id ? null : btn.id)}
+            className={`relative p-3 rounded-xl text-left transition-all duration-300 active:scale-95 ${
+              activeButton === btn.id ? 'scale-105' : 'hover:scale-102'
+            }`}
+            style={{
+              background: activeButton === btn.id 
+                ? `linear-gradient(145deg, ${btn.color}, ${btn.color}dd)`
+                : "linear-gradient(145deg, #ffffff, #f0f0f0)",
+              boxShadow: activeButton === btn.id
+                ? `0 8px 25px ${btn.color}50, inset 0 -2px 5px rgba(0,0,0,0.1)`
+                : "0 6px 15px rgba(0,0,0,0.1), inset 0 -2px 5px rgba(0,0,0,0.05)",
+              transform: activeButton === btn.id ? "translateY(-2px)" : "translateY(0)",
+              border: `2px solid ${activeButton === btn.id ? btn.color : '#e5e7eb'}`,
+            }}
+          >
+            {/* Indicador de color */}
+            <div 
+              className="w-4 h-4 rounded-full mb-2 transition-all duration-300"
+              style={{ 
+                backgroundColor: btn.color,
+                boxShadow: activeButton === btn.id ? `0 0 10px ${btn.color}` : "none"
+              }}
+            />
+            {/* Titulo */}
+            <h3 
+              className={`text-xs font-bold leading-tight transition-colors duration-300 ${
+                activeButton === btn.id ? 'text-white' : 'text-gray-800'
+              }`}
+              style={{
+                color: activeButton !== btn.id && colorToggle && index % 2 === 0 ? '#22c55e' 
+                     : activeButton !== btn.id && !colorToggle && index % 2 === 0 ? '#f97316'
+                     : activeButton !== btn.id && colorToggle && index % 2 !== 0 ? '#f97316'
+                     : activeButton !== btn.id && !colorToggle && index % 2 !== 0 ? '#22c55e'
+                     : 'white'
+              }}
+            >
+              {btn.title}
+            </h3>
+            
+            {/* Efecto 3D inferior */}
+            <div 
+              className="absolute bottom-0 left-2 right-2 h-1 rounded-b-xl"
+              style={{
+                background: `linear-gradient(to top, ${btn.color}40, transparent)`
+              }}
+            />
+          </button>
+        ))}
+      </div>
+
+      {/* Contenido expandido del boton activo */}
+      {activeButton !== null && (
+        <div 
+          className="bg-white rounded-2xl p-5 shadow-lg mb-6 animate-in slide-in-from-top duration-300"
+          style={{
+            borderLeft: `4px solid ${buttons[activeButton].color}`
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <div 
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: `${buttons[activeButton].color}20` }}
+            >
+              <div 
+                className="w-5 h-5 rounded-full"
+                style={{ backgroundColor: buttons[activeButton].color }}
+              />
+            </div>
+            <div>
+              <h3 
+                className="text-lg font-bold mb-2"
+                style={{ color: buttons[activeButton].color }}
+              >
+                {buttons[activeButton].title}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {buttons[activeButton].content}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Boton Ver Comparativo */}
+      <div className="text-center">
+        <button
+          onClick={() => onNavigate("comparativo")}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95"
+          style={{
+            background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+            boxShadow: "0 8px 25px rgba(249,115,22,0.4)"
+          }}
+        >
+          Ver Comparativo Completo
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </section>
+  )
+}
+
 // Componente de linea de tiempo animada
 function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosData[0], showImage: boolean }) {
   const [timelineProgress, setTimelineProgress] = useState(0)
@@ -887,89 +1057,14 @@ export default function ComparativoConvencionPage() {
         {/* Content Area */}
         <div className="p-6">
           {activeSection === "presentacion" && (
-            <section className="animate-in fade-in duration-500">
-              <div
-                className="rounded-2xl p-8 mb-6"
-                style={{
-                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
-                  boxShadow: "0 10px 40px rgba(34,197,94,0.3)"
-                }}
-              >
-                <h1 className="text-4xl font-bold text-white mb-4">
-                  Convencion Colectiva de Trabajo
-                </h1>
-                <p className="text-white/90 text-xl">
-                  SINALTRACOMFENALCO - Comfenalco Antioquia
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    Acerca de la Convencion
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    La Convencion Colectiva de Trabajo es el resultado del proceso de negociacion entre SINALTRACOMFENALCO y Comfenalco Antioquia, que establece las condiciones laborales, beneficios y derechos de los trabajadores afiliados al sindicato.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-orange-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    Comparativo por Periodos
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Este sistema presenta un cuadro comparativo detallado que muestra la evolucion de los beneficios y derechos desde el periodo 2020-2024, pasando por la prorroga, hasta las convenciones 2025-2026 y 2026-2027.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-blue-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    50 Articulos Analizados
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Cada uno de los 50 articulos de la convencion ha sido analizado y comparado, destacando los logros obtenidos, las mejoras implementadas y los nuevos beneficios conquistados.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 rounded-full bg-amber-500"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
-                    Analisis de Logros
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    La columna de analisis identifica claramente los logros: beneficios que se mantienen, mejoras conseguidas y nuevos derechos incorporados a favor de los trabajadores.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 text-center">
-                <button
-                  onClick={() => {
-                    setComparativoExpanded(true)
-                    setActiveSection("comparativo")
-                  }}
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105"
-                  style={{
-                    background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
-                    boxShadow: "0 10px 30px rgba(249,115,22,0.4)"
-                  }}
-                >
-                  Ver Comparativo Completo
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </section>
+            <PresentacionSection 
+              onNavigate={(section) => {
+                if (section === "comparativo") {
+                  setComparativoExpanded(true)
+                }
+                setActiveSection(section)
+              }}
+            />
           )}
 
           {activeSection === "comparativo" && (
