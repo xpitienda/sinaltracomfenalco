@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { Home, FileText, GitCompare, Leaf, Phone } from "lucide-react"
+import { Home, FileText, GitCompare, Leaf, Phone, Search } from "lucide-react"
 
 interface NavItem {
   id: string
@@ -17,6 +17,7 @@ const navItems: NavItem[] = [
   { id: "convencion", label: "Convención", href: "/comparativo-convencion?section=convencion", icon: <FileText className="w-5 h-5" />, color: "#3b82f6" },
   { id: "comparativo", label: "Comparativo", href: "/comparativo-convencion?section=comparativo", icon: <GitCompare className="w-5 h-5" />, color: "#f59e0b" },
   { id: "bienestar", label: "Bienestar", href: "/cosechando-bienestar", icon: <Leaf className="w-5 h-5" />, color: "#10b981" },
+  { id: "consulta", label: "Consulta", href: "/consulta.html", icon: <Search className="w-5 h-5" />, color: "#f97316" },
   { id: "contactos", label: "Contactos", href: "/?contactos=true", icon: <Phone className="w-5 h-5" />, color: "#8b5cf6" },
 ]
 
@@ -73,6 +74,11 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
   }, [currentIndex])
 
   const handleClick = (item: NavItem) => {
+    // Si es un archivo .html, abrir en nueva ventana
+    if (item.href.endsWith('.html')) {
+      window.open(item.href, '_blank')
+      return
+    }
     router.push(item.href)
     if (onSectionChange) {
       onSectionChange(item.id)

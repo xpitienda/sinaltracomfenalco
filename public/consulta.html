@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convención Colectiva SINALTRACOMFENALCO 2026-2027</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-fill: #34d399;
+  --yellow-fill: #fbbf24;
+  --green-dark: #059669;
+  --yellow-dark: #d97706;
+  --bg-main: #f0f4f8;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --radius: 18px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1e5631;
+  background-image: url('https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/Logo%20Sinaltracomfenalco%2015%20a%C3%B1os%201.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--text-dark);
+  line-height: 1.65;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 86, 49, 0.88);
+  z-index: -1;
+}
+
+/* ====== HEADER ====== */
+.main-header {
+  background: linear-gradient(135deg, #1e5631, #2d7a4a, #34d399);
+  color: white;
+  text-align: center;
+  padding: 20px 20px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.header-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-header h1 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  line-height: 1.2;
+  color: #fbbf24;
+}
+
+.main-header p {
+  font-size: 0.8rem;
+  opacity: 0.95;
+  margin-top: 3px;
+  color: #ffffff;
+}
+
+/* ====== CONTROLS BAR ====== */
+.controls-bar {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px 20px;
+  position: sticky;
+  top: 88px;
+  z-index: 99;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Search */
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+.search-box {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+  outline: none;
+}
+.search-box:focus {
+  border-color: var(--green-dark);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+}
+.search-clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e2e8f0;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  color: #64748b;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.search-clear-btn.show { display: flex; }
+
+/* View Buttons */
+.view-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.btn-view {
+  padding: 8px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.btn-view:hover {
+  border-color: var(--green-dark);
+  color: var(--green-dark);
+  background: #f0fdf4;
+}
+.btn-view.active {
+  background: var(--green-dark);
+  color: white;
+  border-color: var(--green-dark);
+}
+
+/* ====== INDEX PANEL ====== */
+.index-panel {
+  background: white;
+  margin: 15px auto;
+  max-width: 900px;
+  border-radius: 14px;
+  border: 2px solid #e2e8f0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.index-header {
+  padding: 12px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: #f8fafc;
+  user-select: none;
+}
+.index-header:hover { background: #f0fdf4; }
+.index-header .arrow { margin-left: auto; transition: transform 0.3s; font-size: 0.7rem; }
+.index-header.open .arrow { transform: rotate(180deg); }
+
+.index-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.index-body.open { max-height: 3000px; overflow-y: auto; }
+.index-body-inner { padding: 12px 18px 18px; }
+
+.index-chapter-group { margin-bottom: 10px; }
+.index-chapter-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding: 5px 10px;
+  background: #ecfdf5;
+  border-radius: 8px;
+}
+.index-articles-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.index-art-btn {
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.index-art-btn:hover {
+  background: var(--green-dark);
+  color: white;
+  border-color: var(--green-dark);
+}
+.index-art-btn.active {
+  background: var(--yellow-dark);
+  color: white;
+  border-color: var(--yellow-dark);
+}
+
+/* ====== BREADCRUMB / ACTIVE VIEW ====== */
+.breadcrumb-bar {
+  max-width: 900px;
+  margin: 0 auto 10px;
+  padding: 0 20px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+.breadcrumb-bar.show { display: flex; }
+.breadcrumb-bar .current-view {
+  font-weight: 700;
+  color: var(--green-dark);
+}
+.breadcrumb-bar .back-btn {
+  padding: 4px 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--green-dark);
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.breadcrumb-bar .back-btn:hover {
+  background: var(--green-dark);
+  color: white;
+}
+
+/* ====== MAIN CONTENT ====== */
+.content-area {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.chapter-section {
+  margin-bottom: 30px;
+  transition: opacity 0.3s ease;
+}
+.chapter-section.hidden-section {
+  display: none;
+}
+
+.chapter-header {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  border-left: 5px solid var(--green-dark);
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.chapter-header:hover {
+  background: linear-gradient(135deg, #d1fae5, #ecfdf5);
+  transform: translateX(3px);
+}
+
+/* ====== CLOCK CARD ====== */
+.card-wrapper {
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+}
+.card-wrapper.hidden-card {
+  display: none;
+}
+.card-wrapper.single-view {
+  max-width: 750px;
+  margin: 0 auto;
+}
+.card-wrapper.highlight-card {
+  animation: highlightPulse 2s ease;
+}
+@keyframes highlightPulse {
+  0% { box-shadow: 0 0 0 0 rgba(5,150,105,0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(5,150,105,0.08); }
+  100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); }
+}
+
+.clock-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.clock-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* SVG Border */
+.border-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+.border-svg rect.bg-rect {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 4;
+  rx: 16;
+}
+.border-svg .ticks {
+  fill: none;
+  stroke: #cbd5e1;
+  stroke-width: 2;
+  stroke-dasharray: 8 10;
+  opacity: 0.5;
+  rx: 14;
+}
+.border-svg .fill-green {
+  fill: none;
+  stroke: url(#greenGrad);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  rx: 15;
+  animation: greenFill 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.border-svg .fill-yellow {
+  fill: none;
+  stroke: url(#yellowGrad);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  rx: 15;
+  animation: yellowFill 5s cubic-bezier(0.4, 0, 0.2, 1) 5s forwards;
+}
+
+@keyframes greenFill {
+  0% { stroke-dashoffset: 1400; }
+  100% { stroke-dashoffset: 700; }
+}
+@keyframes yellowFill {
+  0% { stroke-dashoffset: 1400; }
+  100% { stroke-dashoffset: 700; }
+}
+
+/* Card Content */
+.card-content {
+  position: relative;
+  z-index: 1;
+  padding: 22px;
+  border-radius: var(--radius);
+}
+
+/* Pastel backgrounds */
+.card-content.pastel-green { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+.card-content.pastel-yellow { background: linear-gradient(135deg, #fefce8, #fef3c7); }
+.card-content.pastel-blue { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+.card-content.pastel-purple { background: linear-gradient(135deg, #faf5ff, #f3e8ff); }
+.card-content.pastel-pink { background: linear-gradient(135deg, #fdf2f8, #fce7f3); }
+.card-content.pastel-orange { background: linear-gradient(135deg, #fff7ed, #ffedd5); }
+.card-content.pastel-teal { background: linear-gradient(135deg, #f0fdfa, #ccfbf1); }
+.card-content.pastel-rose { background: linear-gradient(135deg, #fff1f2, #ffe4e6); }
+
+.card-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+}
+.card-content p {
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 0.88rem;
+}
+.card-content ul, .card-content ol {
+  padding-left: 18px;
+  margin-bottom: 10px;
+}
+.card-content li {
+  margin-bottom: 4px;
+  color: #334155;
+  font-size: 0.88rem;
+}
+.card-content strong { color: #1e293b; }
+.card-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card-content th, .card-content td {
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 6px 10px;
+  text-align: left;
+}
+.card-content th { background: rgba(0,0,0,0.04); font-weight: 600; }
+
+/* No results / Welcome */
+.no-results {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-muted);
+  display: none;
+}
+.no-results.show { display: block; }
+.no-results .emoji { font-size: 3rem; margin-bottom: 10px; }
+
+.welcome-msg {
+  text-align: center;
+  padding: 40px 20px;
+  color: #fbbf24;
+  font-size: 1rem;
+  background: rgba(30, 86, 49, 0.9);
+  border-radius: 12px;
+  border: 2px solid #fbbf24;
+}
+.welcome-msg .big-emoji { font-size: 4rem; margin-bottom: 12px; }
+.welcome-msg p { margin-bottom: 6px; }
+
+/* ====== VIEW INDICATOR ====== */
+.view-indicator {
+  text-align: center;
+  padding: 8px;
+  font-size: 0.8rem;
+  color: #fbbf24;
+  font-weight: 600;
+  background: rgba(30, 86, 49, 0.95);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: none;
+  border: 1px solid #fbbf24;
+}
+.view-indicator.show { display: block; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .main-header { 
+    padding: 15px 10px 13px;
+    flex-wrap: wrap;
+  }
+  .header-logo {
+    height: 40px;
+  }
+  .header-content {
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .main-header h1 {
+    font-size: 0.95rem;
+  }
+  .main-header p {
+    font-size: 0.7rem;
+  }
+  .controls-bar { padding: 10px 16px; top: 128px; }
+  .search-wrap { min-width: 150px; }
+  .btn-view span.btn-label { display: none; }
+  .btn-view { padding: 8px 12px; }
+  .content-area { padding: 0 16px 40px; }
+  .card-content { padding: 16px; }
+  .chapter-header { padding: 12px 14px; }
+  .index-body-inner { padding: 10px 14px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG GRADIENTS -->
+<svg style="position:absolute;width:0;height:0;">
+  <defs>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#34d399"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="50%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- HEADER -->
+<header class="main-header">
+  <img src="https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/Logo%20Sinaltracomfenalco%20Libre.png" alt="SINALTRACOMFENALCO 15 Años" class="header-logo">
+  
+  <div class="header-content">
+    <h1>📜 Convención Colectiva de Trabajo</h1>
+    <p>SINALTRACOMFENALCO – COMFENALCO ANTIOQUIA | 2026 – 2027</p>
+  </div>
+  
+  <img src="https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/Logo%20Comfenalco%20Libre.png" alt="Comfenalco Antioquia" class="header-logo">
+</header>
+
+<!-- CONTROLS BAR -->
+<div class="controls-bar">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Buscar: 'vacaciones', 'Art. 8', 'salario', 'capítulo IV'...">
+    <button class="search-clear-btn" id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
+  <div class="view-controls">
+    <button class="btn-view active" id="btnAll" onclick="showAll()">
+      📋 <span class="btn-label">Ver Todo</span>
+    </button>
+    <button class="btn-view" id="btnChapters" onclick="showChaptersOnly()">
+      📑 <span class="btn-label">Capítulos</span>
+    </button>
+  </div>
+</div>
+
+<!-- INDEX PANEL -->
+<div class="index-panel">
+  <div class="index-header" id="indexToggle" onclick="toggleIndex()">
+    📑 Índice de Capítulos y Artículos <span class="arrow">▼</span>
+  </div>
+  <div class="index-body" id="indexBody">
+    <div class="index-body-inner">
+      
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo I — Principios Rectores</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('principios')">Principios Rectores</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo II — Campo de Aplicación y Vigencia</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art1')">Art. 1 Campo de Aplicación</button>
+          <button class="index-art-btn" onclick="showArticle('art2')">Art. 2 Vigencia</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo III — Régimen Contractual</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('jornadas')">Jornadas Flexibles</button>
+          <button class="index-art-btn" onclick="showArticle('art4')">Art. 4 Vacantes</button>
+          <button class="index-art-btn" onclick="showArticle('art5')">Art. 5 Debido Proceso</button>
+          <button class="index-art-btn" onclick="showArticle('art6')">Art. 6 Sustitución</button>
+          <button class="index-art-btn" onclick="showArticle('art7')">Art. 7 Indemnización</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo IV — Salarios y Beneficios</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art8')">Art. 8 Incremento</button>
+          <button class="index-art-btn" onclick="showArticle('art9')">Art. 9 Navidad</button>
+          <button class="index-art-btn" onclick="showArticle('art10')">Art. 10 Vacaciones</button>
+          <button class="index-art-btn" onclick="showArticle('art11')">Art. 11 Continuidad</button>
+          <button class="index-art-btn" onclick="showArticle('art12')">Art. 12 Antigüedad</button>
+          <button class="index-art-btn" onclick="showArticle('art13')">Art. 13 Quinquenios</button>
+          <button class="index-art-btn" onclick="showArticle('art14')">Art. 14 Cumpleaños</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo V — Auxilios</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art15')">Art. 15 Pensión</button>
+          <button class="index-art-btn" onclick="showArticle('art16')">Art. 16 Nacimiento</button>
+          <button class="index-art-btn" onclick="showArticle('art17')">Art. 17 Matrimonio</button>
+          <button class="index-art-btn" onclick="showArticle('art18')">Art. 18 Muerte Fam.</button>
+          <button class="index-art-btn" onclick="showArticle('art19')">Art. 19 Calamidad</button>
+          <button class="index-art-btn" onclick="showArticle('art20')">Art. 20 Educativo</button>
+          <button class="index-art-btn" onclick="showArticle('art21')">Art. 21 Incapacidad</button>
+          <button class="index-art-btn" onclick="showArticle('art22')">Art. 22 Discapacidad</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo VI — Créditos</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art23')">Art. 23 Calamidad</button>
+          <button class="index-art-btn" onclick="showArticle('art24')">Art. 24 Fondo Crédito</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo VII — Permisos</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art25')">Art. 25 Permisos</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo VIII — Varios</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art26')">Art. 26 Descuentos</button>
+          <button class="index-art-btn" onclick="showArticle('art27')">Art. 27 Aprendices</button>
+          <button class="index-art-btn" onclick="showArticle('art28')">Art. 28 Alimentación</button>
+          <button class="index-art-btn" onclick="showArticle('art29')">Art. 29 Alim. y Transp.</button>
+          <button class="index-art-btn" onclick="showArticle('art30')">Art. 30 Vestuario</button>
+          <button class="index-art-btn" onclick="showArticle('art31')">Art. 31 24/31 Dic.</button>
+          <button class="index-art-btn" onclick="showArticle('art32')">Art. 32 Transporte</button>
+          <button class="index-art-btn" onclick="showArticle('art33')">Art. 33 Seguros</button>
+          <button class="index-art-btn" onclick="showArticle('art34')">Art. 34 Bonos</button>
+          <button class="index-art-btn" onclick="showArticle('art35')">Art. 35 Brigadas</button>
+          <button class="index-art-btn" onclick="showArticle('art36')">Art. 36 Polivalencia</button>
+          <button class="index-art-btn" onclick="showArticle('art37')">Art. 37 Interrelaciones</button>
+          <button class="index-art-btn" onclick="showArticle('art38')">Art. 38 Mascotas</button>
+          <button class="index-art-btn" onclick="showArticle('art39')">Art. 39 Maternidad</button>
+          <button class="index-art-btn" onclick="showArticle('art40')">Art. 40 Familia</button>
+          <button class="index-art-btn" onclick="showArticle('art41')">Art. 41 Feria</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo IX — Efecto No Salarial</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art42')">Art. 42 No Salarial</button>
+        </div>
+      </div>
+
+      <div class="index-chapter-group">
+        <div class="index-chapter-label">Capítulo X — Auxilios Sindicales</div>
+        <div class="index-articles-grid">
+          <button class="index-art-btn" onclick="showArticle('art43')">Art. 43 Aux. Sindical</button>
+          <button class="index-art-btn" onclick="showArticle('art44')">Art. 44 Permisos Sind.</button>
+          <button class="index-art-btn" onclick="showArticle('art45')">Art. 45 Excluidos</button>
+          <button class="index-art-btn" onclick="showArticle('art46')">Art. 46 Movilidad</button>
+          <button class="index-art-btn" onclick="showArticle('art47')">Art. 47 Carteleras</button>
+          <button class="index-art-btn" onclick="showArticle('art48')">Art. 48 Prensa</button>
+          <button class="index-art-btn" onclick="showArticle('art49')">Art. 49 Seguimiento</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar" id="breadcrumb">
+  <span class="current-view" id="breadcrumbText"></span>
+  <button class="back-btn" onclick="showAll()">← Volver a todo</button>
+</div>
+
+<!-- VIEW INDICATOR -->
+<div class="view-indicator" id="viewIndicator"></div>
+
+<!-- MAIN CONTENT -->
+<main class="content-area" id="contentArea">
+
+  <!-- CAPÍTULO I -->
+  <section class="chapter-section" data-chapter="cap1">
+    <h2 class="chapter-header" onclick="showChapter('cap1')">📋 CAPÍTULO I: PRINCIPIOS RECTORES Y DERECHOS FUNDAMENTALES</h2>
+
+    <div class="card-wrapper" id="principios" data-chapter="cap1" data-searchable="principios rectores derechos fundamentales dignidad humana asociación negociación colectiva debido proceso">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Principios Rectores y Derechos Fundamentales</h3>
+          <p>COMFENALCO ANTIOQUIA Y SINALTRACOMFENALCO, aceptan y reconocen que la presente Convención Colectiva de Trabajo acoge lo establecido en la Constitución Nacional, los Convenios Internacionales de la OIT ratificados por Colombia, los Derechos Fundamentales, la Ley y los principios de COMFENALCO Antioquia, respetando la supremacía y jerarquía de las normas.</p>
+          <p>COMFENALCO ANTIOQUIA y SINALTRACOMFENALCO, garantizando su actuar dentro de un marco jurídico, democrático y participativo, exaltan y dan especial prevalencia a los siguientes principios y derechos:</p>
+          <ul>
+            <li>El respeto a la dignidad humana.</li>
+            <li>Garantizar la prosperidad general de la empresa y empleados.</li>
+            <li>Velar por el cumplimiento y efectividad de los derechos y deberes en cabeza de la empresa y los trabajadores.</li>
+            <li>El derecho de asociación.</li>
+            <li>La negociación colectiva.</li>
+            <li>La prohibición del trabajo forzoso.</li>
+            <li>La prohibición del trabajo infantil.</li>
+            <li>El derecho al trabajo en condiciones dignas y justas.</li>
+            <li>El respeto al debido proceso en todas sus actuaciones administrativas y disciplinarias.</li>
+          </ul>
+          <p>COMFENALCO Antioquia y SINALTRACOMFENALCO reconocen el derecho de los trabajadores a asociarse, vincularse o desvincularse a la organización sindical o cualquiera otra organización de similar naturaleza, respetando la libre voluntad del trabajador, lo mismo que a presentar y realizar negociaciones colectivas. COMFENALCO Antioquia respeta y garantiza el Derecho Fundamental al Debido Proceso en las relaciones laborales, para lo cual dará cumplimiento a lo estipulado en la Constitución, la Ley y el Reglamento Interno de Trabajo.</p>
+          <p>En desarrollo de este principio, todo trabajador será informado de los procesos disciplinarios que se le adelanten, con el fin de que pueda ejercer su legítimo derecho de defensa, a estar asistido por dos compañeros de trabajo sindicalizados o no sindicalizados y, a presentar y controvertir las pruebas que considere pertinentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO II -->
+  <section class="chapter-section" data-chapter="cap2">
+    <h2 class="chapter-header" onclick="showChapter('cap2')">📐 CAPÍTULO II: CAMPO DE APLICACIÓN Y VIGENCIA</h2>
+
+    <div class="card-wrapper" id="art1" data-chapter="cap2" data-searchable="artículo 1 campo aplicación trabajadores vinculados comfenalco afiliados sinaltracomfenalco">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-blue">
+          <h3>Artículo 1. CAMPO DE APLICACIÓN.</h3>
+          <p>La presente convención colectiva se aplicará a los trabajadores vinculados a Comfenalco Antioquia mediante contrato de trabajo que se encuentren afiliados a la organización sindical SINALTRACOMFENALCO.</p>
+          <p>La presente convención colectiva no será aplicable a los trabajadores que desempeñen o llegaren a desempeñar cargos en los niveles directivo, directivo medio y coordinador, según la estructura organizacional de la Caja, así como a los trabajadores contratados para cumplir con los convenios y contratos suscritos por la Caja.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art2" data-chapter="cap2" data-searchable="artículo 2 vigencia un año marzo 2026 2027">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 2. VIGENCIA.</h3>
+          <p>La presente Convención Colectiva de Trabajo tendrá una vigencia de un(01) año, contados a partir del diecinueve(19) de marzo de 2026, y hasta el dieciocho(18) de marzo de 2027.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO III -->
+  <section class="chapter-section" data-chapter="cap3">
+    <h2 class="chapter-header" onclick="showChapter('cap3')">📝 CAPÍTULO III: RÉGIMEN CONTRACTUAL</h2>
+
+    <div class="card-wrapper" id="jornadas" data-chapter="cap3" data-searchable="jornadas flexibles 18 24 30 36 42 horas semanales vacantes ascensos incremento jornada">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-teal">
+          <h3>Jornadas Flexibles y Vacantes</h3>
+          <p>COMFENALCO Antioquia implementará para todas las personas que tienen contrato de trabajo con jornada por disponibilidad, jornadas flexibles de trabajo de 18, 24, 30, 36 Y 42 horas semanales.</p>
+          <p>Con lo anterior se garantiza que:</p>
+          <ul>
+            <li>Los trabajadores laboren mínimo 90 horas mensuales(3 horas diarias), incluyendo los descansos remunerados, en una jornada de 18 horas semanales.</li>
+            <li>Los trabajadores laboren mínimo 120 horas mensuales(4 horas diarias), incluyendo los descansos remunerados en una jornada de 24 horas semanales.</li>
+            <li>Los trabajadores laboren mínimo 150 horas mensuales(5 horas diarias), incluyendo los descansos remunerados en una jornada de 30 horas semanales.</li>
+            <li>Los trabajadores laboren mínimo 180 horas mensuales(6 horas diarias), incluyendo los descansos remunerados en una jornada de 36 horas semanales.</li>
+            <li>Los trabajadores laboren mínimo 210 horas mensuales(7 horas diarias), incluyendo los descansos remunerados en una jornada de 42 horas semanales.</li>
+          </ul>
+          <p><strong>Parágrafo primero:</strong> Las jornadas laborales en Comfenalco Antioquia seguirán lo establecido por las normas legales vigentes.</p>
+          <p><strong>Parágrafo segundo:</strong> Comfenalco Antioquia garantizará que en los casos en que se generen vacantes en cargos con jornadas parciales, ofrecerá a los colaboradores que ocupen dichas posiciones en jornadas inferiores en las sedes en las que se generé la vacante de jornada superior, la posibilidad de aspirar a las mismas y se priorizará su incremento de jornada, siempre que cumpla con los siguientes requisitos:</p>
+          <ul>
+            <li>El colaborador no debe haber tenido sanciones derivadas de procesos disciplinarios durante el último año.</li>
+            <li>El resultado del colaborador en la calificación de la evaluación de desempeño debe ser "Satisfactorio".</li>
+            <li>El colaborador debe estar vinculado a la Caja con un año de antigüedad, con contrato a término fijo o indefinido.(No cuenta tiempo como temporal).</li>
+            <li>En el evento en que se presenten varios aspirantes a ocupar la posición se definirá con una prueba técnica.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art4" data-chapter="cap3" data-searchable="artículo 4 vacantes ascensos comité escalafón docente">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-orange">
+          <h3>Artículo 4. VACANTES Y ASCENSOS.</h3>
+          <p>COMFENALCO Antioquia garantizará durante la vigencia de la Convención Colectiva de Trabajo 2026-2027, la participación de un miembro de SINALTRACOMFENALCO en el Comité de Escalafón Docente.</p>
+          <p>Las vacantes se proveerán de conformidad con la política de selección vigente de la organización al momento del respectivo proceso de selección.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art5" data-chapter="cap3" data-searchable="artículo 5 debido proceso gestión disciplinaria defensa contradicción doble instancia">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-pink">
+          <h3>Artículo 5. DEBIDO PROCESO DE GESTIÓN DISCIPLINARIA.</h3>
+          <p>Comfenalco Antioquia garantizará el debido proceso de gestión disciplinaria, el derecho a la contradicción, a la defensa, doble instancia y proporcionalidad de las sanciones en los procesos disciplinarios.</p>
+          <p>El régimen disciplinario estará determinado en el Reglamento Interno de Trabajo. Los trabajadores sindicalizados podrán asistir a diligencia de descargos acompañados de dos(2) trabajadores de la Caja, sindicalizados, como testigos, en atención al artículo 115 del Código Sustantivo del Trabajo.</p>
+          <p>Todo lo anterior, acorde a la Ley y la Sentencia C-593 de 2014 en lo referente al debido proceso disciplinario.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art6" data-chapter="cap3" data-searchable="artículo 6 sustitución patronal estabilidad laboral reestructuración reubicación">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-rose">
+          <h3>Artículo 6. SUSTITUCIÓN PATRONAL Y ESTABILIDAD LABORAL.</h3>
+          <p>Comfenalco Antioquia respetará la normativa vigente en materia de sustitución patronal. En caso de una reestructuración a nivel corporativo Comfenalco Antioquia procurará la reubicación de los trabajadores.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art7" data-chapter="cap3" data-searchable="artículo 7 indemnización despido sin justa causa días adicionales tabla legal">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-purple">
+          <h3>Artículo 7. INDEMNIZACIÓN POR DESPIDO SIN JUSTA CAUSA.</h3>
+          <p>En los casos de terminación unilateral del contrato de trabajo a término indefinido, sin justa causa, por parte de la Caja de Compensación Familiar COMFENALCO Antioquia, ésta reconocerá a los trabajadores, además de la indemnización dispuesta en la ley vigente al momento de la finalización del vínculo laboral, una indemnización así:</p>
+          <ul>
+            <li>Por el primer año, lo que establezca la ley laboral vigente al momento de la terminación del contrato de trabajo.</li>
+            <li>Tres(3) días de salario adicionales a la tabla legal, a los trabajadores cuyo contrato de trabajo hubiere tenido una duración entre 1 año y 1 día y 5 años por cada uno de los años laborados.</li>
+            <li>Siete(7) días de salario adicionales a la tabla legal a los trabajadores cuyo contrato hubiere tenido una duración entre 5 años y 1 día y 10 años por cada uno de los años laborados.</li>
+            <li>A partir del año diez(10) y un(1) día se reconocerán diez(10) días de salario adicionales a la tabla legal, por cada uno de los años laborados.</li>
+          </ul>
+          <p><strong>Parágrafo.</strong> Esta escala indemnizatoria se aplicará a partir del segundo año de trabajo. Para el primero, se pagará sólo la establecida en la ley vigente al momento de la terminación del vínculo laboral.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO IV -->
+  <section class="chapter-section" data-chapter="cap4">
+    <h2 class="chapter-header" onclick="showChapter('cap4')">💰 CAPÍTULO IV: SALARIOS Y BENEFICIOS ECONÓMICOS</h2>
+
+    <div class="card-wrapper" id="art8" data-chapter="cap4" data-searchable="artículo 8 incremento salarial 2027 ipc dane salario mínimo">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Artículo 8. INCREMENTO SALARIAL.</h3>
+          <p>COMFENALCO ANTIOQUIA incrementará los salarios básicos de los trabajadores beneficiarios de la presente Convención Colectiva de Trabajo de la siguiente manera:</p>
+          <p>Para el año 2027, a partir del primero de enero de dicho año se incrementarán los salarios básicos mensuales de acuerdo con el mayor entre IPC total nacional certificado por el DANE a treinta y uno (31) de diciembre de 2026 o el porcentaje fijado por el gobierno nacional para el salario mínimo del 2027.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art9" data-chapter="cap4" data-searchable="artículo 9 bonificación navidad nueve días salario básico diciembre">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 9. BONIFICACIÓN DE NAVIDAD.</h3>
+          <p>COMFENALCO ANTIOQUIA reconocerá a los empleados que se encuentren vinculados con contrato de trabajo suscritos después del doce(12) de diciembre de 2008 y que sean beneficiarios de la presente Convención Colectiva de Trabajo, una bonificación de Navidad equivalente a nueve(9) días de salario básico.</p>
+          <p>Para el reconocimiento y pago de la mencionada bonificación, es condición que el empleado esté vinculado a la Caja al diez(10) de diciembre de cada año.</p>
+          <p>No habrá lugar al pago proporcional de la bonificación de navidad de que trata este artículo, en caso de retiro del trabajador antes de la fecha indicada.</p>
+          <p>En ningún caso se hará pago proporcional del mencionado beneficio.</p>
+          <p>Esta bonificación no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art10" data-chapter="cap4" data-searchable="artículo 10 auxilio económico regreso vacaciones operativo administrativo profesional">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-blue">
+          <h3>Artículo 10. AUXILIO ECONÓMICO AL REGRESO DE VACACIONES.</h3>
+          <p>COMFENALCO ANTIOQUIA reconocerá a los trabajadores beneficiarios de la convención colectiva de trabajo cuya fecha de ingreso sea posterior al doce(12) de diciembre de 2008, un auxilio económico no constitutivo de salario, el cual será pagadero en la quincena siguiente al regreso de las vacaciones del trabajador.</p>
+          <p>El valor del auxilio será el siguiente:</p>
+          <ul>
+            <li>Para personal nivel Operativo el auxilio será por valor de $86.800</li>
+            <li>Para personal nivel Administrativo Asistencial el auxilio será por valor de $72.500</li>
+            <li>Para personal nivel Profesional el auxilio será por valor de $58.000</li>
+          </ul>
+          <p><strong>Condiciones del beneficio:</strong> El trabajador no podrá tener sanciones disciplinarias en el año inmediatamente anterior al momento del reconocimiento del beneficio. Este beneficio se reconocerá anualmente por una sola vez para un único periodo de vacaciones disfrutado. En caso que se tome el periodo de vacaciones de manera parcial o fraccionada, el beneficio se reconocerá una única vez. Este beneficio se incrementará para el año 2027 en el índice de precios al consumidor certificado por el DANE al 31 de diciembre del año 2026.</p>
+          <p>Esta bonificación no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art11" data-chapter="cap4" data-searchable="artículo 11 continuidad derechos navidad vacaciones antes 2008">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-teal">
+          <h3>Artículo 11. CONTINUIDAD DE DERECHOS.</h3>
+          <p>COMFENALCO Antioquia, continuará reconociendo y respetando a los empleados que se encuentren vinculados con contrato de trabajo antes del 12 de diciembre de 2008, los derechos económicos por navidad y vacaciones.</p>
+          <p>Lo anterior de conformidad con el acta 766 del 11 de diciembre de 2008, emanada del Consejo Directivo de COMFENALCO Antioquia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art12" data-chapter="cap4" data-searchable="artículo 12 prima antigüedad días servicio años">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-orange">
+          <h3>Artículo 12. PRIMA DE ANTIGÜEDAD.</h3>
+          <p>COMFENALCO Antioquia continuará reconociendo a los trabajadores amparados por la presente Convención Colectiva de Trabajo, una prima de antigüedad, de la siguiente forma:</p>
+          <ul>
+            <li>Siete(7) días de salario básico mensual por cinco(5) años de servicio.</li>
+            <li>Diez(10) días de salario básico mensual por diez(10) años de servicio.</li>
+            <li>Quince(15) días de salario básico mensual por quince(15) años de servicio.</li>
+            <li>Veinte(20) días de salario básico mensual por veinte(20) años de servicio.</li>
+            <li>Veinticinco(25) días de salario básico mensual por veinticinco(25) años de servicio.</li>
+            <li>Treinta(30) días de salario básico mensual por treinta(30) años de servicio.</li>
+            <li>Treinta y cinco(35) días de salario básico mensual por treinta y cinco(35) años de servicio.</li>
+            <li>Cuarenta(40) días de salario básico mensual por cuarenta(40) años de servicio.</li>
+          </ul>
+          <p>Esta Prima no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art13" data-chapter="cap4" data-searchable="artículo 13 beneficio tiempo libre quinquenios días vacaciones adicionales">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-pink">
+          <h3>Artículo 13. BENEFICIO DE TIEMPO LIBRE EN QUINQUENIOS.</h3>
+          <p>COMFENALCO Antioquia reconocerá a los trabajadores amparados por la presente Convención Colectiva de Trabajo en el año en el que cumpla el quinquenio, es decir cada cinco(5) años de servicio continuos:</p>
+          <ul>
+            <li>Un(1) día de descanso remunerado adicional al periodo de vacaciones por cinco(5) años de servicio continuos.</li>
+            <li>Dos(2) días de descanso remunerado adicional al periodo de vacaciones por diez(10) años de servicio continuos. Lo mismo aplicará en los quinquenios siguientes hasta cumplir veinte(20) años de servicio.</li>
+            <li>Tres(3) días de descanso remunerado adicional al periodo de vacaciones por veinticinco(25) años de servicio continuos. Lo mismo aplicará en los quinquenios siguientes.</li>
+          </ul>
+          <p>Los días adicionales antes descritos deberán ser disfrutados en los términos definidos por Gestión Laboral en la política de vacaciones vigente.</p>
+          <p>Este beneficio no será compensable en dinero.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art14" data-chapter="cap4" data-searchable="artículo 14 beneficio tiempo libre cumpleaños años de servicio día descanso">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-rose">
+          <h3>Artículo 14. BENEFICIO DE TIEMPO LIBRE EN CUMPLEAÑOS Y AÑOS DE SERVICIOS.</h3>
+          <p>COMFENALCO Antioquia reconocerá a los trabajadores amparados por la presente Convención Colectiva de Trabajo:</p>
+          <ul>
+            <li>Un(1) día de descanso remunerado por Cumpleaños, sin perjuicio del descanso por vacaciones.</li>
+            <li>Un(1) día de descanso remunerado por año de servicio, sin perjuicio del descanso por vacaciones.</li>
+          </ul>
+          <p><strong>Parágrafo:</strong> Este beneficio podrá disfrutarse durante todo el año en que se cumplen dichas condiciones(Cumpleaños y años de servicios).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO V -->
+  <section class="chapter-section" data-chapter="cap5">
+    <h2 class="chapter-header" onclick="showChapter('cap5')">🤝 CAPÍTULO V: AUXILIOS</h2>
+
+    <div class="card-wrapper" id="art15" data-chapter="cap5" data-searchable="artículo 15 auxilios pensión vejez invalidez 2 salarios retiro voluntario">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-purple">
+          <h3>Artículo 15. AUXILIOS POR PENSIÓN DE VEJEZ O INVALIDEZ.</h3>
+          <p><strong>Auxilio por Pensión de Vejez:</strong> Comfenalco Antioquia reconocerá al trabajador beneficiario de la presente Convención Colectiva de Trabajo, que le sea reconocida la pensión de vejez por parte de la respectiva entidad de seguridad social, un auxilio económico equivalente a 2 salarios básicos mensuales del trabajador, el cual se pagará en caso de retiro voluntario del trabajador, siempre que se cumplan los siguientes requisitos:</p>
+          <ol>
+            <li>Solicite el reconocimiento de la pensión a la entidad correspondiente dentro del mes(1 mes) siguiente contado a partir del cumplimiento de los requisitos legales para acceder a la pensión de vejez.</li>
+            <li>Que una vez el trabajador sea notificado del reconocimiento de la pensión y sea incluido en nómina de pensionados por parte de la entidad pensional, presente la renuncia voluntaria dentro de un término máximo de quince(15) días hábiles siguientes.</li>
+          </ol>
+          <p><strong>Auxilio por Pensión de Invalidez:</strong> Comfenalco Antioquia reconocerá al trabajador beneficiario de la presente Convención Colectiva de Trabajo, un auxilio económico equivalente a 2 salarios básicos mensuales del trabajador, el cual se pagará en caso de que se reconozca pensión de invalidez y se dé el retiro voluntario del trabajador, siempre que se cumplan los siguientes requisitos:</p>
+          <ol>
+            <li>Que una vez el trabajador sea notificado de la resolución que reconoce la pensión de invalidez y sea incluido en nómina de pensionados por parte de la entidad correspondiente, presente la renuncia voluntaria y se produzca el retiro definitivo dentro de un término máximo de quince(15) días hábiles siguientes.</li>
+          </ol>
+          <p>Los auxilios se pagarán a los trabajadores en la liquidación definitiva, suma que para ningún efecto será constitutiva de salario.</p>
+          <p>Para los casos en que el colaborador devengue comisiones, este auxilio se liquidará tomando como base el salario promedio mensual de los doce(12) meses anteriores al mes en que se liquida y se paga el auxilio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art16" data-chapter="cap5" data-searchable="artículo 16 auxilio nacimiento adopción $200.000 hijo gestación">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Artículo 16. AUXILIO POR NACIMIENTO O ADOPCIÓN.</h3>
+          <p>COMFENALCO Antioquia, reconocerá al trabajador beneficiario de la presente Convención Colectiva de Trabajo, un auxilio equivalente a DOSCIENTOS MIL PESOS($200.000,oo), por cada hijo nacido vivo, adoptado o legalmente reconocido.</p>
+          <p><strong>Parágrafo.</strong> En caso de muerte del hijo por nacer del trabajador sindicalizado después de dos(2) meses de concebido, la Caja reconocerá un auxilio no salarial, equivalente a DOSCIENTOS MIL PESOS M/cte($200.000), valor que aumentará para el 2027 en un porcentaje igual al IPC nacional certificado por el DANE para el año inmediatamente anterior, esto es el 2026.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art17" data-chapter="cap5" data-searchable="artículo 17 permiso remunerado matrimonio 6 días hábiles">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 17. PERMISO REMUNERADO POR MATRIMONIO.</h3>
+          <p>COMFENALCO Antioquia reconocerá al trabajador beneficiario de la Convención Colectiva de Trabajo que contraiga matrimonio, seis(6) días hábiles de permiso remunerado a partir del día de la celebración del mismo, para lo cual deberá informar al Departamento de Gestión de Personas con cinco(5) días hábiles de antelación. Dentro de los treinta(30) días siguientes a la celebración, el beneficiario de esta licencia deberá presentar al área de Experiencia del Colaborador de la Caja el documento que acredite la celebración del matrimonio.</p>
+          <p><strong>Parágrafo.</strong> El presente beneficio será imputable al reconocimiento de días hábiles de permiso remunerado que eventualmente sea regulado por ley, decreto, o cualquier otro cuerpo normativo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art18" data-chapter="cap5" data-searchable="artículo 18 auxilio muerte familiares cónyuge 30 días hijos 15 días padres $220.000">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-blue">
+          <h3>Artículo 18. AUXILIO POR MUERTE DE FAMILIARES DEL TRABAJADOR.</h3>
+          <p>COMFENALCO Antioquia, reconocerá al trabajador beneficiario de la presente Convención Colectiva de Trabajo, en caso de muerte del o la cónyuge, compañero o compañera permanente del trabajador, un auxilio equivalente a treinta(30) días de salario básico del mismo. En el caso de muerte de hijos legítimos o reconocidos, el auxilio será de quince(15) días de salario básico del trabajador.</p>
+          <p><strong>Parágrafo.</strong> En caso de muerte del padre o madre del trabajador sindicalizado, la Caja reconocerá un auxilio no salarial por única vez, equivalente a DOSCIENTOS VEINTE MIL PESOS M/cte($220.000), valor que aumentará para el 2027 en un porcentaje igual al IPC nacional certificado por el DANE para el año inmediatamente anterior.</p>
+          <p>Este auxilio no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art19" data-chapter="cap5" data-searchable="artículo 19 permiso calamidad doméstica evaluación líder gestión laboral">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-teal">
+          <h3>Artículo 19. PERMISO POR CALAMIDAD DOMÉSTICA.</h3>
+          <p>El respectivo líder del colaborador y gestión laboral evaluarán en cada caso concreto si el hecho constituye una calamidad y de serlo, fijarán la duración del permiso que se otorgará. De igual forma determinarán si hay lugar o no al ajuste de los indicadores y metas, para lo cual tendrá en cuenta la duración de la calamidad.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art20" data-chapter="cap5" data-searchable="artículo 20 auxilio educativo técnica tecnológica pregrado especialización maestría 50% matrícula">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-orange">
+          <h3>Artículo 20. AUXILIO EDUCATIVO</h3>
+          <p>La Caja reconocerá un auxilio económico para los empleados beneficiarios de la presente Convención Colectiva de Trabajo, que adelanten estudios así:</p>
+          <p><strong>Técnica:</strong> 50% del valor semestre. No aplica coherencia con cargo.</p>
+          <p><strong>Técnica profesional y Tecnología:</strong> Hasta el 50% del valor de la matrícula, tope de cinco(5) SMMLV. El auxilio se otorga por semestre vencido.</p>
+          <p><strong>Pregrado (Profesional):</strong> Hasta el 50% del valor de la matrícula, tope de cinco(5) SMMLV. El auxilio se otorga por semestre vencido.</p>
+          <p><strong>Especialización:</strong> Hasta el 50% del valor de la matrícula. Requiere coherencia con el cargo.</p>
+          <p><strong>Maestría:</strong> Hasta el 50% del valor de la matrícula, tope de cinco(5) SMMLV. Requiere coherencia con el cargo.</p>
+          <p><strong>Requisitos Generales:</strong></p>
+          <ul>
+            <li>El colaborador debe estar vinculado a la Caja con un año de antigüedad, con contrato a término fijo o indefinido.</li>
+            <li>El colaborador no debe haber tenido sanciones derivadas de procesos disciplinarios durante el último semestre.</li>
+            <li>El resultado del colaborador en la calificación de la evaluación de desempeño debe ser "Esperada".</li>
+            <li>Promedio mínimo: 3.7 para pregrado, 4.0 para especialización/maestría.</li>
+          </ul>
+          <p><strong>Premio a la excelencia:</strong> Los tres mejores promedios entre todos los niveles de pregrado en cada semestre recibirán como premio un porcentaje del valor pagado en su matrícula únicamente para el siguiente semestre:</p>
+          <ul>
+            <li>Primer lugar: valor complementario para llegar al 100% de la matrícula.</li>
+            <li>Segundo lugar: valor complementario para llegar al 80% de la matrícula.</li>
+            <li>Tercer lugar: valor complementario para llegar al 60% de la matrícula.</li>
+          </ul>
+          <p><strong>Parágrafo 1.</strong> El Departamento de Gestión Laboral autorizará temporalmente el cambio de turno para aquellos empleados que se encuentren adelantando estudios.</p>
+          <p><strong>Parágrafo 2.</strong> Los auxilios se otorgarán hasta agotar los recursos del fondo por valor de $150.000.000 anuales que existe en la Caja.</p>
+          <p><strong>Parágrafo 3.</strong> Los auxilios se otorgarán hasta agotar los recursos del fondo anual, con excepción de colaboradores del nivel directivo, directivo medio, coordinador.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art21" data-chapter="cap5" data-searchable="artículo 21 auxilio incapacidad enfermedad accidente 100% salario sexto día 180 días">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-pink">
+          <h3>Artículo 21. AUXILIO POR INCAPACIDAD.</h3>
+          <p>COMFENALCO ANTIOQUIA reconocerá a los trabajadores beneficiarios de la presente Convención Colectiva de Trabajo, en caso de enfermedad o accidente de origen común o no profesional, un auxilio equivalente que les permita recibir el 100% de su salario básico mensual a partir del sexto día de incapacidad continúa. Este auxilio se mantendrá mientras las incapacidades sean reconocidas por la EPS y hasta un límite de 180 días.</p>
+          <p><strong>Parágrafo.</strong> Para los trabajadores que se encuentren incapacitados o disfrutando del periodo de vacaciones, el cumplimiento de la meta de ventas será proporcional a los días laborados del respectivo mes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art22" data-chapter="cap5" data-searchable="artículo 22 auxilio beneficiario discapacidad smlmv grupo familiar">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-rose">
+          <h3>Artículo 22. AUXILIO POR BENEFICIARIO CON DISCAPACIDAD.</h3>
+          <p>Comfenalco Antioquia reconocerá al trabajador por cada beneficiario con discapacidad certificada que tenga en su grupo familiar afiliado a la Caja de Compensación Familiar Comfenalco Antioquia hasta el segundo grado de consanguinidad un salario mínimo legal vigente(1) SMLMV por año.</p>
+          <p><strong>PARÁGRAFO:</strong> Tanto el vínculo familiar, la discapacidad y la dependencia económica deberán ser acreditados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO VI -->
+  <section class="chapter-section" data-chapter="cap6">
+    <h2 class="chapter-header" onclick="showChapter('cap6')"> CAPÍTULO VI: CRÉDITOS</h2>
+
+    <div class="card-wrapper" id="art23" data-chapter="cap6" data-searchable="artículo 23 crédito calamidad doméstica 3 smlmv 0.4% 36 meses">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-purple">
+          <h3>Artículo 23. CRÉDITO DE CALAMIDAD DOMÉSTICA.</h3>
+          <p>Los beneficiarios de la presente convención colectiva tendrán derecho a participar del fondo para crédito de calamidad doméstica creado en la Caja en el año dos mil veinte(2020) para los trabajadores de la Caja en igualdad de condiciones que los demás empleados de la misma.</p>
+          <p>El cual estará destinado para otorgarles créditos en caso de calamidad doméstica debidamente comprobada.</p>
+          <p>Se incluye como calamidad doméstica la muerte de un familiar hasta el cuarto grado de consanguinidad y primero de afinidad.</p>
+          <p>El monto del crédito será hasta de tres(3) SMLMV con un interés mensual del cero punto cuatro por ciento(0.4%), a un plazo máximo de treinta y seis(36) meses. Para administrar el fondo, la Gerencia de lo Humano aplicará el reglamento correspondiente.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art24" data-chapter="cap6" data-searchable="artículo 24 fondo crédito vivienda multipropósito 36 smlmv 0.4% 26 smlmv 0.5%">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Artículo 24. FONDO DE CRÉDITO.</h3>
+          <p>Los beneficiarios de la presente convención colectiva tendrán derecho a participar del fondo para crédito de Vivienda y Multipropósito creado en la Caja en el año 2020 para los trabajadores de la Caja en igualdad de condiciones que los demás empleados de la misma.</p>
+          <p><strong>Crédito de vivienda:</strong> El objetivo de este fondo es promover la adquisición, mejora, construcción, trámites legales, cuota inicial de vivienda de propiedad del trabajador:</p>
+          <ul>
+            <li>Tipo de créditos: valor hasta de 36 SMLMV hasta por 96 meses con una tasa del 0,4%.</li>
+          </ul>
+          <p><strong>Requisitos:</strong></p>
+          <ul>
+            <li>Tener capacidad de endeudamiento y deducción.</li>
+            <li>Análisis de riesgo(no estar reportado en ninguna central de riesgo).</li>
+            <li>La Caja evaluará y definirá la necesidad exigir algún tipo de garantía.</li>
+            <li>Modalidad de contratación a término indefinido o fijo que permita una amortización del crédito dentro del término de vigencia del contrato de trabajo.</li>
+          </ul>
+          <p><strong>Condiciones:</strong> Debe ser para adquisición de la primera vivienda o propiedad raíz. Debe ser una vivienda propia del trabajador.</p>
+          <p><strong>Crédito multipropósito:</strong> El objetivo de este fondo es apoyar a los trabajadores para resolver situaciones financieras:</p>
+          <ul>
+            <li>Tipo de créditos: valor hasta de 26 SMLMV hasta por 48 meses con una tasa del 0,5%.</li>
+          </ul>
+          <p><strong>Requisitos:</strong></p>
+          <ul>
+            <li>Tener capacidad de endeudamiento y deducción.</li>
+            <li>Análisis de riesgo(puede estar reportado en central de riesgos).</li>
+            <li>La Caja evaluará y definirá la necesidad exigir algún tipo de garantía.</li>
+            <li>Modalidad de contratación a término indefinido o fijo que permita una amortización del crédito dentro del término de vigencia del contrato de trabajo.</li>
+          </ul>
+          <p><strong>Condiciones:</strong> Firma por parte del trabajador de compromiso de no endeudamiento. No es un crédito para libre inversión.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO VII -->
+  <section class="chapter-section" data-chapter="cap7">
+    <h2 class="chapter-header" onclick="showChapter('cap7')">📋 CAPÍTULO VII: PERMISOS REMUNERADOS</h2>
+
+    <div class="card-wrapper" id="art25" data-chapter="cap7" data-searchable="artículo 25 permisos remunerados citas médicas exámenes citaciones judiciales">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 25. PERMISOS REMUNERADOS.</h3>
+          <p>COMFENALCO Antioquia, concederá a los trabajadores amparados por la presente Convención Colectiva de Trabajo, permiso remunerado para asistir a citas médicas, exámenes médicos, citaciones judiciales y las demás de carácter legal, siguiendo las disposiciones expresadas en la Ley, lo dispuesto por el Reglamento Interno de Trabajo y las políticas dictadas por Gestión Laboral.</p>
+          <p>Se tendrá en cuenta el tiempo de los desplazamientos para asistir a las citas, las cuales deberán estar debidamente certificadas y acreditadas al líder respectivo.</p>
+          <p>Gestión Laboral velará por que lo dispuesto en este artículo sea acatado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO VIII -->
+  <section class="chapter-section" data-chapter="cap8">
+    <h2 class="chapter-header" onclick="showChapter('cap8')">📌 CAPÍTULO VIII: VARIOS</h2>
+
+    <div class="card-wrapper" id="art26" data-chapter="cap8" data-searchable="artículo 26 descuentos empleados hoteles clubes parques recreación deportes 0% interés">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-blue">
+          <h3>Artículo 26. DESCUENTOS A EMPLEADOS.</h3>
+          <p>Con el fin de estimular la asistencia de sus trabajadores y familias a los hoteles, clubes, parques y áreas de recreación y deportes de la Caja, COMFENALCO ANTIOQUIA facilitará a través de descuento por nómina a un interés del cero por ciento(0%) el pago de estos servicios, siempre y cuando el trabajador tenga capacidad de pago y deducción así:</p>
+          <ul>
+            <li>Para empleados clasificados en tarifa A: deducción hasta en veinticuatro(24) quincenas.</li>
+            <li>Para empleados clasificados en tarifas B y C: deducción hasta en doce(12) quincenas.</li>
+          </ul>
+          <p>Los servicios incluidos en este artículo son: Hoteles, Clubes, Parques, Agencia de Viajes y Deportes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art27" data-chapter="cap8" data-searchable="artículo 27 cuota aprendices hijos cónyuge hermanos cupos">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-teal">
+          <h3>Artículo 27. CUOTA DE APRENDICES.</h3>
+          <p>COMFENALCO Antioquia asignará preferentemente los cupos de la cuota de aprendices a los hijos, cónyuge, compañero o compañera permanente y hermanos de los trabajadores de la Caja, que cumplan los requisitos de ley y el proceso de selección de la Caja, en los oficios que requiera y con entidades habilitadas para ello; todo esto de acuerdo con la disponibilidad de cupos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art28" data-chapter="cap8" data-searchable="artículo 28 subsidio alimentación empleados 100% menú hoteles clubes parques">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-orange">
+          <h3>Artículo 28. SUBSIDIO ALIMENTACIÓN EMPLEADOS.</h3>
+          <p>COMFENALCO Antioquia reconocerá al trabajador beneficiario de la Convención Colectiva de Trabajo, un subsidio del cien por ciento(100%) en el menú para los trabajadores de acuerdo a su jornada laboral, para aquellos empleados que laboren en hoteles, clubes y parques, en los cuales se cuente con centro de producción propio de alimentos.</p>
+          <p>La Caja garantiza el mejoramiento continuo y la calidad en el menú para los trabajadores. Este subsidio no se otorgará cuando el trabajador se encuentre en vacaciones, licencias, permisos, incapacitado o cuando no esté en el tiempo de prestación de servicio.</p>
+          <p>COMFENALCO Antioquia respetará los tiempos destinados para la alimentación de los empleados, que se hayan determinado en cada área por fuera de la jornada laboral, sin que estos puedan ser inferiores a treinta(30) minutos.</p>
+          <p>Este auxilio no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art29" data-chapter="cap8" data-searchable="artículo 29 alimentación transporte hoteles parques eventos 10pm 5am">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-pink">
+          <h3>Artículo 29. ALIMENTACIÓN Y TRANSPORTE EN HOTELES Y PARQUES.</h3>
+          <p>En Hoteles y Parques, cuando por la preparación y realización de eventos los empleados deban extender su jornada laboral más tarde de las 10:00 p.m., se suministrará la alimentación del empleado menú tipo cena y/o el desayuno en caso de que el empleado pernocte en el sitio de trabajo.</p>
+          <p>Igualmente, se suministrarán medios de transporte o su valor hasta el lugar de acopio más cercano para llegar a las residencias en los casos en que se labore hasta después de las 10 pm o se ingrese antes de las 5 AM.</p>
+          <p>El líder en atención y con el propósito de asegurar la operación o servicio evaluará y decidirá sobre las condiciones de capacidad de alojamiento y las de modo, tiempo y lugar para cubrir el beneficio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art30" data-chapter="cap8" data-searchable="artículo 30 vestuario institucional salario 2 smlmv manual imagen corporativa">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-rose">
+          <h3>Artículo 30. VESTUARIO INSTITUCIONAL.</h3>
+          <p>Para los empleados con salario superior a 2 SMLMV se aplicará el manual de vestuario e imagen corporativa de la Caja y en caso que aplique, el vestuario institucional será con cargo al empleador.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art31" data-chapter="cap8" data-searchable="artículo 31 permiso 24 31 diciembre fin año actividad alterna">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-purple">
+          <h3>Artículo 31. PERMISO POR 24 ó 31 DE DICIEMBRE.</h3>
+          <p>COMFENALCO Antioquia otorgará permiso remunerado a los trabajadores por el día veinticuatro(24) o el treinta y uno(31) de diciembre de cada año, siempre que cumplan las siguientes condiciones:</p>
+          <ul>
+            <li>No se afecte el servicio.</li>
+            <li>Para cubrir el servicio sólo debe contarse con el personal del área.</li>
+            <li>Se garantice equidad entre las personas de la respectiva área.</li>
+            <li>Este permiso no se aplica a quienes en las fechas antes indicadas se encuentren en vacaciones, incapacidades o licencias.</li>
+            <li>No es acumulable.</li>
+          </ul>
+          <p>Para este efecto, la administración elaborará los cuadros de turnos que permitan garantizar que unas personas descansen por el día veinticuatro(24) de diciembre y otras por el día treinta y uno(31).</p>
+          <p><strong>Parágrafo.</strong> Cuando la fiesta de fin de año sea atendida por el área de esparcimiento de la Caja, la Gerencia de lo Humano organizará una actividad alterna, para aquellos empleados que prestaron servicio en este evento.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art32" data-chapter="cap8" data-searchable="artículo 32 transporte auxilio extralegal funciones fuera sedes">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Artículo 32. TRANSPORTE</h3>
+          <p>COMFENALCO Antioquia reconocerá un auxilio extralegal de transporte no constitutivo de salario para aquellos trabajadores que ocupen cargos con funciones permanentes y continuas por fuera de las sedes de la Caja.</p>
+          <p>Este auxilio varía según rutas, zonas, servicios y necesidades de la Caja.</p>
+          <p>Este auxilio no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art33" data-chapter="cap8" data-searchable="artículo 33 póliza seguro vida grupo accidentes personales 24 salarios 30 salarios junta directiva">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 33. PÓLIZA DE SEGURO VIDA GRUPO Y ACCIDENTES PERSONALES.</h3>
+          <p>COMFENALCO ANTIOQUIA Mantendrá el valor asegurado de la póliza de seguro vida grupo y accidentes personales en veinticuatro(24) salarios básicos mensuales, de acuerdo con las coberturas y condiciones que se tengan contratadas a la fecha.</p>
+          <p><strong>Parágrafo:</strong> El valor asegurado de la póliza de seguro de vida grupo y accidentes personales para los miembros de la Junta Directiva de SINALTRACOMFENALCO será equivalente a treinta(30) salarios básicos mensuales del respectivo colaborador. Esta cobertura aplicará únicamente mientras el asegurado mantenga la condición de miembro activo de la Junta Directiva del sindicato.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art34" data-chapter="cap8" data-searchable="artículo 34 bono parques hoteles 280 bonos $80.000 informe semestral">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-blue">
+          <h3>Artículo 34. BONO PARA PARQUES HOTELES Y/O SERVICIOS DE CAJA</h3>
+          <p>Comfenalco Antioquia entregará a SINALTRACOMFENALCO un total de hasta doscientos ochenta(280) bonos por el año de vigencia de la presente convención(2026-2027) equivalente cada uno a la suma de ochenta mil pesos($80.000), el cual podrá ser disfrutado por los miembros de su grupo familiar.</p>
+          <p>El sindicato debe rendir informe a la Caja de la aplicación de este beneficio de forma semestral(31 de julio y 31 de enero de cada año); en el evento de no rendir este informe se suspenderá la entrega del mismo para la próxima anualidad.</p>
+          <p>Los bonos no son transferibles, negociables, acumulables, ni redimibles en dinero.</p>
+          <p>Este beneficio deberá ser disfrutado en días y horarios no laborales, de manera que no interfieran con la prestación del servicio.</p>
+          <p>Este auxilio no tendrá carácter salarial ni se computará como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art35" data-chapter="cap8" data-searchable="artículo 35 brigadas salud jornadas instalaciones organización sindical">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-teal">
+          <h3>Artículo 35. BRIGADAS DE SALUD.</h3>
+          <p>COMFENALCO ANTIOQUIA permitirá la realización de jornadas de salud en las instalaciones de la Caja, organizadas por la organización sindical SINALTRACOMFENALCO para los trabajadores afiliados al mismo, las cuales deberán ser programadas en fechas que no generen afectación del servicio, previa autorización de la Caja.</p>
+          <p>Las jornadas de salud organizadas por el Sindicato no reemplazaran en ninguna oportunidad las actividades propias del Sistema Integral de Gestión y de Seguridad y Salud en el Trabajo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art36" data-chapter="cap8" data-searchable="artículo 36 reconocimiento polivalencia gala reconocimientos dotación epp">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-orange">
+          <h3>Artículo 36. RECONOCIMIENTO A LA POLIVALENCIA.</h3>
+          <p>La Caja establecerá una categoría específica dentro de la Gala de Reconocimientos, orientada a destacar a los colaboradores que demuestren un desempeño sobresaliente en el cumplimiento de los indicadores propios de su rol y en la ejecución efectiva de la polivalencia formalizada por su líder.</p>
+          <p>Cuando un colaborador sindicalizado por temas de polivalencia deba realizar actividades propias de otro rol en polivalencia deberá contar con la dotación y elementos de protección personal necesarios para esto, frente a lo que la Caja se obliga al aseguramiento de la entrega de los mismos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art37" data-chapter="cap8" data-searchable="artículo 37 interrelaciones comisión paritaria bimensual presidente vicepresidente">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-pink">
+          <h3>Artículo 37. INTERRELACIONES.</h3>
+          <p>Las partes acuerdan crear una comisión paritaria conformada por representantes de la Caja, el Jefe del Departamento de Gestión Laboral o su delegado y dos integrantes del sindicato, Presidente y Vicepresidente, que se reunirán por lo menos una vez cada dos(2) meses con el propósito de asegurar en el marco del dialogo social, movilizar el Bienestar y Desarrollo de los colaboradores afiliados a la asociación sindical.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art38" data-chapter="cap8" data-searchable="artículo 38 permiso muerte mascotas 2 días calamidad doméstica perros gatos">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-rose">
+          <h3>Artículo 38. PERMISO POR MUERTE DE MASCOTAS.</h3>
+          <p>Comfenalco Antioquia reconocerá a los trabajadores beneficiarios de la presente Convención Colectiva de Trabajo dos(2) días de calamidad doméstica remunerada para atender la situación derivada del fallecimiento de su mascota debidamente acreditada y relacionada en el censo de mascotas que para tal fin realice la Caja.</p>
+          <p><strong>Definición:</strong> Una mascota es un animal doméstico que vive con los humanos para fines de compañía, afecto y seguridad, y que forma parte del núcleo familiar.</p>
+          <p><strong>Tipos de Mascotas que serán tenidas en cuenta en el censo:</strong> Perros y Gatos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art39" data-chapter="cap8" data-searchable="artículo 39 fomento maternidad paternidad horas laborales 9 meses hijo adopción">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-purple">
+          <h3>Artículo 39: FOMENTO A LA MATERNIDAD Y PATERNIDAD</h3>
+          <p>Durante la vigencia de la presente convención 2026-2027 la Caja reconocerá para las colaboradoras afiliadas al sindicato y beneficiarias del presente capitulo por cada mes de vida del hijo(a)(incluye hijos adoptados), a la madre trabajadora de la Caja el equivalente en horas laborales, hasta completar los nueve meses.</p>
+          <p>La Caja reglamentará las condiciones de entrega del presente beneficio.</p>
+          <p>Este beneficio se trasladará a los padres en los casos de fallecimiento de la madre.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art40" data-chapter="cap8" data-searchable="artículo 40 día de la familia semestral remunerado integración esparcimiento">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Artículo 40. DÍA DE LA FAMILIA.</h3>
+          <p>Comfenalco Antioquia reconocerá a los trabajadores beneficiarios de la presente Convención Colectiva de Trabajo un día semestral remunerado denominado Día de la Familia, con el fin de promover la integración, el esparcimiento y el fortalecimiento de los lazos familiares.</p>
+          <ol>
+            <li>El beneficio se otorgará dos(2) veces al año.</li>
+            <li>Este día será programado de común acuerdo con su líder para garantizar la prestación del servicio.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art41" data-chapter="cap8" data-searchable="artículo 41 feria economía familiar sinaltracomfenalco bienestar afiliados">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 41: FERIA DE ECONOMIA FAMILIAR SINALTRACOMFENALCO</h3>
+          <p>Con el propósito de contribuir al bienestar económico, la calidad de vida y la salud de los trabajadores afiliados a SINALTRACOMFENALCO y sus familias, COMFENALCO ANTIOQUIA apoyará la realización de la Feria Sindical SINALTRACOMFENALCO, la cual estará orientada a facilitar el acceso a productos y servicios esenciales para el hogar y la salud.</p>
+          <p>La Feria Sindical será un espacio en el cual los afiliados podrán acceder, en condiciones favorables, a la oferta de productos y servicios tales como:</p>
+          <ul>
+            <li>Productos básicos de la canasta familiar.</li>
+            <li>Productos de aseo y cuidado personal.</li>
+            <li>Productos para el cuidado de la salud y bienestar.</li>
+            <li>Servicios de óptica, salud preventiva y promoción de hábitos saludables.</li>
+            <li>Productos y servicios para el bienestar del hogar.</li>
+          </ul>
+          <p><strong>Parámetros:</strong> La Feria podrá realizarse una(1) vez al año. La organización estará a cargo de SINALTRACOMFENALCO con apoyo logístico de COMFENALCO ANTIOQUIA. La responsabilidad sobre novedades y riesgos será exclusiva del Sindicato. La Caja no se vinculará con dinero ni aportes en especie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO IX -->
+  <section class="chapter-section" data-chapter="cap9">
+    <h2 class="chapter-header" onclick="showChapter('cap9')">📊 CAPÍTULO IX: EFECTO NO SALARIAL</h2>
+
+    <div class="card-wrapper" id="art42" data-chapter="cap9" data-searchable="artículo 42 efecto no salarial beneficios primas bonificaciones auxilios">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-blue">
+          <h3>Artículo 42. EFECTO NO SALARIAL DE LOS BENEFICIOS.</h3>
+          <p>Las primas, bonificaciones, auxilios, subsidios y demás beneficios extralegales, bien sea en dinero o en especie, pactados en esta convención colectiva de Trabajo, no tendrán carácter salarial ni se computarán como factor del mismo para ningún efecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO X -->
+  <section class="chapter-section" data-chapter="cap10">
+    <h2 class="chapter-header" onclick="showChapter('cap10')">🏛️ CAPÍTULO X: AUXILIOS PERMISOS SINDICALES</h2>
+
+    <div class="card-wrapper" id="art43" data-chapter="cap10" data-searchable="artículo 43 auxilio sindical $2.956.000 mensual cgt $11.200.000">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-teal">
+          <h3>Artículo 43. AUXILIO SINDICAL.</h3>
+          <p>Comfenalco Antioquia otorgará a la organización sindical, un auxilio así:</p>
+          <p>A partir del primero(01) de abril del año 2026, el auxilio será por valor de Dos Millones Novecientos Cincuenta y Seis Mil Pesos($2´956.000) mensuales, los cuales serán consignados dentro de los cinco(5) primeros días de cada mes.</p>
+          <p>Para el año 2027, este auxilio se incrementará en un porcentaje igual al IPC total nacional del año 2026, certificado por el DANE.</p>
+          <p><strong>Parágrafo:</strong> Comfenalco Antioquia reconocerá por una sola vez a la CGT la suma de Once Millones Doscientos Mil Pesos($11´200.000), los cuales serán consignados dentro de los diez(10) primeros días del mes de enero de 2027.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art44" data-chapter="cap10" data-searchable="artículo 44 permisos sindicales remunerados 360 horas mensuales">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-orange">
+          <h3>Artículo 44. PERMISOS SINDICALES REMUNERADOS.</h3>
+          <p>COMFENALCO Antioquia reconocerá permisos sindicales remunerados a SINALTRACOMFENALCO, no acumulables, para actividades inherentes a su operación sindical equivalentes a trescientas sesenta(360) horas mensuales. De acuerdo con las siguientes condiciones:</p>
+          <ul>
+            <li>El permiso será solicitado por el Presidente del sindicato ante el Departamento de Gestión Laboral de COMFENALCO Antioquia.</li>
+            <li>El permiso será solicitado por escrito como mínimo con 5 días hábiles de anticipación.</li>
+            <li>Los permisos sindicales serán aprobados siempre que se cumpla con el presente procedimiento y no se afecte la prestación del servicio.</li>
+            <li>El Departamento de Gestión Laboral analizará de manera oportuna las solicitudes y les dará respuesta dentro de los 3 días siguientes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art45" data-chapter="cap10" data-searchable="artículo 45 auxilio excluidos convención directivo coordinador $77.469.280">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-pink">
+          <h3>Artículo 45. AUXILIO POR EXCLUIDOS DE LA CONVENCIÓN.</h3>
+          <p>Como auxilio por no aplicación de la convención colectiva a los trabajadores que desempeñen o llegaren a desempeñar cargos en los niveles directivo, directivo medio, coordinador, según la estructura organizacional de la Caja, así como a los trabajadores contratados para cumplir con los convenios y contratos suscritos por ella, Comfenalco Antioquia pagará a la organización sindical un auxilio por valor de Setenta Y Siete Millones Cuatrocientos Sesenta Y Nueve Mil Doscientos Ochenta Pesos M.L.($77.469.280) anual por la vigencia de la presente convención, pagadero en doce(12) cuotas.</p>
+          <p>Este auxilio tendrá incremento con el IPC del año inmediatamente anterior certificado por el DANE en el año 2026.</p>
+          <p>Para los meses del año 2027 se pagará proporcional a los meses del año que correspondan a la vigencia de la convención.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art46" data-chapter="cap10" data-searchable="artículo 46 auxilio medio alternativos movilidad bicicleta monopatín smmlv">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-rose">
+          <h3>Artículo 46. AUXILIO PARA MEDIO ALTERNATIVOS DE MOVILIDAD.</h3>
+          <p>COMFENALCO Antioquia reconocerá a los colaboradores afiliados a SINALTRACOMFENALCO un auxilio equivalente a medio salario Mínimo Legal Mensual Vigente(SMMLV) por única vez para comprar bicicleta o monopatín convencionales o eléctricas para desplazarse a su lugar de trabajo.</p>
+          <p>La Caja reglamentará este auxilio dentro de los treinta(30) días siguientes a la firma de la presente convención colectiva de trabajo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art47" data-chapter="cap10" data-searchable="artículo 47 carteleras 20 divulgar información comité paritario">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-purple">
+          <h3>Artículo 47. CARTELERAS.</h3>
+          <p>Comfenalco Antioquia se compromete a conservar las 20 carteleras para divulgar la información propia del sindicato.</p>
+          <p>El lugar, los contenidos y el reglamento de la utilización de dichas carteleras serán definidos por un Comité Paritario conformado por representantes de SINALTRACOMFENALCO y representantes de la Caja.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art48" data-chapter="cap10" data-searchable="artículo 48 auxilio prensa $1.000.000 diseño digital intranet">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-green">
+          <h3>Artículo 48. AUXILIO DE PRENSA.</h3>
+          <p>COMFENALCO Antioquia reconocerá a SINALTRACOMFENALCO un auxilio de Un Millón de pesos ($1´000.000), por una sola vez con el fin de cubrir los gastos de publicación y divulgación de la convención.</p>
+          <p>COMFENALCO Antioquia se encargará de hacer el diseño en formato digital del documento en el que se relacionen los beneficios de la convención colectiva de trabajo.</p>
+          <p>COMFENALCO Antioquia publicará este formato digital en la Intranet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper" id="art49" data-chapter="cap10" data-searchable="artículo 49 seguimiento aplicación convención colectivo trabajo evaluación semestral">
+      <div class="clock-card">
+        <svg class="border-svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <rect class="bg-rect" x="2" y="2" width="396" height="296" rx="16"/>
+          <rect class="ticks" x="2" y="2" width="396" height="296" rx="14"/>
+          <rect class="fill-green" x="2" y="2" width="396" height="296" rx="15"/>
+          <rect class="fill-yellow" x="2" y="2" width="396" height="296" rx="15"/>
+        </svg>
+        <div class="card-content pastel-yellow">
+          <h3>Artículo 49. SEGUIMIENTO DE LA APLICACIÓN DE LA CONVENCIÓN COLECTIVA DE TRABAJO.</h3>
+          <p>Comfenalco Antioquia y SINALTRACOMFENALCO realizarán cada semestre una reunión de evaluación y seguimiento de la Convención Colectiva de Trabajo.</p>
+          <p>La reunión será citada por el jefe de Gestión Laboral de la Caja, dentro de los 15 días hábiles posteriores al vencimiento del semestre respectivo. A ella asistirán tres representantes de la organización sindical y tres representantes de la Administración de la Caja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME / NO RESULTS -->
+  <div class="welcome-msg" id="welcomeMsg">
+    <div class="big-emoji">📜</div>
+    <p><strong>Convención Colectiva SINALTRACOMFENALCO 2026-2027</strong></p>
+    <p>Selecciona un artículo en el índice o usa la búsqueda para encontrar lo que necesitas.</p>
+  </div>
+
+  <div class="no-results" id="noResults">
+    <div class="emoji">🔍</div>
+    <p>No se encontraron artículos con esa búsqueda.</p>
+    <p style="font-size:0.85rem;margin-top:6px;">Intenta con otra palabra clave.</p>
+  </div>
+
+</main>
+
+<!-- ====== SCRIPT MEJORADO DE BÚSQUEDA ====== -->
+<script>
+// ====== ELEMENTOS ======
+const searchInput = document.getElementById('searchInput');
+const searchClear = document.getElementById('searchClear');
+const welcomeMsg = document.getElementById('welcomeMsg');
+const noResults = document.getElementById('noResults');
+const breadcrumb = document.getElementById('breadcrumb');
+const breadcrumbText = document.getElementById('breadcrumbText');
+const viewIndicator = document.getElementById('viewIndicator');
+const btnAll = document.getElementById('btnAll');
+const btnChapters = document.getElementById('btnChapters');
+const indexBody = document.getElementById('indexBody');
+const indexToggle = document.getElementById('indexToggle');
+
+const cards = document.querySelectorAll('.card-wrapper');
+const chapters = document.querySelectorAll('.chapter-section');
+const indexBtns = document.querySelectorAll('.index-art-btn');
+
+// ====== NORMALIZACIÓN PARA BÚSQUEDA EN ESPAÑOL ======
+function normalizeText(text) {
+  if (!text) return '';
+  return text.toString()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Quitar acentos
+    .replace(/ñ/gi, 'n') // Tratar ñ como n para búsqueda flexible
+    .replace(/[^a-z0-9\s]/g, ' ') // Solo letras, números y espacios
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// ====== EXTRAER METADATOS DE BÚSQUEDA POR TARJETA ======
+function getCardSearchData(card) {
+  const title = card.querySelector('h3')?.textContent || '';
+  const content = card.textContent || '';
+  const searchableAttr = card.getAttribute('data-searchable') || '';
+  const chapterId = card.getAttribute('data-chapter') || '';
+  
+  // Obtener nombre del capítulo
+  const chapterEl = document.querySelector(`[data-chapter="${chapterId}"] .chapter-header`);
+  const chapterName = chapterEl?.textContent || '';
+  
+  // Extraer número de artículo si existe
+  const articleMatch = title.match(/Artículo\s+(\d+)|Art\.\s*(\d+)/i);
+  const articleNum = articleMatch ? (articleMatch[1] || articleMatch[2]) : '';
+  
+  return {
+    title: normalizeText(title),
+    content: normalizeText(content),
+    searchable: normalizeText(searchableAttr),
+    chapterName: normalizeText(chapterName),
+    chapterId: chapterId,
+    articleNum: normalizeText(articleNum),
+    originalTitle: title,
+    card: card
+  };
+}
+
+// ====== PRE-CALCULAR DATOS DE BÚSQUEDA ======
+const cardSearchData = Array.from(cards).map(getCardSearchData);
+
+// ====== ALGORITMO DE BÚSQUEDA INTELIGENTE ======
+function performSearch(query) {
+  const normalizedQuery = normalizeText(query);
+  const queryWords = normalizedQuery.split(' ').filter(w => w.length > 0);
+  
+  if (queryWords.length === 0) return { results: [], query: '' };
+  
+  const results = [];
+  
+  cardSearchData.forEach(data => {
+    const allText = `${data.title} ${data.content} ${data.searchable} ${data.chapterName} ${data.articleNum}`;
+    let score = 0;
+    let matchDetails = [];
+    
+    // Búsqueda por palabras clave
+    queryWords.forEach(word => {
+      // Coincidencia exacta en título (mayor peso)
+      if (data.title.includes(word)) {
+        score += 10;
+        matchDetails.push(`Título: "${word}"`);
+      }
+      // Coincidencia en número de artículo
+      if (data.articleNum && data.articleNum.includes(word)) {
+        score += 15;
+        matchDetails.push(`Artículo #${word}`);
+      }
+      // Coincidencia en nombre de capítulo
+      if (data.chapterName.includes(word)) {
+        score += 8;
+        matchDetails.push(`Capítulo: "${word}"`);
+      }
+      // Coincidencia en atributo searchable (palabras clave definidas)
+      if (data.searchable.includes(word)) {
+        score += 5;
+      }
+      // Coincidencia en contenido general
+      if (data.content.includes(word)) {
+        score += 2;
+      }
+    });
+    
+    // Búsqueda de frase completa (mayor prioridad)
+    if (allText.includes(normalizedQuery)) {
+      score += 20;
+      matchDetails.push(`Frase completa: "${query}"`);
+    }
+    
+    if (score > 0) {
+      results.push({
+        ...data,
+        score: score,
+        matchDetails: matchDetails
+      });
+    }
+  });
+  
+  // Ordenar por relevancia (mayor puntuación primero)
+  results.sort((a, b) => b.score - a.score);
+  
+  return { results, query: normalizedQuery };
+}
+
+// ====== RESALTAR TÉRMINOS BUSCADOS ======
+function highlightTerms(element, query) {
+  if (!query || query.length < 2) return;
+  
+  const terms = query.split(' ').filter(t => t.length >= 2);
+  const originalHTML = element.innerHTML;
+  
+  // Evitar resaltar dentro de etiquetas HTML ya procesadas
+  if (element.querySelector('.search-highlight')) return;
+  
+  let newHTML = originalHTML;
+  
+  terms.forEach(term => {
+    // Escapar caracteres especiales para regex
+    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedTerm})`, 'gi');
+    
+    // Resaltar solo en texto visible, no en atributos
+    newHTML = newHTML.replace(regex, '<mark class="search-highlight" style="background:#fef08a;padding:2px 4px;border-radius:3px;font-weight:600">$1</mark>');
+  });
+  
+  if (newHTML !== originalHTML) {
+    element.innerHTML = newHTML;
+  }
+}
+
+// ====== LIMPIAR RESALTADOS ======
+function clearHighlights() {
+  document.querySelectorAll('.search-highlight').forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+// ====== ACTUALIZAR VISTA CON RESULTADOS ======
+function updateSearchView(searchResult) {
+  const { results, query } = searchResult;
+  
+  // Limpiar resaltados anteriores
+  clearHighlights();
+  
+  let visibleCount = 0;
+  let visibleChapters = new Set();
+  
+  // Mostrar/ocultar tarjetas según resultados
+  cards.forEach(card => {
+    const cardData = cardSearchData.find(d => d.card === card);
+    const isMatch = results.some(r => r.card === card);
+    
+    if (isMatch) {
+      card.classList.remove('hidden-card');
+      card.classList.remove('single-view');
+      // Resaltar términos en título y contenido
+      const titleEl = card.querySelector('h3');
+      const contentEl = card.querySelector('.card-content');
+      if (titleEl) highlightTerms(titleEl, query);
+      if (contentEl) highlightTerms(contentEl, query);
+      visibleCount++;
+      visibleChapters.add(card.getAttribute('data-chapter'));
+    } else {
+      card.classList.add('hidden-card');
+    }
+  });
+
+  // Mostrar/ocultar capítulos según tarjetas visibles
+  chapters.forEach(ch => {
+    const chId = ch.getAttribute('data-chapter');
+    if (query === '' || visibleChapters.has(chId)) {
+      ch.classList.remove('hidden-section');
+    } else {
+      ch.classList.add('hidden-section');
+    }
+  });
+
+  // Actualizar UI
+  if (query.length > 0) {
+    const displayQuery = searchInput.value;
+    breadcrumbText.textContent = `🔍 Resultados: "${displayQuery}"`;
+    breadcrumb.classList.add('show');
+    
+    if (visibleCount > 0) {
+      viewIndicator.classList.add('show');
+      viewIndicator.textContent = `✅ ${visibleCount} artículo${visibleCount !== 1 ? 's' : ''} encontrado${visibleCount !== 1 ? 's' : ''}`;
+      noResults.classList.remove('show');
+    } else {
+      viewIndicator.classList.add('show');
+      viewIndicator.textContent = '❌ Sin coincidencias';
+      noResults.classList.add('show');
+    }
+    welcomeMsg.style.display = 'none';
+    btnAll.classList.remove('active');
+    btnChapters.classList.remove('active');
+  } else {
+    showAll();
+  }
+}
+
+// ====== BÚSQUEDA CON DEBOUNCE ======
+let searchTimeout;
+searchInput.addEventListener('input', function() {
+  const query = this.value.trim();
+  
+  // Mostrar/ocultar botón de limpiar
+  searchClear.classList.toggle('show', query.length > 0);
+  
+  // Debounce para mejorar rendimiento
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const result = performSearch(query);
+    updateSearchView(result);
+  }, 150);
+});
+
+// ====== FUNCIONES DE NAVEGACIÓN ======
+function showAll() {
+  clearHighlights();
+  chapters.forEach(ch => ch.classList.remove('hidden-section'));
+  cards.forEach(c => {
+    c.classList.remove('hidden-card');
+    c.classList.remove('single-view');
+  });
+  indexBtns.forEach(btn => btn.classList.remove('active'));
+  breadcrumb.classList.remove('show');
+  viewIndicator.classList.remove('show');
+  welcomeMsg.style.display = '';
+  noResults.classList.remove('show');
+  btnAll.classList.add('active');
+  btnChapters.classList.remove('active');
+  searchInput.value = '';
+  searchClear.classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showChapter(chapterId) {
+  clearHighlights();
+  const targetChapter = document.querySelector(`[data-chapter="${chapterId}"]`);
+  if (!targetChapter) return;
+  
+  chapters.forEach(ch => {
+    ch.classList.toggle('hidden-section', ch.getAttribute('data-chapter') !== chapterId);
+  });
+  
+  cards.forEach(c => {
+    const isInSection = c.getAttribute('data-chapter') === chapterId;
+    c.classList.toggle('hidden-card', !isInSection);
+    c.classList.remove('single-view');
+  });
+  
+  const chapterTitle = targetChapter.querySelector('.chapter-header').textContent;
+  breadcrumbText.textContent = chapterTitle;
+  breadcrumb.classList.add('show');
+  viewIndicator.classList.add('show');
+  viewIndicator.textContent = `📑 Mostrando: ${chapterTitle}`;
+  welcomeMsg.style.display = 'none';
+  noResults.classList.remove('show');
+  indexBtns.forEach(btn => btn.classList.remove('active'));
+  btnAll.classList.remove('active');
+  btnChapters.classList.remove('active');
+  indexToggle.classList.remove('open');
+  indexBody.classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showArticle(articleId) {
+  clearHighlights();
+  const targetCard = document.getElementById(articleId);
+  if (!targetCard) return;
+  
+  const chapterId = targetCard.getAttribute('data-chapter');
+  
+  chapters.forEach(ch => {
+    ch.classList.toggle('hidden-section', ch.getAttribute('data-chapter') !== chapterId);
+  });
+  
+  cards.forEach(c => {
+    if (c.id === articleId) {
+      c.classList.remove('hidden-card');
+      c.classList.add('single-view');
+      c.classList.add('highlight-card');
+    } else {
+      c.classList.add('hidden-card');
+      c.classList.remove('single-view');
+      c.classList.remove('highlight-card');
+    }
+  });
+  
+  const articleTitle = targetCard.querySelector('h3').textContent;
+  breadcrumbText.textContent = articleTitle;
+  breadcrumb.classList.add('show');
+  viewIndicator.classList.add('show');
+  viewIndicator.textContent = `📄 Mostrando: ${articleTitle}`;
+  welcomeMsg.style.display = 'none';
+  noResults.classList.remove('show');
+  
+  indexBtns.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('onclick')?.includes(articleId)) {
+      btn.classList.add('active');
+    }
+  });
+  
+  btnAll.classList.remove('active');
+  btnChapters.classList.remove('active');
+  indexToggle.classList.remove('open');
+  indexBody.classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showChaptersOnly() {
+  clearHighlights();
+  chapters.forEach(ch => ch.classList.remove('hidden-section'));
+  cards.forEach(c => {
+    c.classList.remove('hidden-card');
+    c.classList.remove('single-view');
+  });
+  
+  breadcrumbText.textContent = 'Vista por Capítulos';
+  breadcrumb.classList.add('show');
+  viewIndicator.classList.add('show');
+  viewIndicator.textContent = '📑 Vista compacta por capítulos';
+  welcomeMsg.style.display = 'none';
+  noResults.classList.remove('show');
+  
+  btnAll.classList.remove('active');
+  btnChapters.classList.add('active');
+  indexBtns.forEach(btn => btn.classList.remove('active'));
+}
+
+function clearSearch() {
+  searchInput.value = '';
+  searchInput.dispatchEvent(new Event('input'));
+  searchInput.focus();
+}
+
+// ====== ÍNDICE TOGGLE ======
+function toggleIndex() {
+  indexToggle.classList.toggle('open');
+  indexBody.classList.toggle('open');
+}
+
+// ====== ACCESOS RÁPIDOS POR TECLADO ======
+document.addEventListener('keydown', function(e) {
+  // Ctrl/Cmd + F para enfocar búsqueda
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+  // Escape para limpiar búsqueda
+  if (e.key === 'Escape' && searchInput.value) {
+    clearSearch();
+  }
+});
+
+// ====== INICIALIZACIÓN ======
+document.addEventListener('DOMContentLoaded', function() {
+  // Placeholder con ejemplos de búsqueda
+  searchInput.placeholder = '🔍 Buscar: "vacaciones", "Art. 8", "salario", "capítulo IV"...';
+  
+  // Tooltip al enfocar
+  searchInput.addEventListener('focus', function() {
+    this.setAttribute('title', 'Busca por palabra clave, número de artículo (ej: "Art. 8"), nombre de capítulo o término específico');
+  });
+  
+  // Feedback visual al escribir
+  searchInput.addEventListener('input', function() {
+    if (this.value.length >= 2) {
+      this.style.borderColor = 'var(--green-dark)';
+      this.style.boxShadow = '0 0 0 3px rgba(5,150,105,0.15)';
+    } else {
+      this.style.borderColor = '';
+      this.style.boxShadow = '';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
