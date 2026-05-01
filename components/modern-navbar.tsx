@@ -27,16 +27,15 @@ interface ModernNavbarProps {
 
 export function ModernNavbar({ activeSection = "presentacion", onSectionChange }: ModernNavbarProps) {
   const router = useRouter()
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number>(0)
   const [indicatorPosition, setIndicatorPosition] = useState(0)
-  const [isMoving, setIsMoving] = useState(false)
-  const [fillProgress, setFillProgress] = useState(100) // 0-100 porcentaje de llenado
+  const [fillProgress, setFillProgress] = useState(100)
   const navRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([])
   const prevIndexRef = useRef<number>(0)
   
   const activeIndex = navItems.findIndex(item => item.id === activeSection)
-  const currentIndex = hoveredIndex !== null ? hoveredIndex : (activeIndex >= 0 ? activeIndex : 0)
+  const currentIndex = activeIndex >= 0 ? activeIndex : selectedIndex
   const currentColor = navItems[currentIndex]?.color || "#22c55e"
 
   // Efecto de llenado cuando cambia de posicion
@@ -152,33 +151,27 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
           border: "3px solid #22c55e",
         }}
       >
-        {/* Items de navegacion */}
+        {/* Items de navegacion - Estaticos sin efectos hover */}
         <div className="relative z-10 flex items-center justify-center h-full px-4 gap-1">
           {navItems.map((item, index) => {
-            const isActive = index === activeIndex
             const isCurrent = index === currentIndex
             
             return (
               <button
                 key={item.id}
                 ref={el => { itemRefs.current[index] = el }}
-                onClick={() => handleClick(item)}
-                className="relative flex items-center justify-center transition-all duration-300 rounded-lg hover:bg-white/40"
+                onClick={() => {
+                  setSelectedIndex(index)
+                  handleClick(item)
+                }}
+                className="relative flex items-center justify-center rounded-lg"
                 style={{
                   width: `${itemWidth}px`,
                   height: "44px",
                   opacity: isCurrent ? 0.3 : 1,
-                  transform: isCurrent ? "translateY(3px) scale(0.9)" : "translateY(0) scale(1)",
                 }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div 
-                  className="transition-colors duration-300"
-                  style={{
-                    color: isActive ? "#166534" : "#1f2937",
-                  }}
-                >
+                <div style={{ color: "#1f2937" }}>
                   {item.icon}
                 </div>
               </button>
