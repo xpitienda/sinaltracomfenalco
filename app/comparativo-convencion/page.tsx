@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play } from "lucide-react"
+import { ModernNavbar } from "@/components/modern-navbar"
 
 // Datos del cuadro comparativo
 const articulosData = [
@@ -628,11 +629,18 @@ export default function ComparativoConvencionPage() {
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <div className="flex items-center gap-3">
-              <span className="text-white font-bold text-lg">
-                Sistema de Datos
-              </span>
-              <span className="text-emerald-400 font-semibold">SINALTRACOMFENALCO</span>
+            
+            {/* Modern Navbar con indicador circular */}
+            <div className="hidden md:block">
+              <ModernNavbar 
+                activeSection={activeSection} 
+                onSectionChange={(section) => {
+                  setActiveSection(section)
+                  if (section === "comparativo") {
+                    setComparativoExpanded(true)
+                  }
+                }} 
+              />
             </div>
           </div>
           <Link
