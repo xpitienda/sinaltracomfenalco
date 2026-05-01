@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import React, { useState, useEffect, Suspense, useRef, useCallback } from "react"
 import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -855,10 +855,14 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
 // Componente que detecta el parametro showVideo
 function VideoModalTrigger({ onShowVideo }: { onShowVideo: () => void }) {
   const searchParams = useSearchParams()
+  const hasTriggered = React.useRef(false)
   
   useEffect(() => {
-    if (searchParams.get("showVideo") === "true") {
+    if (searchParams.get("showVideo") === "true" && !hasTriggered.current) {
+      hasTriggered.current = true
       onShowVideo()
+      // Limpiar URL para evitar re-trigger
+      window.history.replaceState({}, '', '/comparativo-convencion')
     }
   }, [searchParams, onShowVideo])
   
@@ -872,6 +876,18 @@ export default function ComparativoConvencionPage() {
   const [activeSection, setActiveSection] = useState<string>("presentacion")
   const [comparativoExpanded, setComparativoExpanded] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Función para cerrar el video
+  const closeVideoModal = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+    }
+    setShowVideoModal(false)
+    // Limpiar URL
+    window.history.replaceState({}, '', '/comparativo-convencion')
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1163,13 +1179,14 @@ export default function ComparativoConvencionPage() {
       {/* Video Modal */}
       {showVideoModal && (
         <div 
-          className="fixed inset-0 flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 flex items-center justify-center bg-black/95 p-4"
           style={{ zIndex: 9999 }}
+          onClick={closeVideoModal}
         >
           {/* Boton X flotante en esquina superior derecha */}
           <button
-            onClick={() => setShowVideoModal(false)}
-            className="fixed top-4 right-4 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shadow-xl"
+            onClick={closeVideoModal}
+            className="fixed top-4 right-4 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shadow-xl border-4 border-white"
             style={{ zIndex: 10000 }}
             aria-label="Cerrar video"
           >
@@ -1184,7 +1201,7 @@ export default function ComparativoConvencionPage() {
             <div className="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
               <h3 className="text-white font-bold text-lg">Convencion SINALTRACOMFENALCO 2026-2027</h3>
               <button
-                onClick={() => setShowVideoModal(false)}
+                onClick={closeVideoModal}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-emerald-700 font-bold hover:bg-gray-100 transition-colors shadow-lg"
               >
                 <X className="w-5 h-5" />
@@ -1194,6 +1211,7 @@ export default function ComparativoConvencionPage() {
 
             {/* Video Player */}
             <video
+              ref={videoRef}
               key="video-convencion"
               controls
               autoPlay
@@ -1215,7 +1233,7 @@ export default function ComparativoConvencionPage() {
             {/* Footer con botones de navegacion */}
             <div className="p-4 bg-gray-900 flex flex-wrap justify-center gap-3">
               <button
-                onClick={() => setShowVideoModal(false)}
+                onClick={closeVideoModal}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-bold hover:from-red-600 hover:to-red-700 transition-all shadow-lg"
               >
                 <X className="w-5 h-5" />
@@ -1223,7 +1241,7 @@ export default function ComparativoConvencionPage() {
               </button>
               <button
                 onClick={() => {
-                  setShowVideoModal(false)
+                  closeVideoModal()
                   window.location.href = "/"
                 }}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg"
