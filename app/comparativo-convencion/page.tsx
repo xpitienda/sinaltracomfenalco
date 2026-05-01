@@ -1052,9 +1052,9 @@ export default function ComparativoConvencionPage() {
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
             
-            {/* Modern Navbar con indicador circular */}
-            <div className="hidden md:block">
-              <ModernNavbar 
+{/* Modern Navbar con indicador circular - visible en todas las pantallas */}
+<div className="block">
+<ModernNavbar
                 activeSection={activeSection} 
                 onSectionChange={(section) => {
                   setActiveSection(section)
@@ -1170,38 +1170,51 @@ export default function ComparativoConvencionPage() {
             className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setShowVideoModal(false)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              aria-label="Cerrar video"
-            >
-              <X className="w-6 h-6 text-white" />
-            </button>
-
-              {/* Video Player - Usando GitHub LFS Media */}
-              <video
-                key="video-convencion"
-                controls
-                autoPlay
-                playsInline
-                preload="metadata"
-                className="w-full aspect-video bg-black"
+            {/* Header con boton cerrar visible */}
+            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
+              <h3 className="text-white font-bold text-lg">Convencion SINALTRACOMFENALCO</h3>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-emerald-700 font-bold hover:bg-gray-100 transition-colors shadow-lg"
+                aria-label="Cerrar video"
               >
-                <source 
-                  src="https://github.com/xpitienda/sinaltracomfenalco/raw/refs/heads/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4" 
-                  type="video/mp4" 
-                />
-                <source 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4" 
-                  type="video/mp4" 
-                />
-                Tu navegador no soporta el elemento de video.
-              </video>
+                <X className="w-5 h-5" />
+                Cerrar
+              </button>
+            </div>
 
-            {/* Title */}
-            <div className="p-4 bg-gradient-to-r from-emerald-600 to-emerald-500">
-              <h3 className="text-white font-bold text-lg text-center">Convencion SINALTRACOMFENALCO</h3>
+            {/* Video Player - Sin loop */}
+            <video
+              key="video-convencion"
+              controls
+              autoPlay
+              playsInline
+              preload="metadata"
+              className="w-full aspect-video bg-black"
+              onEnded={() => {
+                // No hacer nada al terminar, permitir que el usuario cierre
+              }}
+            >
+              <source 
+                src="https://github.com/xpitienda/sinaltracomfenalco/raw/refs/heads/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4" 
+                type="video/mp4" 
+              />
+              <source 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4" 
+                type="video/mp4" 
+              />
+              Tu navegador no soporta el elemento de video.
+            </video>
+
+            {/* Footer con boton cerrar adicional */}
+            <div className="p-4 bg-gray-900 flex justify-center">
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-bold hover:from-red-600 hover:to-red-700 transition-all shadow-lg"
+              >
+                <X className="w-5 h-5" />
+                Salir del Video
+              </button>
             </div>
           </div>
         </div>
