@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -852,21 +852,26 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
   )
 }
 
-export default function ComparativoConvencionPage() {
+// Componente que detecta el parametro showVideo
+function VideoModalTrigger({ onShowVideo }: { onShowVideo: () => void }) {
   const searchParams = useSearchParams()
+  
+  useEffect(() => {
+    if (searchParams.get("showVideo") === "true") {
+      onShowVideo()
+    }
+  }, [searchParams, onShowVideo])
+  
+  return null
+}
+
+export default function ComparativoConvencionPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [expandedArticle, setExpandedArticle] = useState<number | null>(null)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("presentacion")
   const [comparativoExpanded, setComparativoExpanded] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
-
-  // Detectar parametro showVideo en URL
-  useEffect(() => {
-    if (searchParams.get("showVideo") === "true") {
-      setShowVideoModal(true)
-    }
-  }, [searchParams])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -887,6 +892,11 @@ export default function ComparativoConvencionPage() {
 
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: "#f8fafc" }}>
+      {/* Detector de parametro showVideo en URL */}
+      <Suspense fallback={null}>
+        <VideoModalTrigger onShowVideo={() => setShowVideoModal(true)} />
+      </Suspense>
+      
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-full z-40 transition-all duration-300 ${
@@ -1169,15 +1179,23 @@ export default function ComparativoConvencionPage() {
               <X className="w-6 h-6 text-white" />
             </button>
 
-              {/* Video Player */}
+              {/* Video Player - Usando GitHub LFS Media */}
               <video
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4"
+                key="video-convencion"
                 controls
                 autoPlay
                 playsInline
-                preload="auto"
+                preload="metadata"
                 className="w-full aspect-video bg-black"
               >
+                <source 
+                  src="https://github.com/xpitienda/sinaltracomfenalco/raw/refs/heads/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4" 
+                  type="video/mp4" 
+                />
+                <source 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4" 
+                  type="video/mp4" 
+                />
                 Tu navegador no soporta el elemento de video.
               </video>
 
