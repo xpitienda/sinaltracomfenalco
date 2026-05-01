@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play } from "lucide-react"
@@ -852,6 +853,7 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
 }
 
 export default function ComparativoConvencionPage() {
+  const searchParams = useSearchParams()
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [expandedArticle, setExpandedArticle] = useState<number | null>(null)
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -861,11 +863,10 @@ export default function ComparativoConvencionPage() {
 
   // Detectar parametro showVideo en URL
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    if (params.get("showVideo") === "true") {
+    if (searchParams.get("showVideo") === "true") {
       setShowVideoModal(true)
     }
-  }, [])
+  }, [searchParams])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1170,10 +1171,19 @@ export default function ComparativoConvencionPage() {
 
               {/* Video Player */}
               <video
-                src="https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4"
+                src="https://media.githubusercontent.com/media/xpitienda/sinaltracomfenalco/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4"
                 controls
                 autoPlay
-                className="w-full aspect-video"
+                playsInline
+                preload="metadata"
+                className="w-full aspect-video bg-black"
+                onError={(e) => {
+                  // Fallback to raw URL if media URL fails
+                  const video = e.currentTarget;
+                  if (!video.src.includes('raw.githubusercontent')) {
+                    video.src = "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4";
+                  }
+                }}
               >
                 Tu navegador no soporta el elemento de video.
               </video>
