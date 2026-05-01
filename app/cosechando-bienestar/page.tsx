@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowUp } from "lucide-react"
+import { ModernNavbar } from "@/components/modern-navbar"
 
 // Imágenes del catálogo S1 a S15 desde GitHub con títulos específicos
 const catalogImages = [
@@ -301,28 +302,28 @@ export default function CosechandoBienestarPage() {
 
       {/* Header */}
       <header 
-        className="sticky top-0 z-40 px-6 py-4"
+        className="sticky top-0 z-40 px-6 py-2"
         style={{
           background: "linear-gradient(135deg, #166534 0%, #15803d 50%, #1e40af 100%)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
         }}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link
-            href="/comparativo-convencion"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-white font-medium"
-          >
-            <ChevronLeft className="w-5 h-5" />
-            Volver
-          </Link>
-          <h1 className="text-2xl md:text-3xl font-bold text-white text-center">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          {/* Modern Navbar */}
+          <div className="hidden md:block">
+            <ModernNavbar activeSection="bienestar" />
+          </div>
+          
+          {/* Mobile: titulo */}
+          <h1 className="md:hidden text-xl font-bold text-white">
             Cosechando Bienestar
           </h1>
+          
           <Link
             href="/"
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition-colors"
           >
-            Inicio
+            SINALTRACOMFENALCO
           </Link>
         </div>
       </header>

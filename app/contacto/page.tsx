@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { MapPin, Mail, Phone, ArrowLeft, ArrowUp } from "lucide-react"
+import { ModernNavbar } from "@/components/modern-navbar"
 
 export default function ContactoPage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -45,15 +46,9 @@ export default function ContactoPage() {
       </div>
 
       <div className="relative z-10 w-full max-w-2xl">
-        {/* Botones navegacion */}
-        <div className="flex flex-wrap gap-4 mb-8">
-          <Link 
-            href="/comparativo-convencion"
-            className="inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-900 font-semibold transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Volver al Sistema de Datos
-          </Link>
+        {/* Modern Navbar */}
+        <div className="flex flex-wrap items-center gap-4 mb-8">
+          <ModernNavbar activeSection="contactos" />
           <Link 
             href="/"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition-colors"
