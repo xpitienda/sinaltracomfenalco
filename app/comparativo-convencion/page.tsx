@@ -1171,19 +1171,12 @@ export default function ComparativoConvencionPage() {
 
               {/* Video Player */}
               <video
-                src="https://media.githubusercontent.com/media/xpitienda/sinaltracomfenalco/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4"
                 controls
                 autoPlay
                 playsInline
-                preload="metadata"
+                preload="auto"
                 className="w-full aspect-video bg-black"
-                onError={(e) => {
-                  // Fallback to raw URL if media URL fails
-                  const video = e.currentTarget;
-                  if (!video.src.includes('raw.githubusercontent')) {
-                    video.src = "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4";
-                  }
-                }}
               >
                 Tu navegador no soporta el elemento de video.
               </video>
