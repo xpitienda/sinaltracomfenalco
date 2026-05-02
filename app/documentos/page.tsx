@@ -63,12 +63,20 @@ const documentos = [
     nombre: "Cuadro Comparativo Convención",
     archivo: "/documentos/cuadro_comparativo_convencion.pdf",
     descripcion: "Comparación entre convenciones 2020-2024, 2025-2026 y 2026-2027",
+    color: "#3b82f6", // Azul
+    bgColor: "bg-blue-500",
+    hoverColor: "hover:bg-blue-600",
+    textColor: "text-white",
   },
   {
     id: "convencion-colectiva",
     nombre: "Convención Colectiva SINALTRACOMFENALCO 2026-2027",
     archivo: "/documentos/Convencion_Colectiva_SINALTRACOMFENALCO_2026_2027.pdf",
     descripcion: "Documento completo de la Convención Colectiva de Trabajo vigente (24 páginas)",
+    color: "#6b7280", // Gris
+    bgColor: "bg-gray-500",
+    hoverColor: "hover:bg-gray-600",
+    textColor: "text-white",
   }
 ]
 
@@ -79,7 +87,7 @@ export default function DocumentosPage() {
     <div 
       className="min-h-screen"
       style={{
-        background: "linear-gradient(135deg, #22c55e 0%, #84cc16 20%, #eab308 40%, #ef4444 60%, #6b7280 80%, #3b82f6 100%)"
+        background: "linear-gradient(135deg, #3b82f6 0%, #6b7280 35%, #ffffff 70%, #e5e7eb 100%)"
       }}
     >
       {/* Navbar */}
@@ -89,10 +97,10 @@ export default function DocumentosPage() {
 
       {/* Header */}
       <div className="pt-6 pb-4 px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <Link 
             href="/comparativo-convencion"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 text-gray-700 font-medium hover:bg-white transition-colors mb-4 text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 text-gray-700 font-medium hover:bg-white transition-colors mb-4 text-sm shadow-md"
           >
             <ArrowLeft className="w-4 h-4" />
             Volver al Índice
@@ -104,32 +112,53 @@ export default function DocumentosPage() {
         </div>
       </div>
 
-      {/* Contenedor de documentos */}
+      {/* Contenedor de documentos - 2 botones en una línea */}
       <div className="px-4 pb-8">
-        <div className="max-w-5xl mx-auto space-y-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
           {documentos.map((doc) => (
-            <div key={doc.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div 
+              key={doc.id} 
+              className="rounded-xl shadow-lg overflow-hidden"
+              style={{ 
+                backgroundColor: expandedDoc === doc.id ? "#ffffff" : doc.color,
+                border: `3px solid ${doc.color}`
+              }}
+            >
               
               {/* Botón colapsado del documento */}
               <button
                 onClick={() => setExpandedDoc(expandedDoc === doc.id ? null : doc.id)}
-                className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 transition-colors text-left"
+                className={`w-full p-4 flex items-center gap-4 transition-colors text-left ${
+                  expandedDoc === doc.id 
+                    ? "bg-white hover:bg-gray-50" 
+                    : `${doc.bgColor} ${doc.hoverColor}`
+                }`}
               >
-                <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
-                  <FileText className="w-5 h-5 text-gray-400" />
+                <div 
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    expandedDoc === doc.id ? "bg-gray-100" : "bg-white/20"
+                  }`}
+                >
+                  <FileText className={`w-6 h-6 ${expandedDoc === doc.id ? "text-gray-500" : "text-white"}`} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-gray-800">{doc.nombre}</h3>
-                  <p className="text-gray-500 text-sm">{doc.descripcion}</p>
+                  <h3 className={`font-bold text-base ${expandedDoc === doc.id ? "text-gray-800" : "text-white"}`}>
+                    {doc.nombre}
+                  </h3>
+                  <p className={`text-sm ${expandedDoc === doc.id ? "text-gray-500" : "text-white/80"}`}>
+                    {doc.descripcion}
+                  </p>
                 </div>
-                <div className="flex items-center gap-1 text-amber-600 flex-shrink-0">
-                  <span className="text-sm">
-                    {expandedDoc === doc.id ? "Clic para cerrar" : "Clic para abrir"}
+                <div className={`flex items-center gap-1 flex-shrink-0 ${
+                  expandedDoc === doc.id ? "text-amber-600" : "text-white"
+                }`}>
+                  <span className="text-sm font-medium">
+                    {expandedDoc === doc.id ? "Cerrar" : "Abrir"}
                   </span>
                   {expandedDoc === doc.id ? (
-                    <ChevronUp className="w-4 h-4" />
+                    <ChevronUp className="w-5 h-5" />
                   ) : (
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-5 h-5" />
                   )}
                 </div>
               </button>
