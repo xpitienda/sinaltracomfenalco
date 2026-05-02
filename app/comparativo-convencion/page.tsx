@@ -1113,16 +1113,15 @@ export default function ComparativoConvencionPage() {
                   showImage={expandedArticle === 0}
                 />
               ) : (
-                <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
-                    <ChevronRight className="w-10 h-10 text-gray-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-700 mb-2">
-                    Selecciona un Articulo
-                  </h3>
-                  <p className="text-gray-500">
-                    Despliega el menu &quot;Comparativo Convencion&quot; en la barra lateral y selecciona uno de los 50 articulos para ver su informacion detallada.
-                  </p>
+                <div className="bg-white rounded-2xl p-4 shadow-lg">
+                  <Image
+                    src="/images/Logros.png"
+                    alt="Convención Colectiva 2026-2027: Nuevos Logros para Tu Bienestar"
+                    width={900}
+                    height={600}
+                    className="w-full h-auto rounded-xl"
+                    priority
+                  />
                 </div>
               )}
 
