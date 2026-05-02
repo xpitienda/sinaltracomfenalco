@@ -202,9 +202,7 @@ export default function DocumentosPage() {
           boxShadow: "0 2px 10px rgba(0,0,0,0.2)"
         }}
       >
-        <div className="max-w-4xl mx-auto">
-          <ModernNavbar activeSection="documentos" />
-        </div>
+        <ModernNavbar activeSection="documentos" compact={true} />
       </header>
 
       {/* Título y navegación */}

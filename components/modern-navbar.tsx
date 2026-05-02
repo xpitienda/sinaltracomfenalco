@@ -24,9 +24,10 @@ const navItems: NavItem[] = [
 interface ModernNavbarProps {
   activeSection?: string
   onSectionChange?: (section: string) => void
+  compact?: boolean
 }
 
-export function ModernNavbar({ activeSection = "presentacion", onSectionChange }: ModernNavbarProps) {
+export function ModernNavbar({ activeSection = "presentacion", onSectionChange, compact = false }: ModernNavbarProps) {
   const router = useRouter()
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
   const [indicatorPosition, setIndicatorPosition] = useState(0)
@@ -248,11 +249,12 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
     handleNavigate(index)
   }
 
-  const itemWidth = 70
+  const itemWidth = compact ? 50 : 70
+  const sphereSize = compact ? "w-12 h-12" : "w-14 h-14"
 
   return (
     <div 
-      className="relative pt-10 pb-2"
+      className={`relative ${compact ? 'pt-8 pb-1' : 'pt-10 pb-2'} ${compact ? 'max-w-lg mx-auto' : ''}`}
       role="navigation"
       aria-label="Navegacion principal"
     >
@@ -280,7 +282,7 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
         aria-valuetext={navItems[currentIndex]?.label}
       >
         <div 
-          className={`relative w-14 h-14 ${isDragging ? 'scale-110' : ''} transition-transform duration-150`}
+          className={`relative ${sphereSize} ${isDragging ? 'scale-110' : ''} transition-transform duration-150`}
           style={{
             filter: "drop-shadow(0 6px 10px rgba(0,0,0,0.4))",
           }}
@@ -418,7 +420,7 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
       {/* Barra contenedora con efecto 3D de profundidad */}
       <div 
         ref={navRef}
-        className="relative h-14 rounded-xl overflow-hidden"
+        className={`relative ${compact ? 'h-12' : 'h-14'} rounded-xl overflow-hidden`}
         style={{
           background: "linear-gradient(180deg, #e86a10 0%, #f97316 20%, #fdba74 60%, #ffffff 100%)",
           border: "3px solid #22c55e",
@@ -432,7 +434,7 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
         }}
       >
         {/* Items de navegacion */}
-        <div className="relative z-10 flex items-center justify-center h-full px-4 gap-1">
+        <div className={`relative z-10 flex items-center justify-center h-full ${compact ? 'px-2 gap-0' : 'px-4 gap-1'}`}>
           {navItems.map((item, index) => {
             const isCurrent = index === currentIndex
             
@@ -444,13 +446,13 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
                 className="relative flex items-center justify-center rounded-lg transition-opacity duration-200"
                 style={{
                   width: `${itemWidth}px`,
-                  height: "44px",
+                  height: compact ? "36px" : "44px",
                   opacity: isCurrent ? 0.3 : 1,
                 }}
                 aria-label={item.label}
                 aria-current={isCurrent ? "page" : undefined}
               >
-                <div style={{ color: "#1f2937" }}>
+                <div style={{ color: "#1f2937" }} className={compact ? "scale-90" : ""}>
                   {item.icon}
                 </div>
               </button>
