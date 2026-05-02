@@ -88,7 +88,7 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
 
   return (
     <div className="relative pt-10 pb-2">
-      {/* Esfera indicador con efecto de llenado en la linea */}
+      {/* Esfera indicador con efecto 3D alto relieve */}
       <div 
         className="absolute z-30 transition-all duration-500 ease-out"
         style={{
@@ -97,16 +97,55 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
           top: "-2px",
         }}
       >
-        <div className="relative w-14 h-14">
-          {/* Circulo base (fondo gris claro) */}
+        <div 
+          className="relative w-14 h-14"
+          style={{
+            filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.3))",
+          }}
+        >
+          {/* Efecto 3D - Sombra inferior para profundidad */}
+          <div 
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.2) 100%)",
+              transform: "translateY(3px) scale(0.95)",
+              filter: "blur(3px)",
+            }}
+          />
+          
+          {/* Circulo base con efecto 3D alto relieve */}
           <svg className="absolute inset-0 w-full h-full -rotate-90">
+            <defs>
+              <linearGradient id="sphereGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="50%" stopColor="#f8f8f8" />
+                <stop offset="100%" stopColor="#e0e0e0" />
+              </linearGradient>
+              <filter id="innerShadow">
+                <feOffset dx="0" dy="2" />
+                <feGaussianBlur stdDeviation="2" result="offset-blur" />
+                <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+                <feFlood floodColor="#000" floodOpacity="0.15" result="color" />
+                <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+                <feComposite operator="over" in="shadow" in2="SourceGraphic" />
+              </filter>
+            </defs>
             <circle
               cx="28"
               cy="28"
               r="25"
-              fill="white"
-              stroke="#e5e7eb"
-              strokeWidth="3"
+              fill="url(#sphereGradient)"
+              stroke="#d1d5db"
+              strokeWidth="2"
+              filter="url(#innerShadow)"
+            />
+            {/* Brillo superior para efecto 3D */}
+            <ellipse
+              cx="28"
+              cy="18"
+              rx="12"
+              ry="6"
+              fill="rgba(255,255,255,0.6)"
             />
           </svg>
           
@@ -123,13 +162,19 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
               strokeDasharray={`${2 * Math.PI * 25}`}
               strokeDashoffset={`${2 * Math.PI * 25 * (1 - fillProgress / 100)}`}
               className="transition-colors duration-300"
+              style={{
+                filter: "drop-shadow(0 0 3px " + currentColor + ")"
+              }}
             />
           </svg>
           
-          {/* Icono central */}
+          {/* Icono central con sombra */}
           <div 
             className="absolute inset-0 flex items-center justify-center transition-colors duration-500"
-            style={{ color: currentColor }}
+            style={{ 
+              color: currentColor,
+              filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.2))"
+            }}
           >
             {navItems[currentIndex]?.icon}
           </div>
@@ -144,13 +189,20 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange }
         </div>
       </div>
 
-      {/* Barra contenedora - Borde verde, fondo naranja con blanco */}
+      {/* Barra contenedora con efecto 3D de profundidad (hundimiento) */}
       <div 
         ref={navRef}
         className="relative h-14 rounded-xl overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #f97316 0%, #fdba74 50%, #ffffff 100%)",
+          background: "linear-gradient(180deg, #e86a10 0%, #f97316 20%, #fdba74 60%, #ffffff 100%)",
           border: "3px solid #22c55e",
+          boxShadow: `
+            inset 0 4px 8px rgba(0,0,0,0.25),
+            inset 0 2px 4px rgba(0,0,0,0.15),
+            inset 0 -2px 4px rgba(255,255,255,0.3),
+            0 4px 12px rgba(0,0,0,0.2),
+            0 2px 4px rgba(34,197,94,0.3)
+          `,
         }}
       >
         {/* Items de navegacion - Estaticos sin efectos hover */}
