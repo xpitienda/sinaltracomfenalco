@@ -194,32 +194,31 @@ export default function DocumentosPage() {
         background: "linear-gradient(180deg, #3b82f6 0%, #6b7280 25%, #9ca3af 50%, #ffffff 75%, #f3f4f6 100%)"
       }}
     >
-      {/* Header con Navbar */}
+      {/* Navbar compacto */}
       <header
-        className="sticky top-0 z-40 px-6 py-2"
+        className="sticky top-0 z-40 px-4 py-1"
         style={{
           background: "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.3)"
+          boxShadow: "0 2px 10px rgba(0,0,0,0.2)"
         }}
       >
-        {/* Modern Navbar */}
-        <div className="block">
+        <div className="max-w-4xl mx-auto">
           <ModernNavbar activeSection="documentos" />
         </div>
       </header>
 
       {/* Título y navegación */}
-      <div className="pt-6 pb-4 px-4">
+      <div className="pt-4 pb-3 px-4">
         <div className="max-w-6xl mx-auto">
           <Link 
             href="/comparativo-convencion"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 text-gray-700 font-medium hover:bg-white transition-colors mb-4 text-sm shadow-md"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/90 text-gray-700 font-medium hover:bg-white transition-colors mb-3 text-sm shadow-md"
           >
             <ArrowLeft className="w-4 h-4" />
             Volver al Índice
           </Link>
           
-          <h1 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg">
+          <h1 className="text-xl md:text-2xl font-bold text-white text-center drop-shadow-lg">
             Documentos SINALTRACOMFENALCO
           </h1>
         </div>
