@@ -2,48 +2,84 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { FileText, Download, Eye, X, ChevronDown, ChevronUp, Home } from "lucide-react"
+import { FileText, Download, X, ChevronDown, ChevronUp, ArrowLeft } from "lucide-react"
 import { ModernNavbar } from "@/components/modern-navbar"
+
+// Datos del cuadro comparativo
+const cuadroComparativoData = [
+  { no: 0, articulo: "Principios y derechos fundamentales", periodo2020: "Se establecen derechos laborales y sindicales", prorroga: "Se mantienen", periodo2026: "Se mantienen", analisis: "Continuidad sin regresión" },
+  { no: 1, articulo: "Campo de aplicación", periodo2020: "Afiliados a SINALTRACOMFENALCO", prorroga: "Igual", periodo2026: "Igual", analisis: "Se mantiene" },
+  { no: 2, articulo: "Vigencia", periodo2020: "4 años", prorroga: "Prórroga 1 año", periodo2026: "1 año", analisis: "Reducción de vigencia" },
+  { no: 3, articulo: "Reconocimiento sindical", periodo2020: "Reconocimiento pleno", prorroga: "Se mantiene", periodo2026: "Se mantiene", analisis: "Fortalecimiento" },
+  { no: 4, articulo: "Permisos sindicales", periodo2020: "Permisos remunerados", prorroga: "Se mantienen", periodo2026: "Se amplían", analisis: "Mejora significativa" },
+  { no: 5, articulo: "Fuero sindical", periodo2020: "Protección especial", prorroga: "Se mantiene", periodo2026: "Se fortalece", analisis: "Mayor protección" },
+  { no: 6, articulo: "Cuota sindical", periodo2020: "Descuento automático", prorroga: "Se mantiene", periodo2026: "Se mantiene", analisis: "Continuidad" },
+  { no: 7, articulo: "Auxilios educativos", periodo2020: "Auxilio para estudios", prorroga: "Se mantiene", periodo2026: "Se incrementa", analisis: "Mejora económica" },
+  { no: 8, articulo: "Prima de antigüedad", periodo2020: "Prima según años", prorroga: "Se mantiene", periodo2026: "Se mejora escala", analisis: "Beneficio mejorado" },
+  { no: 9, articulo: "Bonificación navideña", periodo2020: "Bonificación diciembre", prorroga: "Se mantiene", periodo2026: "Se incrementa", analisis: "Mayor valor" },
+  { no: 10, articulo: "Auxilio de transporte", periodo2020: "Auxilio mensual", prorroga: "Se mantiene", periodo2026: "Ajuste por inflación", analisis: "Actualización" },
+  { no: 11, articulo: "Dotación", periodo2020: "3 dotaciones anuales", prorroga: "Se mantiene", periodo2026: "Se mantiene calidad", analisis: "Continuidad" },
+  { no: 12, articulo: "Capacitación", periodo2020: "Programas de formación", prorroga: "Se mantienen", periodo2026: "Se amplían programas", analisis: "Más oportunidades" },
+  { no: 13, articulo: "Salud ocupacional", periodo2020: "Programas de SST", prorroga: "Se mantienen", periodo2026: "Se fortalecen", analisis: "Mayor cobertura" },
+  { no: 14, articulo: "Licencias remuneradas", periodo2020: "Licencias por eventos", prorroga: "Se mantienen", periodo2026: "Se amplían días", analisis: "Mejor beneficio" },
+  { no: 15, articulo: "Vacaciones", periodo2020: "15 días hábiles", prorroga: "Se mantiene", periodo2026: "Se mantiene", analisis: "Sin cambios" },
+  { no: 16, articulo: "Prima de vacaciones", periodo2020: "Prima adicional", prorroga: "Se mantiene", periodo2026: "Se incrementa", analisis: "Mejora" },
+  { no: 17, articulo: "Auxilio de defunción", periodo2020: "Auxilio por fallecimiento", prorroga: "Se mantiene", periodo2026: "Se incrementa valor", analisis: "Mayor apoyo" },
+  { no: 18, articulo: "Préstamos", periodo2020: "Líneas de crédito", prorroga: "Se mantienen", periodo2026: "Mejores tasas", analisis: "Condiciones favorables" },
+  { no: 19, articulo: "Bienestar social", periodo2020: "Programas de bienestar", prorroga: "Se mantienen", periodo2026: "Se amplían", analisis: "Más beneficios" },
+]
+
+// Datos de la convención colectiva
+const convencionData = [
+  { articulo: 1, titulo: "Partes y Reconocimiento", contenido: "COMFENALCO ANTIOQUIA reconoce a SINALTRACOMFENALCO como organización sindical representativa de los trabajadores." },
+  { articulo: 2, titulo: "Campo de Aplicación", contenido: "La presente convención se aplica a todos los trabajadores afiliados a SINALTRACOMFENALCO que laboran en COMFENALCO ANTIOQUIA." },
+  { articulo: 3, titulo: "Vigencia", contenido: "La presente Convención Colectiva de Trabajo tendrá una vigencia de un (1) año, comprendido entre el 1 de enero de 2026 y el 31 de diciembre de 2027." },
+  { articulo: 4, titulo: "Principios Fundamentales", contenido: "Las partes se comprometen a respetar los derechos fundamentales del trabajo, la libertad sindical y la negociación colectiva." },
+  { articulo: 5, titulo: "Estabilidad Laboral", contenido: "La empresa garantiza la estabilidad laboral de los trabajadores sindicalizados, respetando el debido proceso en cualquier actuación disciplinaria." },
+  { articulo: 6, titulo: "Permisos Sindicales", contenido: "Se otorgarán permisos remunerados para actividades sindicales, asambleas, capacitaciones y reuniones de la junta directiva." },
+  { articulo: 7, titulo: "Fuero Sindical", contenido: "Se garantiza la protección especial a los trabajadores aforados, conforme a la legislación laboral colombiana." },
+  { articulo: 8, titulo: "Cuota Sindical", contenido: "La empresa descontará automáticamente la cuota sindical ordinaria y extraordinaria autorizada por los trabajadores afiliados." },
+  { articulo: 9, titulo: "Auxilio Educativo", contenido: "Se otorgará auxilio educativo para trabajadores y sus hijos, cubriendo educación básica, media y superior." },
+  { articulo: 10, titulo: "Prima de Antigüedad", contenido: "Los trabajadores recibirán una prima de antigüedad según escala establecida por años de servicio." },
+  { articulo: 11, titulo: "Bonificación Navideña", contenido: "Se pagará bonificación especial en el mes de diciembre a todos los trabajadores sindicalizados." },
+  { articulo: 12, titulo: "Auxilio de Transporte Extralegal", contenido: "Además del auxilio legal, se reconocerá un auxilio de transporte extralegal mensual." },
+  { articulo: 13, titulo: "Dotación", contenido: "Se entregarán tres dotaciones anuales de excelente calidad a los trabajadores que devenguen hasta dos SMLMV." },
+  { articulo: 14, titulo: "Capacitación y Formación", contenido: "La empresa facilitará programas de capacitación y desarrollo profesional para los trabajadores." },
+  { articulo: 15, titulo: "Salud y Seguridad en el Trabajo", contenido: "Se implementarán programas de prevención de riesgos laborales y promoción de la salud." },
+  { articulo: 16, titulo: "Licencias Remuneradas", contenido: "Se concederán licencias remuneradas por calamidad doméstica, matrimonio, nacimiento de hijos y otras causales." },
+  { articulo: 17, titulo: "Vacaciones", contenido: "Los trabajadores disfrutarán de 15 días hábiles de vacaciones remuneradas por cada año de servicio." },
+  { articulo: 18, titulo: "Prima de Vacaciones", contenido: "Se pagará una prima adicional de vacaciones equivalente a un porcentaje del salario." },
+  { articulo: 19, titulo: "Auxilio por Defunción", contenido: "En caso de fallecimiento del trabajador o familiares directos, se otorgará auxilio económico." },
+  { articulo: 20, titulo: "Préstamos", contenido: "Los trabajadores tendrán acceso a líneas de crédito con tasas preferenciales." },
+  { articulo: 21, titulo: "Bienestar Social", contenido: "Se desarrollarán programas de bienestar que incluyen actividades recreativas, culturales y deportivas." },
+  { articulo: 22, titulo: "Comité de Convivencia", contenido: "Funcionará un comité de convivencia laboral para prevenir el acoso laboral." },
+  { articulo: 23, titulo: "Solución de Conflictos", contenido: "Las diferencias se resolverán mediante diálogo directo, y de ser necesario, mecanismos de conciliación." },
+  { articulo: 24, titulo: "Disposiciones Finales", contenido: "Las condiciones aquí pactadas son mínimas y no excluyen otros beneficios legales o extralegales." },
+]
 
 const documentos = [
   {
-    id: 1,
+    id: "cuadro-comparativo",
     nombre: "Cuadro Comparativo Convención",
     archivo: "/documentos/cuadro_comparativo_convencion.pdf",
-    descripcion: "Cuadro comparativo de la convención colectiva por períodos 2020-2024, Prórroga, 2025-2026 y 2026-2027",
-    color: "#22c55e"
+    descripcion: "Comparación entre convenciones 2020-2024, 2025-2026 y 2026-2027",
   },
   {
-    id: 2,
+    id: "convencion-colectiva",
     nombre: "Convención Colectiva SINALTRACOMFENALCO 2026-2027",
     archivo: "/documentos/Convencion_Colectiva_SINALTRACOMFENALCO_2026_2027.pdf",
-    descripcion: "Documento completo de la Convención Colectiva de Trabajo 2026-2027 (24 páginas)",
-    color: "#3b82f6"
+    descripcion: "Documento completo de la Convención Colectiva de Trabajo vigente (24 páginas)",
   }
 ]
 
 export default function DocumentosPage() {
-  const [expandedDoc, setExpandedDoc] = useState<number | null>(null)
-
-  const toggleDocument = (docId: number) => {
-    setExpandedDoc(expandedDoc === docId ? null : docId)
-  }
+  const [expandedDoc, setExpandedDoc] = useState<string | null>(null)
 
   return (
     <div 
       className="min-h-screen"
       style={{
-        background: `
-          linear-gradient(135deg, 
-            #22c55e 0%, 
-            #84cc16 15%, 
-            #facc15 30%, 
-            #ef4444 45%, 
-            #6b7280 60%, 
-            #3b82f6 75%, 
-            #22c55e 100%
-          )
-        `
+        background: "linear-gradient(135deg, #22c55e 0%, #84cc16 20%, #eab308 40%, #ef4444 60%, #6b7280 80%, #3b82f6 100%)"
       }}
     >
       {/* Navbar */}
@@ -52,221 +88,142 @@ export default function DocumentosPage() {
       </div>
 
       {/* Header */}
-      <div className="pt-8 pb-6 px-4">
-        <div className="max-w-5xl mx-auto text-center">
-          <div 
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl mb-4"
-            style={{
-              background: "rgba(255,255,255,0.95)",
-              boxShadow: "0 10px 40px rgba(0,0,0,0.2)"
-            }}
+      <div className="pt-6 pb-4 px-4">
+        <div className="max-w-5xl mx-auto">
+          <Link 
+            href="/comparativo-convencion"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 text-gray-700 font-medium hover:bg-white transition-colors mb-4 text-sm"
           >
-            <FileText className="w-8 h-8 text-emerald-600" />
-            <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 via-amber-500 to-blue-600 bg-clip-text text-transparent">
-              Documentos SINALTRACOMFENALCO
-            </h1>
-          </div>
-          <p className="text-white/90 text-lg font-medium drop-shadow-lg">
-            Descarga y consulta los documentos oficiales de la Convención Colectiva
-          </p>
+            <ArrowLeft className="w-4 h-4" />
+            Volver al Índice
+          </Link>
+          
+          <h1 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg">
+            Documentos SINALTRACOMFENALCO
+          </h1>
         </div>
       </div>
 
       {/* Contenedor de documentos */}
       <div className="px-4 pb-8">
-        <div className="max-w-5xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto space-y-4">
           {documentos.map((doc) => (
-            <div
-              key={doc.id}
-              className="rounded-2xl overflow-hidden transition-all duration-500"
-              style={{
-                background: "rgba(255,255,255,0.98)",
-                boxShadow: `
-                  0 20px 40px rgba(0,0,0,0.2),
-                  inset 0 1px 0 rgba(255,255,255,0.5)
-                `
-              }}
-            >
-              {/* Header del documento */}
-              <div 
-                className="p-4"
-                style={{
-                  background: `linear-gradient(135deg, ${doc.color}, ${doc.color}dd)`
-                }}
+            <div key={doc.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
+              
+              {/* Botón colapsado del documento */}
+              <button
+                onClick={() => setExpandedDoc(expandedDoc === doc.id ? null : doc.id)}
+                className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 transition-colors text-left"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-white font-bold text-sm md:text-lg leading-tight">
-                      {doc.nombre}
-                    </h3>
-                    <p className="text-white/80 text-xs md:text-sm mt-1">
-                      {doc.descripcion}
-                    </p>
-                  </div>
+                <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                  <FileText className="w-5 h-5 text-gray-400" />
                 </div>
-              </div>
-
-              {/* Botones de acción */}
-              <div className="p-4 flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={() => toggleDocument(doc.id)}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95"
-                  style={{
-                    background: expandedDoc === doc.id 
-                      ? "linear-gradient(135deg, #ef4444, #dc2626)" 
-                      : `linear-gradient(135deg, ${doc.color}, ${doc.color}cc)`,
-                    boxShadow: expandedDoc === doc.id 
-                      ? "0 4px 15px rgba(239,68,68,0.4)"
-                      : `0 4px 15px ${doc.color}50`
-                  }}
-                >
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-gray-800">{doc.nombre}</h3>
+                  <p className="text-gray-500 text-sm">{doc.descripcion}</p>
+                </div>
+                <div className="flex items-center gap-1 text-amber-600 flex-shrink-0">
+                  <span className="text-sm">
+                    {expandedDoc === doc.id ? "Clic para cerrar" : "Clic para abrir"}
+                  </span>
                   {expandedDoc === doc.id ? (
-                    <>
-                      <ChevronUp className="w-5 h-5" />
-                      Cerrar Documento
-                    </>
+                    <ChevronUp className="w-4 h-4" />
                   ) : (
-                    <>
-                      <Eye className="w-5 h-5" />
-                      Ver Documento
-                    </>
+                    <ChevronDown className="w-4 h-4" />
                   )}
-                </button>
-                
-                <a
-                  href={doc.archivo}
-                  download
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95"
-                  style={{
-                    background: "linear-gradient(135deg, #f97316, #ea580c)",
-                    boxShadow: "0 4px 15px rgba(249,115,22,0.4)"
-                  }}
-                >
-                  <Download className="w-5 h-5" />
-                  Descargar PDF
-                </a>
-              </div>
+                </div>
+              </button>
 
-              {/* Contenido del documento expandido */}
+              {/* Contenido expandido */}
               {expandedDoc === doc.id && (
-                <div className="animate-in slide-in-from-top duration-300">
-                  {/* Barra de herramientas del visor */}
-                  <div 
-                    className="flex items-center justify-between px-4 py-2 border-t border-b"
-                    style={{ 
-                      borderColor: `${doc.color}30`,
-                      background: `${doc.color}10`
-                    }}
-                  >
-                    <span className="text-sm font-medium text-gray-600">
-                      Visualizando: {doc.nombre}
-                    </span>
-                    <div className="flex gap-2">
+                <div className="border-t border-gray-200">
+                  {/* Header del contenido expandido */}
+                  <div className="flex items-center justify-between p-4 bg-white border-b border-gray-200">
+                    <h4 className="font-bold text-gray-800 text-lg">
+                      {doc.id === "cuadro-comparativo" 
+                        ? "Cuadro Comparativo Convención Colectiva" 
+                        : "Convención Colectiva de Trabajo 2026-2027"}
+                    </h4>
+                    <div className="flex items-center gap-3">
                       <a
                         href={doc.archivo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-3 py-1 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors"
+                        download
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition-colors text-sm"
                       >
-                        <Eye className="w-4 h-4" />
-                        Pantalla Completa
+                        <Download className="w-4 h-4" />
+                        Descargar PDF Completo
                       </a>
                       <button
                         onClick={() => setExpandedDoc(null)}
-                        className="flex items-center gap-1 px-3 py-1 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition-colors"
+                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
                       >
-                        <X className="w-4 h-4" />
-                        Cerrar
+                        <X className="w-5 h-5 text-gray-500" />
                       </button>
                     </div>
                   </div>
 
-                  {/* Visor PDF embebido */}
-                  <div 
-                    className="w-full bg-gray-800"
-                    style={{ height: "80vh" }}
-                  >
-                    <object
-                      data={`${doc.archivo}#toolbar=1&navpanes=1&scrollbar=1&view=FitH`}
-                      type="application/pdf"
-                      className="w-full h-full"
-                    >
-                      <embed
-                        src={`${doc.archivo}#toolbar=1&navpanes=1&scrollbar=1&view=FitH`}
-                        type="application/pdf"
-                        className="w-full h-full"
-                      />
-                      {/* Fallback para navegadores sin soporte de PDF */}
-                      <div className="flex flex-col items-center justify-center h-full bg-gray-100 p-8 text-center">
-                        <FileText className="w-20 h-20 text-gray-400 mb-4" />
-                        <h4 className="text-xl font-bold text-gray-700 mb-2">
-                          No se puede mostrar el PDF en este navegador
-                        </h4>
-                        <p className="text-gray-500 mb-6">
-                          Puedes descargar el documento o abrirlo en una nueva pestaña
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                          <a
-                            href={doc.archivo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-500 text-white font-bold hover:bg-blue-600 transition-all"
-                          >
-                            <Eye className="w-5 h-5" />
-                            Abrir en Nueva Pestaña
-                          </a>
-                          <a
-                            href={doc.archivo}
-                            download
-                            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-bold hover:bg-emerald-600 transition-all"
-                          >
-                            <Download className="w-5 h-5" />
-                            Descargar PDF
-                          </a>
-                        </div>
-                      </div>
-                    </object>
-                  </div>
-
-                  {/* Barra inferior del visor */}
-                  <div 
-                    className="flex items-center justify-center gap-4 p-4"
-                    style={{ background: `${doc.color}10` }}
-                  >
-                    <button
-                      onClick={() => setExpandedDoc(null)}
-                      className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-bold hover:from-red-600 hover:to-red-700 transition-all"
-                    >
-                      <ChevronUp className="w-5 h-5" />
-                      Cerrar Documento
-                    </button>
-                    <a
-                      href={doc.archivo}
-                      download
-                      className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold hover:from-emerald-600 hover:to-emerald-700 transition-all"
-                    >
-                      <Download className="w-5 h-5" />
-                      Descargar Completo
-                    </a>
+                  {/* Tabla de contenido */}
+                  <div className="overflow-x-auto">
+                    {doc.id === "cuadro-comparativo" ? (
+                      <table className="w-full border-collapse min-w-[700px]">
+                        <thead>
+                          <tr className="bg-emerald-600 text-white">
+                            <th className="p-3 text-left font-bold border-r border-emerald-500 w-12">No</th>
+                            <th className="p-3 text-left font-bold border-r border-emerald-500">Artículo / Tema</th>
+                            <th className="p-3 text-left font-bold border-r border-emerald-500">2020-2024</th>
+                            <th className="p-3 text-left font-bold border-r border-emerald-500 w-28">Prórroga 2025-2026</th>
+                            <th className="p-3 text-left font-bold border-r border-emerald-500">2026-2027</th>
+                            <th className="p-3 text-left font-bold">Análisis</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {cuadroComparativoData.map((row, index) => (
+                            <tr 
+                              key={row.no} 
+                              className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-emerald-50 transition-colors`}
+                            >
+                              <td className="p-3 border-t border-gray-200 text-center">{row.no}</td>
+                              <td className="p-3 border-t border-gray-200 font-medium text-gray-800">{row.articulo}</td>
+                              <td className="p-3 border-t border-gray-200 text-gray-600">{row.periodo2020}</td>
+                              <td className="p-3 border-t border-gray-200 text-gray-600">{row.prorroga}</td>
+                              <td className="p-3 border-t border-gray-200 text-emerald-700">{row.periodo2026}</td>
+                              <td className="p-3 border-t border-gray-200">
+                                <span className="inline-block px-2 py-1 rounded bg-amber-100 text-amber-800 text-xs">
+                                  {row.analisis}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    ) : (
+                      <table className="w-full border-collapse min-w-[500px]">
+                        <thead>
+                          <tr className="bg-blue-600 text-white">
+                            <th className="p-3 text-left font-bold border-r border-blue-500 w-20">Artículo</th>
+                            <th className="p-3 text-left font-bold border-r border-blue-500 w-48">Título</th>
+                            <th className="p-3 text-left font-bold">Contenido</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {convencionData.map((row, index) => (
+                            <tr 
+                              key={row.articulo} 
+                              className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-blue-50 transition-colors`}
+                            >
+                              <td className="p-3 border-t border-gray-200 text-center font-bold text-blue-600">{row.articulo}</td>
+                              <td className="p-3 border-t border-gray-200 font-medium text-gray-800">{row.titulo}</td>
+                              <td className="p-3 border-t border-gray-200 text-gray-600">{row.contenido}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    )}
                   </div>
                 </div>
               )}
             </div>
           ))}
-
-          {/* Botón volver */}
-          <div className="mt-8 text-center">
-            <Link
-              href="/comparativo-convencion"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-emerald-700 bg-white hover:bg-gray-100 transition-all shadow-lg"
-            >
-              <Home className="w-5 h-5" />
-              Volver al Inicio
-            </Link>
-          </div>
         </div>
       </div>
     </div>
