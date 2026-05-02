@@ -43,6 +43,20 @@ const cuadroComparativoData = [
   { no: 33, articulo: "Auxilio Sindical", periodo2020: "Aporte mensual", prorroga: "Se mantiene", periodo2026: "$2.956.000 mensual + IPC", analisis: "Incremento" },
   { no: 34, articulo: "Permisos Sindicales", periodo2020: "Horas remuneradas", prorroga: "Se mantiene", periodo2026: "360 horas mensuales", analisis: "Amplio tiempo" },
   { no: 35, articulo: "Auxilio Movilidad", periodo2020: "No existía", prorroga: "No existía", periodo2026: "0.5 SMLMV bicicleta/monopatín", analisis: "Nuevo beneficio" },
+  { no: 36, articulo: "Brigadas de Salud", periodo2020: "Jornadas esporádicas", prorroga: "Se mantiene", periodo2026: "Jornadas organizadas por sindicato", analisis: "Mayor participación" },
+  { no: 37, articulo: "Reconocimiento Polivalencia", periodo2020: "No existía", prorroga: "No existía", periodo2026: "Categoría en Gala de Reconocimientos", analisis: "Nuevo reconocimiento" },
+  { no: 38, articulo: "Comisión Interrelaciones", periodo2020: "Reuniones esporádicas", prorroga: "Se mantiene", periodo2026: "Reunión cada 2 meses", analisis: "Mayor seguimiento" },
+  { no: 39, articulo: "Permiso Muerte Mascotas", periodo2020: "No existía", prorroga: "No existía", periodo2026: "2 días calamidad", analisis: "Nuevo beneficio" },
+  { no: 40, articulo: "Fomento Maternidad/Paternidad", periodo2020: "Licencia legal", prorroga: "Se mantiene", periodo2026: "Horas por mes hasta 9 meses", analisis: "Apoyo extendido" },
+  { no: 41, articulo: "Día de la Familia", periodo2020: "No existía", prorroga: "No existía", periodo2026: "1 día semestral remunerado", analisis: "Nuevo beneficio" },
+  { no: 42, articulo: "Feria Economía Familiar", periodo2020: "No existía", prorroga: "No existía", periodo2026: "Feria anual productos/servicios", analisis: "Nuevo espacio" },
+  { no: 43, articulo: "Efecto No Salarial", periodo2020: "Según normativa", prorroga: "Se mantiene", periodo2026: "Beneficios sin carácter salarial", analisis: "Claridad jurídica" },
+  { no: 44, articulo: "Auxilio Sindical", periodo2020: "Aporte mensual", prorroga: "Se mantiene", periodo2026: "$2.956.000 mensual + IPC", analisis: "Incremento significativo" },
+  { no: 45, articulo: "Permisos Sindicales", periodo2020: "Horas remuneradas", prorroga: "Se mantiene", periodo2026: "360 horas mensuales", analisis: "Amplio tiempo" },
+  { no: 46, articulo: "Auxilio Excluidos Convención", periodo2020: "Auxilio anual", prorroga: "Se mantiene", periodo2026: "$77.469.280 anuales", analisis: "Monto definido" },
+  { no: 47, articulo: "Sede Sindical", periodo2020: "Espacio asignado", prorroga: "Se mantiene", periodo2026: "Local en sede El Poblado", analisis: "Sede garantizada" },
+  { no: 48, articulo: "Instalaciones Asambleas", periodo2020: "Préstamo instalaciones", prorroga: "Se mantiene", periodo2026: "Auditorio para asambleas", analisis: "Espacio garantizado" },
+  { no: 49, articulo: "Firmas y Clausura", periodo2020: "Firma convención", prorroga: "Prórroga firmada", periodo2026: "Firmada marzo 2026", analisis: "Convención vigente" },
 ]
 
 // Datos completos de la Convención Colectiva 2026-2027
@@ -180,12 +194,21 @@ export default function DocumentosPage() {
         background: "linear-gradient(180deg, #3b82f6 0%, #6b7280 25%, #9ca3af 50%, #ffffff 75%, #f3f4f6 100%)"
       }}
     >
-      {/* Navbar */}
-      <div className="sticky top-0 z-50">
-        <ModernNavbar />
-      </div>
+      {/* Header con Navbar */}
+      <header
+        className="sticky top-0 z-40 px-6 py-2"
+        style={{
+          background: "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%)",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.3)"
+        }}
+      >
+        {/* Modern Navbar */}
+        <div className="block">
+          <ModernNavbar activeSection="documentos" />
+        </div>
+      </header>
 
-      {/* Header */}
+      {/* Título y navegación */}
       <div className="pt-6 pb-4 px-4">
         <div className="max-w-6xl mx-auto">
           <Link 
