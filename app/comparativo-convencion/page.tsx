@@ -1004,6 +1004,17 @@ export default function ComparativoConvencionPage() {
                 Consulta
               </span>
             </Link>
+
+            {/* Documentos - Link */}
+            <Link
+              href="/documentos"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400"></div>
+              <span className="font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-purple-300">
+                Documentos
+              </span>
+            </Link>
           </nav>
 
           {/* Contactos Button */}
