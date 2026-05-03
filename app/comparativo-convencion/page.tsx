@@ -630,11 +630,11 @@ function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => 
   )
 }
 
-// Imagenes para los articulos 0, 1 y 2 (locales para compatibilidad con Android)
+// Imagenes para los articulos 0, 1 y 2 (URLs de blob para compatibilidad con Android)
 const articuloImages: { [key: number]: string } = {
-  0: "/images/C1.png",
-  1: "/images/C2A.png",
-  2: "/images/C2B.png",
+  0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-rHu2QkPRtZIpEbjsF78FcFm62TQwxu.png",
+  1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C2A-ffqXawgJGXmgJRWY7E8XDBIx2PZFtD.png",
+  2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C2B-ZJPMmJtaK1EASXSJm4weOkoqOCEDl7.png",
 }
 
 // Componente de linea de tiempo animada
@@ -642,15 +642,11 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
   const showImage = articleIndex === 0 || articleIndex === 1 || articleIndex === 2
   const imageUrl = articuloImages[articleIndex] || ""
   const [timelineProgress, setTimelineProgress] = useState(0)
-  const [showImageWithSpin, setShowImageWithSpin] = useState(false)
-  const [imageSpinComplete, setImageSpinComplete] = useState(false)
   const [imageZoomed, setImageZoomed] = useState(false)
   
   useEffect(() => {
     // Reset estados
     setTimelineProgress(0)
-    setShowImageWithSpin(false)
-    setImageSpinComplete(false)
     
     // Animacion de llenado de linea de tiempo (4 segundos total, 1 por cada seccion)
     const duration = 4000
@@ -663,22 +659,11 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
       
       if (progress < 100) {
         requestAnimationFrame(animate)
-      } else {
-        // Al completar, esperar 1 segundo y mostrar imagen con giro
-        if (showImage) {
-          setTimeout(() => {
-            setShowImageWithSpin(true)
-            // Despues de 2 segundos de giro, estabilizar
-            setTimeout(() => {
-              setImageSpinComplete(true)
-            }, 2000)
-          }, 1000)
-        }
       }
     }
     
     requestAnimationFrame(animate)
-  }, [articulo.id, showImage])
+  }, [articulo.id])
   
   // Calcular que secciones estan visibles segun el progreso
   const section1Visible = timelineProgress >= 0
@@ -776,23 +761,11 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
             </div>
           </div>
 
-          {/* Imagen del capitulo a la derecha - Solo para Articulo 0 */}
+          {/* Imagen del capitulo a la derecha - Estatica */}
           {showImage && (
             <div className="hidden lg:block w-80 flex-shrink-0">
               <div 
-                className={`sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400/50 transition-all duration-1000 cursor-pointer hover:border-amber-400 hover:shadow-2xl ${
-                  showImageWithSpin 
-                    ? 'opacity-100 scale-100' 
-                    : 'opacity-0 scale-75'
-                }`}
-                style={{
-                  transform: showImageWithSpin && !imageSpinComplete 
-                    ? 'rotateY(720deg)' 
-                    : 'rotateY(0deg)',
-                  transition: showImageWithSpin && !imageSpinComplete 
-                    ? 'transform 2s ease-out, opacity 0.5s, scale 0.5s' 
-                    : 'transform 0.5s ease-out, opacity 0.5s, scale 0.5s',
-                }}
+                className="sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-shadow"
                 onClick={() => setImageZoomed(true)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -801,12 +774,13 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
                   alt={`Artículo ${articleIndex}: ${articulo.tema}`}
                   className="w-full h-auto object-contain"
                   loading="eager"
-                  decoding="async"
+                  decoding="sync"
+                  crossOrigin="anonymous"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-all">
-                  <span className="text-white opacity-0 hover:opacity-100 text-sm font-medium bg-black/50 px-3 py-1 rounded-full">
-                    Click para ampliar
-                  </span>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                  <p className="text-white text-center text-sm font-medium">
+                    Toca para ampliar
+                  </p>
                 </div>
               </div>
             </div>
@@ -814,32 +788,33 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
         </div>
       </div>
 
-      {/* Modal de imagen ampliada al 65% */}
+      {/* Modal de imagen ampliada */}
       {imageZoomed && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
           onClick={() => setImageZoomed(false)}
         >
           <div 
-            className="relative animate-in zoom-in-75 duration-300"
-            style={{ width: '65vw', maxHeight: '90vh' }}
+            className="relative w-full max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setImageZoomed(false)}
-              className="absolute -top-4 -right-4 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="absolute -top-12 right-0 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
               <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 bg-white">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageUrl}
                 alt={`Artículo ${articleIndex}: ${articulo.tema}`}
-                className="w-full h-auto object-contain max-h-[85vh]"
+                className="w-full h-auto object-contain"
                 loading="eager"
+                decoding="sync"
+                crossOrigin="anonymous"
               />
             </div>
           </div>
