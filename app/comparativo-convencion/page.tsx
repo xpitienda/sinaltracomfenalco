@@ -1004,6 +1004,30 @@ export default function ComparativoConvencionPage() {
                 Consulta
               </span>
             </Link>
+
+            {/* Documentos - Link */}
+            <Link
+              href="/documentos"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400"></div>
+              <span className="font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-purple-300">
+                Documentos
+              </span>
+            </Link>
+
+            {/* ASMUCOM - MUTUAL - Link externo */}
+            <a
+              href="https://www.asmucom.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-teal-500/20 hover:to-cyan-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400"></div>
+              <span className="font-medium bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent group-hover:from-teal-300 group-hover:to-cyan-300">
+                ASMUCOM - MUTUAL
+              </span>
+            </a>
           </nav>
 
           {/* Contactos Button */}
@@ -1102,16 +1126,15 @@ export default function ComparativoConvencionPage() {
                   showImage={expandedArticle === 0}
                 />
               ) : (
-                <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
-                    <ChevronRight className="w-10 h-10 text-gray-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-700 mb-2">
-                    Selecciona un Articulo
-                  </h3>
-                  <p className="text-gray-500">
-                    Despliega el menu &quot;Comparativo Convencion&quot; en la barra lateral y selecciona uno de los 50 articulos para ver su informacion detallada.
-                  </p>
+                <div className="bg-white rounded-2xl p-4 shadow-lg">
+                  <Image
+                    src="/images/Logros.png"
+                    alt="Convención Colectiva 2026-2027: Nuevos Logros para Tu Bienestar"
+                    width={900}
+                    height={600}
+                    className="w-full h-auto rounded-xl"
+                    priority
+                  />
                 </div>
               )}
 
