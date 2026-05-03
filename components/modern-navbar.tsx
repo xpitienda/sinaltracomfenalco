@@ -118,10 +118,18 @@ export function ModernNavbar({ activeSection = "presentacion", onSectionChange, 
     
     setSelectedIndex(index)
     
+    // Enlaces externos (http/https)
+    if (item.href.startsWith('http://') || item.href.startsWith('https://')) {
+      window.open(item.href, '_blank', 'noopener,noreferrer')
+      return
+    }
+    
+    // Archivos .html
     if (item.href.endsWith('.html')) {
       window.open(item.href, '_blank')
       return
     }
+    
     router.push(item.href)
     if (onSectionChange) {
       onSectionChange(item.id)
