@@ -795,12 +795,13 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
                 }}
                 onClick={() => setImageZoomed(true)}
               >
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={imageUrl}
                   alt={`Artículo ${articleIndex}: ${articulo.tema}`}
-                  width={320}
-                  height={600}
                   className="w-full h-auto object-contain"
+                  loading="eager"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-all">
                   <span className="text-white opacity-0 hover:opacity-100 text-sm font-medium bg-black/50 px-3 py-1 rounded-full">
@@ -833,12 +834,12 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
               </svg>
             </button>
             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={imageUrl}
                 alt={`Artículo ${articleIndex}: ${articulo.tema}`}
-                width={800}
-                height={1500}
                 className="w-full h-auto object-contain max-h-[85vh]"
+                loading="eager"
               />
             </div>
           </div>
