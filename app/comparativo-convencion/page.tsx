@@ -630,8 +630,17 @@ function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => 
   )
 }
 
+// Imagenes para los articulos 0, 1 y 2
+const articuloImages: { [key: number]: string } = {
+  0: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C1.png",
+  1: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C2A.png",
+  2: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C2B.png",
+}
+
 // Componente de linea de tiempo animada
-function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosData[0], showImage: boolean }) {
+function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulosData[0], articleIndex: number }) {
+  const showImage = articleIndex === 0 || articleIndex === 1 || articleIndex === 2
+  const imageUrl = articuloImages[articleIndex] || ""
   const [timelineProgress, setTimelineProgress] = useState(0)
   const [showImageWithSpin, setShowImageWithSpin] = useState(false)
   const [imageSpinComplete, setImageSpinComplete] = useState(false)
@@ -799,8 +808,8 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
                 onClick={() => setImageZoomed(true)}
               >
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
-                  alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
+                  src={imageUrl}
+                  alt={`Artículo ${articleIndex}: ${articulo.tema}`}
                   width={320}
                   height={600}
                   className="w-full h-auto object-contain"
@@ -837,8 +846,8 @@ function TimelineArticle({ articulo, showImage }: { articulo: typeof articulosDa
             </button>
             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-Px2O2tyIDHi6v5UgsJNi1COFMwrR1Z.png"
-                alt="Capitulo I: Principios Rectores y Derechos Fundamentales"
+                src={imageUrl}
+                alt={`Artículo ${articleIndex}: ${articulo.tema}`}
                 width={800}
                 height={1500}
                 className="w-full h-auto object-contain max-h-[85vh]"
@@ -1121,9 +1130,9 @@ export default function ComparativoConvencionPage() {
               </div>
 
               {expandedArticle !== null ? (
-                <TimelineArticle 
-                  articulo={articulosData[expandedArticle]} 
-                  showImage={expandedArticle === 0}
+                <TimelineArticle
+                  articulo={articulosData[expandedArticle]}
+                  articleIndex={expandedArticle}
                 />
               ) : (
                 <div className="bg-white rounded-2xl p-4 shadow-lg">
