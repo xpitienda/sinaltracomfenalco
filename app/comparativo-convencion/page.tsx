@@ -1015,6 +1015,19 @@ export default function ComparativoConvencionPage() {
                 Documentos
               </span>
             </Link>
+
+            {/* ASMUCOM - MUTUAL - Link externo */}
+            <a
+              href="https://www.asmucom.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-teal-500/20 hover:to-cyan-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400"></div>
+              <span className="font-medium bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent group-hover:from-teal-300 group-hover:to-cyan-300">
+                ASMUCOM - MUTUAL
+              </span>
+            </a>
           </nav>
 
           {/* Contactos Button */}
