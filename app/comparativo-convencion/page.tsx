@@ -757,32 +757,34 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
                     </p>
                   </div>
                 </div>
-
-                {/* Imagen del capitulo - Estatica despues de Logro Alcanzado */}
-                {showImage && timelineProgress >= 100 && (
-                  <div 
-                    className="relative mt-6 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-shadow"
-                    onClick={() => setImageZoomed(true)}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={imageUrl}
-                      alt={`Artículo ${articleIndex}: ${articulo.tema}`}
-                      className="w-full h-auto object-contain"
-                      loading="eager"
-                      decoding="sync"
-                      crossOrigin="anonymous"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-                      <p className="text-white text-center text-sm font-medium">
-                        Toca para ampliar
-                      </p>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
+
+          {/* Imagen del capitulo a la derecha - Estatica */}
+          {showImage && (
+            <div className="hidden lg:block w-80 flex-shrink-0">
+              <div 
+                className="sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-shadow"
+                onClick={() => setImageZoomed(true)}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageUrl}
+                  alt={`Artículo ${articleIndex}: ${articulo.tema}`}
+                  className="w-full h-auto object-contain"
+                  loading="eager"
+                  decoding="sync"
+                  crossOrigin="anonymous"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                  <p className="text-white text-center text-sm font-medium">
+                    Toca para ampliar
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
