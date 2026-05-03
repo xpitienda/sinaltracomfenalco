@@ -630,11 +630,11 @@ function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => 
   )
 }
 
-// Imagenes para los articulos 0, 1 y 2
+// Imagenes para los articulos 0, 1 y 2 (locales para compatibilidad con Android)
 const articuloImages: { [key: number]: string } = {
-  0: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C1.png",
-  1: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C2A.png",
-  2: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C2B.png",
+  0: "/images/C1.png",
+  1: "/images/C2A.png",
+  2: "/images/C2B.png",
 }
 
 // Componente de linea de tiempo animada
