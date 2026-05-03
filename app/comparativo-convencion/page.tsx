@@ -15,11 +15,11 @@ const articulosData = [
     prorroga: "Se mantienen",
     data2025_2026: "Se mantienen",
     data2026_2027: "Se mantienen",
-    analisis: "Continuidad sin regresion"
+    analisis: "Continuidad sin regresión"
   },
   {
     id: 1,
-    tema: "Campo de aplicacion",
+    tema: "Campo de aplicación",
     data2020_2024: "Afiliados a SINALTRACOMFENALCO",
     prorroga: "Igual",
     data2025_2026: "Igual",
@@ -29,28 +29,28 @@ const articulosData = [
   {
     id: 2,
     tema: "Vigencia",
-    data2020_2024: "4 anos",
-    prorroga: "Prorroga 1 ano",
-    data2025_2026: "1 ano",
-    data2026_2027: "1 ano",
-    analisis: "Reduccion de vigencia (estrategico)"
+    data2020_2024: "4 años",
+    prorroga: "Prórroga 1 año",
+    data2025_2026: "Prórroga 1 año",
+    data2026_2027: "1 año",
+    analisis: "Reducción de vigencia (estratégico)"
   },
   {
     id: 3,
-    tema: "Regimen contractual (jornadas)",
+    tema: "Régimen contractual (jornadas)",
     data2020_2024: "18, 24, 30, 36, 42, 48 horas",
     prorroga: "Igual",
-    data2025_2026: "18, 24, 30, 36, 42 horas",
+    data2025_2026: "Igual",
     data2026_2027: "18, 24, 30, 36, 42 horas",
-    analisis: "Ajuste tecnico"
+    analisis: "Ajuste técnico"
   },
   {
     id: 4,
     tema: "Vacantes y ascensos",
-    data2020_2024: "Participacion sindical",
+    data2020_2024: "Participación sindical",
     prorroga: "Igual",
-    data2025_2026: "Se mantiene + criterios promocion",
-    data2026_2027: "Se mantiene + criterios promocion",
+    data2025_2026: "Igual",
+    data2026_2027: "Se mantiene + criterios promoción",
     analisis: "Mejora movilidad laboral"
   },
   {
@@ -58,53 +58,53 @@ const articulosData = [
     tema: "Debido proceso disciplinario",
     data2020_2024: "Garantizado",
     prorroga: "Igual",
-    data2025_2026: "Se fortalece (doble instancia)",
+    data2025_2026: "Igual",
     data2026_2027: "Se fortalece (doble instancia)",
-    analisis: "Consolidacion"
+    analisis: "Consolidación"
   },
   {
     id: 6,
-    tema: "Sustitucion patronal y estabilidad laboral",
-    data2020_2024: "No explicita",
+    tema: "Sustitución patronal y estabilidad laboral",
+    data2020_2024: "No explícita",
     prorroga: "No",
-    data2025_2026: "Reubicacion en reestructuracion",
-    data2026_2027: "Reubicacion en reestructuracion",
+    data2025_2026: "No",
+    data2026_2027: "Reubicación en reestructuración",
     analisis: "Nuevo logro"
   },
   {
     id: 7,
-    tema: "Indemnizacion sin justa causa",
-    data2020_2024: "Dias adicionales a la ley",
+    tema: "Indemnización sin justa causa",
+    data2020_2024: "Días adicionales a la ley",
     prorroga: "Igual",
     data2025_2026: "Igual",
     data2026_2027: "Igual",
-    analisis: "Se conserva logro historico"
+    analisis: "Se conserva logro histórico"
   },
   {
     id: 8,
     tema: "Incremento salarial",
-    data2020_2024: "IPC o salario minimo",
+    data2020_2024: "IPC o salario mínimo",
     prorroga: "Se mantiene",
     data2025_2026: "Se mantiene",
     data2026_2027: "Se mantiene",
-    analisis: "Proteccion del ingreso"
+    analisis: "Protección del ingreso"
   },
   {
     id: 9,
-    tema: "Bonificacion de Navidad",
-    data2020_2024: "9 dias salario",
+    tema: "Bonificación de Navidad",
+    data2020_2024: "9 días salario",
     prorroga: "Igual",
-    data2025_2026: "9 dias salario",
-    data2026_2027: "9 dias salario",
+    data2025_2026: "Igual",
+    data2026_2027: "9 días salario",
     analisis: "Se mantiene"
   },
   {
     id: 10,
     tema: "Auxilio vacaciones",
-    data2020_2024: "Existia",
+    data2020_2024: "Existía",
     prorroga: "Igual",
     data2025_2026: "Igual",
-    data2026_2027: "Se mejora. Para personal nivel Operativo el auxilio sera por valor de $86.800. Para personal nivel Administrativo Asistencial el auxilio sera por valor de $72.500. Para personal nivel Profesional el auxilio sera por valor de $58.000",
+    data2026_2027: "Se mejora. Para personal nivel Operativo el auxilio será por valor de $86.800. Para personal nivel Administrativo Asistencial el auxilio será por valor de $72.500. Para personal nivel Profesional el auxilio será por valor de $58.000",
     analisis: "Se mejora"
   },
   {
