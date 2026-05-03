@@ -725,36 +725,24 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
                   </div>
                 </div>
 
-                {/* Prorroga */}
+                {/* Prorroga 2025-2026 (columna unificada) */}
                 <div 
                   className={`relative transition-all duration-500 ${section2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
                   style={{ transitionDelay: '250ms' }}
                 >
-                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 45 ? 'bg-blue-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 50 ? 'bg-blue-500 scale-110' : 'bg-gray-300'}`}></div>
                   <div className="rounded-xl p-5 border-l-4 border-blue-500 bg-blue-50 shadow-sm hover:shadow-md transition-shadow">
-                    <h4 className="font-bold text-blue-800 mb-2">PRORROGA</h4>
-                    <p className="text-gray-700">{articulo.prorroga}</p>
-                  </div>
-                </div>
-
-                {/* 2025-2026 */}
-                <div 
-                  className={`relative transition-all duration-500 ${section3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-                  style={{ transitionDelay: '500ms' }}
-                >
-                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 70 ? 'bg-orange-500 scale-110' : 'bg-gray-300'}`}></div>
-                  <div className="rounded-xl p-5 border-l-4 border-orange-500 bg-orange-50 shadow-sm hover:shadow-md transition-shadow">
-                    <h4 className="font-bold text-orange-800 mb-2">2025 - 2026</h4>
+                    <h4 className="font-bold text-blue-800 mb-2">PRORROGA 2025-2026</h4>
                     <p className="text-gray-700">{articulo.data2025_2026}</p>
                   </div>
                 </div>
 
                 {/* 2026-2027 */}
                 <div 
-                  className={`relative transition-all duration-500 ${section4Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-                  style={{ transitionDelay: '750ms' }}
+                  className={`relative transition-all duration-500 ${section3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '500ms' }}
                 >
-                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 95 ? 'bg-purple-500 scale-110' : 'bg-gray-300'}`}></div>
+                  <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 75 ? 'bg-purple-500 scale-110' : 'bg-gray-300'}`}></div>
                   <div className="rounded-xl p-5 border-l-4 border-purple-500 bg-purple-50 shadow-sm hover:shadow-md transition-shadow">
                     <h4 className="font-bold text-purple-800 mb-2">2026 - 2027</h4>
                     <p className="text-gray-700">{articulo.data2026_2027}</p>
@@ -763,8 +751,8 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
 
                 {/* Analisis/Logro */}
                 <div 
-                  className={`relative transition-all duration-500 ${section5Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-                  style={{ transitionDelay: '1000ms' }}
+                  className={`relative transition-all duration-500 ${section4Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  style={{ transitionDelay: '750ms' }}
                 >
                   <div className={`absolute -left-8 top-2 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-300 ${timelineProgress >= 100 ? 'bg-amber-400 scale-125 animate-pulse' : 'bg-gray-300'}`}></div>
                   <div
