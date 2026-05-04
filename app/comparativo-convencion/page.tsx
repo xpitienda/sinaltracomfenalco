@@ -682,9 +682,9 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
       </div>
 
       <div className="p-6">
-        <div className="flex gap-6">
+        <div className="flex flex-col md:flex-row gap-6">
           {/* Linea de tiempo a la izquierda */}
-          <div className="flex-1">
+          <div className="flex-1 order-2 md:order-1">
             <div className="relative">
               {/* Linea vertical de tiempo - fondo gris */}
               <div className="absolute left-4 top-0 bottom-0 w-1 bg-gray-200 rounded-full"></div>
@@ -761,21 +761,19 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
             </div>
           </div>
 
-          {/* Imagen del capitulo a la derecha - Estatica */}
+          {/* Imagen del capitulo - Arriba en movil, derecha en desktop */}
           {showImage && (
-            <div className="hidden lg:block w-80 flex-shrink-0">
+            <div className="w-full md:w-80 flex-shrink-0 order-1 md:order-2">
               <div 
-                className="sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-shadow"
-                onClick={() => setImageZoomed(true)}
+                className="sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-shadow bg-white"
+                onClick={() => setImageZoomed(!imageZoomed)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={imageUrl}
                   alt={`Artículo ${articleIndex}: ${articulo.tema}`}
-                  className="w-full h-auto object-contain"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
                   loading="eager"
-                  decoding="sync"
-                  crossOrigin="anonymous"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
                   <p className="text-white text-center text-sm font-medium">
@@ -791,30 +789,28 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
       {/* Modal de imagen ampliada */}
       {imageZoomed && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-2"
           onClick={() => setImageZoomed(false)}
         >
           <div 
-            className="relative w-full max-w-4xl"
-            onClick={(e) => e.stopPropagation()}
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={() => setImageZoomed(false)}
           >
             <button
               onClick={() => setImageZoomed(false)}
-              className="absolute -top-12 right-0 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="absolute top-2 right-2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center"
             >
-              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 bg-white">
+            <div className="rounded-lg overflow-hidden bg-white max-w-full max-h-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageUrl}
                 alt={`Artículo ${articleIndex}: ${articulo.tema}`}
-                className="w-full h-auto object-contain"
+                style={{ maxWidth: '100%', maxHeight: '90vh', width: 'auto', height: 'auto', display: 'block' }}
                 loading="eager"
-                decoding="sync"
-                crossOrigin="anonymous"
               />
             </div>
           </div>
