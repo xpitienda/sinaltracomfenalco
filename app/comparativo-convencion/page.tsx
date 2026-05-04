@@ -643,10 +643,12 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
   const imageUrl = articuloImages[articleIndex] || ""
   const [timelineProgress, setTimelineProgress] = useState(0)
   const [imageZoomed, setImageZoomed] = useState(false)
+  const [showImageDelayed, setShowImageDelayed] = useState(false)
   
   useEffect(() => {
     // Reset estados
     setTimelineProgress(0)
+    setShowImageDelayed(false)
     
     // Animacion de llenado de linea de tiempo (4 segundos total, 1 por cada seccion)
     const duration = 4000
@@ -659,11 +661,16 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
       
       if (progress < 100) {
         requestAnimationFrame(animate)
+      } else if (showImage) {
+        // Mostrar imagen 1 segundo despues de completar Logro Alcanzado
+        setTimeout(() => {
+          setShowImageDelayed(true)
+        }, 1000)
       }
     }
     
     requestAnimationFrame(animate)
-  }, [articulo.id])
+  }, [articulo.id, showImage])
   
   // Calcular que secciones estan visibles segun el progreso
   const section1Visible = timelineProgress >= 0
@@ -684,7 +691,7 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
       <div className="p-6">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Linea de tiempo a la izquierda */}
-          <div className="flex-1 order-2 md:order-1">
+          <div className="flex-1 order-1 md:order-1">
             <div className="relative">
               {/* Linea vertical de tiempo - fondo gris */}
               <div className="absolute left-4 top-0 bottom-0 w-1 bg-gray-200 rounded-full"></div>
@@ -761,11 +768,11 @@ function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulo
             </div>
           </div>
 
-          {/* Imagen del capitulo - Arriba en movil, derecha en desktop */}
-          {showImage && (
-            <div className="w-full md:w-80 flex-shrink-0 order-1 md:order-2">
+          {/* Imagen del capitulo - Abajo en movil (despues de Logro), derecha en desktop */}
+          {showImage && showImageDelayed && (
+            <div className="w-full md:w-80 flex-shrink-0 order-3 md:order-2 mt-6 md:mt-0">
               <div 
-                className="sticky top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-shadow bg-white"
+                className="md:sticky md:top-4 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-400 cursor-pointer hover:shadow-2xl transition-all duration-500 bg-white animate-in fade-in slide-in-from-bottom"
                 onClick={() => setImageZoomed(!imageZoomed)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
