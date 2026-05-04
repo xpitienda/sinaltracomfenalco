@@ -8,21 +8,21 @@ import { ModernNavbar } from "@/components/modern-navbar"
 
 // Imágenes del catálogo S1 a S15 desde GitHub con títulos específicos
 const catalogImages = [
-  { id: 1, title: "Convención Colectiva 2026-2027", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S1.png" },
-  { id: 2, title: "Resumen de la Negociación", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S2.png" },
-  { id: 3, title: "Beneficios Salariales", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S3.png" },
-  { id: 4, title: "Auxilios Educativos", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S4.png" },
-  { id: 5, title: "Bonificaciones", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S5.png" },
-  { id: 6, title: "Primas Extralegales", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S6.png" },
-  { id: 7, title: "Auxilios de Vivienda", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S7.png" },
-  { id: 8, title: "Beneficios de Salud", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S8.png" },
-  { id: 9, title: "Permisos y Licencias", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S9.png" },
-  { id: 10, title: "Recreación y Deporte", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S10.png" },
-  { id: 11, title: "Capacitación y Formación", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S11.png" },
-  { id: 12, title: "Auxilios por Fallecimiento", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S12.png" },
-  { id: 13, title: "Préstamos y Créditos", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S13.png" },
-  { id: 14, title: "Bienestar Familiar", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S14.png" },
-  { id: 15, title: "Resumen General", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S15.png" },
+  { id: 1, title: "Convención Colectiva 2026 – 2027", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S1.png" },
+  { id: 2, title: "El Tablero de Nuestra Cosecha: Resumen de la Negociación", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S2.png" },
+  { id: 3, title: "Nuestros Cimientos: Respeto, Estabilidad y Debido Proceso", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S3.png" },
+  { id: 4, title: "Pilar 1: Dinámica Laboral, Jornadas y Rutas de Ascenso", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S4.png" },
+  { id: 5, title: "Pilar 2: Dinero, Incremento y Blindaje Financiero", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S5.png" },
+  { id: 6, title: "El Ecosistema de Auxilios Económicos (Valores 2026)", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S6.png" },
+  { id: 7, title: "Pilar 3: La Escalera del Desarrollo Educativo", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S7.png" },
+  { id: 8, title: "Pilar 4: Equilibrio Vida - Trabajo (Nuevos Tiempos Libres)", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S8.png" },
+  { id: 9, title: "Cuidado Especial: Fomento a la Maternidad y Discapacidad", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S9.png" },
+  { id: 10, title: "Acompañamiento en Momentos Críticos", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S10.png" },
+  { id: 11, title: "Progreso Laboral y Respaldo Financiero", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S11.png" },
+  { id: 12, title: "Ecosistema de Beneficios Diarios", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S12.png" },
+  { id: 13, title: "El Tránsito a la Jubilación: Un Cierre Digno", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S13.png" },
+  { id: 14, title: "Consolidando Nuestra Unión y el Futuro", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S14.png" },
+  { id: 15, title: "15 Años Construyendo Bienestar, Juntos", src: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S15.png" },
 ]
 
 // Componente de caja de imagen 3D con borde animado tipo manecillas de reloj y título
