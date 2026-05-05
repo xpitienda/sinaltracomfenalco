@@ -35,7 +35,7 @@ const borderColors = {
   3: "#3b82f6", // Azul
 }
 
-// Componente de borde animado que se llena por segmentos
+// Componente de borde animado con llenado continuo
 function AnimatedBorder({ color, isActive }: { color: string; isActive: boolean }) {
   const [progress, setProgress] = useState(0)
   
@@ -45,65 +45,44 @@ function AnimatedBorder({ color, isActive }: { color: string; isActive: boolean 
       return
     }
     
-    // Animar el borde en 4 segundos (1 segundo por lado)
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) return 100
-        return prev + 2.5 // 100% en 4 segundos (40 intervalos de 100ms)
-      })
-    }, 100)
+    // Animar el borde continuamente en 2 segundos (mientras la imagen esta al frente)
+    const startTime = Date.now()
+    const duration = 2000
     
-    return () => clearInterval(interval)
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const newProgress = Math.min((elapsed / duration) * 100, 100)
+      setProgress(newProgress)
+      
+      if (newProgress < 100) {
+        requestAnimationFrame(animate)
+      }
+    }
+    
+    requestAnimationFrame(animate)
   }, [isActive])
   
-  // Calcular qué segmentos mostrar basado en el progreso
-  const topWidth = Math.min(progress * 4, 100)
-  const rightHeight = Math.min(Math.max((progress - 25) * 4, 0), 100)
-  const bottomWidth = Math.min(Math.max((progress - 50) * 4, 0), 100)
-  const leftHeight = Math.min(Math.max((progress - 75) * 4, 0), 100)
-  
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      {/* Borde superior */}
-      <div 
-        className="absolute top-0 left-0 h-1 rounded-full"
-        style={{ 
-          width: `${topWidth}%`, 
-          backgroundColor: color,
-          boxShadow: `0 0 10px ${color}`,
-          transition: 'width 0.1s linear'
-        }}
-      />
-      {/* Borde derecho */}
-      <div 
-        className="absolute top-0 right-0 w-1 rounded-full"
-        style={{ 
-          height: `${rightHeight}%`, 
-          backgroundColor: color,
-          boxShadow: `0 0 10px ${color}`,
-          transition: 'height 0.1s linear'
-        }}
-      />
-      {/* Borde inferior */}
-      <div 
-        className="absolute bottom-0 right-0 h-1 rounded-full"
-        style={{ 
-          width: `${bottomWidth}%`, 
-          backgroundColor: color,
-          boxShadow: `0 0 10px ${color}`,
-          transition: 'width 0.1s linear'
-        }}
-      />
-      {/* Borde izquierdo */}
-      <div 
-        className="absolute bottom-0 left-0 w-1 rounded-full"
-        style={{ 
-          height: `${leftHeight}%`, 
-          backgroundColor: color,
-          boxShadow: `0 0 10px ${color}`,
-          transition: 'height 0.1s linear'
-        }}
-      />
+    <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden">
+      <svg className="absolute inset-0 w-full h-full" style={{ transform: 'rotate(-90deg)' }}>
+        <rect
+          x="1"
+          y="1"
+          width="calc(100% - 2px)"
+          height="calc(100% - 2px)"
+          rx="12"
+          ry="12"
+          fill="none"
+          stroke={color}
+          strokeWidth="4"
+          strokeDasharray="1000"
+          strokeDashoffset={1000 - (progress * 10)}
+          style={{
+            filter: `drop-shadow(0 0 8px ${color})`,
+            transition: 'stroke-dashoffset 0.05s linear'
+          }}
+        />
+      </svg>
     </div>
   )
 }
@@ -233,13 +212,6 @@ function Carrusel3D({
         })}
       </div>
       
-      {/* Etiqueta del carrusel */}
-      <div 
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-white text-xs font-bold"
-        style={{ backgroundColor: borderColor }}
-      >
-        Carrusel {carruselNumber}
-      </div>
     </div>
   )
 }
