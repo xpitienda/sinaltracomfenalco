@@ -189,13 +189,13 @@ function Carrusel3D({
           return (
             <div
               key={index}
-              className={`absolute inset-0 rounded-xl overflow-hidden shadow-2xl bg-white ${isFront ? 'cursor-pointer' : ''}`}
+              className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl bg-white cursor-pointer hover:scale-105 transition-transform"
               style={{
                 transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                 backfaceVisibility: 'hidden',
                 border: `3px solid ${borderColor}40`,
               }}
-              onClick={() => isFront && onImageClick(src)}
+              onClick={() => onImageClick(src)}
             >
               {/* Borde animado solo en la imagen frontal cuando está pausado */}
               {isFront && <AnimatedBorder color={borderColor} isActive={borderActive} />}
