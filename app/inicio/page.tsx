@@ -28,28 +28,112 @@ const carrusel3Images = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S15.png",
 ]
 
+// Colores de borde para cada carrusel
+const borderColors = {
+  1: "#9333ea", // Morado
+  2: "#22c55e", // Verde
+  3: "#3b82f6", // Azul
+}
+
+// Componente de borde animado que se llena por segmentos
+function AnimatedBorder({ color, isActive }: { color: string; isActive: boolean }) {
+  const [progress, setProgress] = useState(0)
+  
+  useEffect(() => {
+    if (!isActive) {
+      setProgress(0)
+      return
+    }
+    
+    // Animar el borde en 4 segundos (1 segundo por lado)
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) return 100
+        return prev + 2.5 // 100% en 4 segundos (40 intervalos de 100ms)
+      })
+    }, 100)
+    
+    return () => clearInterval(interval)
+  }, [isActive])
+  
+  // Calcular qué segmentos mostrar basado en el progreso
+  const topWidth = Math.min(progress * 4, 100)
+  const rightHeight = Math.min(Math.max((progress - 25) * 4, 0), 100)
+  const bottomWidth = Math.min(Math.max((progress - 50) * 4, 0), 100)
+  const leftHeight = Math.min(Math.max((progress - 75) * 4, 0), 100)
+  
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {/* Borde superior */}
+      <div 
+        className="absolute top-0 left-0 h-1 rounded-full"
+        style={{ 
+          width: `${topWidth}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 10px ${color}`,
+          transition: 'width 0.1s linear'
+        }}
+      />
+      {/* Borde derecho */}
+      <div 
+        className="absolute top-0 right-0 w-1 rounded-full"
+        style={{ 
+          height: `${rightHeight}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 10px ${color}`,
+          transition: 'height 0.1s linear'
+        }}
+      />
+      {/* Borde inferior */}
+      <div 
+        className="absolute bottom-0 right-0 h-1 rounded-full"
+        style={{ 
+          width: `${bottomWidth}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 10px ${color}`,
+          transition: 'width 0.1s linear'
+        }}
+      />
+      {/* Borde izquierdo */}
+      <div 
+        className="absolute bottom-0 left-0 w-1 rounded-full"
+        style={{ 
+          height: `${leftHeight}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 10px ${color}`,
+          transition: 'height 0.1s linear'
+        }}
+      />
+    </div>
+  )
+}
+
 // Componente de carrusel 3D giratorio
 function Carrusel3D({ 
   images, 
   initialDelay, 
   pauseDuration,
-  orbitPosition 
+  orbitPosition,
+  carruselNumber,
+  onImageClick
 }: { 
   images: string[]
-  initialDelay: number // segundos antes de mostrar primera imagen
-  pauseDuration: number // segundos que se pausa en cada imagen
-  orbitPosition: number // posición orbital (0, 1, 2) para distribuir alrededor del logo
+  initialDelay: number
+  pauseDuration: number
+  orbitPosition: number
+  carruselNumber: 1 | 2 | 3
+  onImageClick: (src: string) => void
 }) {
   const [rotationY, setRotationY] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [currentFace, setCurrentFace] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
+  const [borderActive, setBorderActive] = useState(false)
 
-  const anglePerImage = 360 / images.length // 72 grados por imagen (5 imágenes)
-  const radius = 80 // Radio del carrusel 3D
+  const anglePerImage = 360 / images.length
+  const radius = 90
 
   useEffect(() => {
-    // Delay inicial antes de empezar
     const startTimeout = setTimeout(() => {
       setHasStarted(true)
     }, initialDelay * 1000)
@@ -61,27 +145,23 @@ function Carrusel3D({
     if (!hasStarted) return
 
     let animationFrame: number
-    let lastTime = performance.now()
-    const rotationSpeed = 0.5 // grados por frame cuando gira
+    const rotationSpeed = 0.6
 
-    const animate = (currentTime: number) => {
-      const deltaTime = currentTime - lastTime
-      
+    const animate = () => {
       if (!isPaused) {
         setRotationY(prev => {
           const newRotation = prev + rotationSpeed
-          
-          // Detectar cuando una imagen está al frente (cada 72 grados)
           const normalizedRotation = newRotation % 360
           const faceIndex = Math.round(normalizedRotation / anglePerImage) % images.length
           
-          if (faceIndex !== currentFace && Math.abs(normalizedRotation - faceIndex * anglePerImage) < 2) {
+          if (faceIndex !== currentFace && Math.abs(normalizedRotation - faceIndex * anglePerImage) < 3) {
             setCurrentFace(faceIndex)
             setIsPaused(true)
+            setBorderActive(true)
             
-            // Pausar por la duración especificada
             setTimeout(() => {
               setIsPaused(false)
+              setBorderActive(false)
             }, pauseDuration * 1000)
           }
           
@@ -89,7 +169,6 @@ function Carrusel3D({
         })
       }
       
-      lastTime = currentTime
       animationFrame = requestAnimationFrame(animate)
     }
 
@@ -97,11 +176,12 @@ function Carrusel3D({
     return () => cancelAnimationFrame(animationFrame)
   }, [hasStarted, isPaused, currentFace, anglePerImage, images.length, pauseDuration])
 
-  // Calcular posición orbital alrededor del logo
-  const orbitAngle = (orbitPosition * 120) - 90 // 0°, 120°, 240° distribuidos
-  const orbitRadius = 180 // Radio de la órbita alrededor del logo
+  const orbitAngle = (orbitPosition * 120) - 90
+  const orbitRadius = 200
   const orbitX = Math.cos((orbitAngle * Math.PI) / 180) * orbitRadius
   const orbitY = Math.sin((orbitAngle * Math.PI) / 180) * orbitRadius
+
+  const borderColor = borderColors[carruselNumber]
 
   return (
     <div 
@@ -110,41 +190,55 @@ function Carrusel3D({
         left: `calc(50% + ${orbitX}px)`,
         top: `calc(50% + ${orbitY}px)`,
         transform: 'translate(-50%, -50%)',
-        perspective: '1000px',
+        perspective: '1200px',
         zIndex: 20,
       }}
     >
       <div
         className="relative"
         style={{
-          width: '120px',
-          height: '160px',
+          width: '140px',
+          height: '180px',
           transformStyle: 'preserve-3d',
           transform: `rotateY(${rotationY}deg)`,
-          transition: isPaused ? 'none' : 'transform 0.1s linear',
         }}
       >
         {images.map((src, index) => {
           const angle = index * anglePerImage
+          const isFront = index === currentFace && isPaused
+          
           return (
             <div
               key={index}
-              className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl border-2 border-white/50 bg-white"
+              className={`absolute inset-0 rounded-xl overflow-hidden shadow-2xl bg-white ${isFront ? 'cursor-pointer' : ''}`}
               style={{
                 transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                 backfaceVisibility: 'hidden',
+                border: `3px solid ${borderColor}40`,
               }}
+              onClick={() => isFront && onImageClick(src)}
             >
+              {/* Borde animado solo en la imagen frontal cuando está pausado */}
+              {isFront && <AnimatedBorder color={borderColor} isActive={borderActive} />}
+              
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-contain bg-white"
+                className="w-full h-full object-contain bg-white p-1"
                 loading="eager"
               />
             </div>
           )
         })}
+      </div>
+      
+      {/* Etiqueta del carrusel */}
+      <div 
+        className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-white text-xs font-bold"
+        style={{ backgroundColor: borderColor }}
+      >
+        Carrusel {carruselNumber}
       </div>
     </div>
   )
@@ -152,6 +246,7 @@ function Carrusel3D({
 
 export default function InicioPage() {
   const [gradientAngle, setGradientAngle] = useState(0)
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -160,19 +255,23 @@ export default function InicioPage() {
     return () => clearInterval(interval)
   }, [])
 
+  const handleImageClick = (src: string) => {
+    setZoomedImage(src)
+  }
+
   return (
     <main className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Fondo animado azul claro a verde claro con matices */}
+      {/* Fondo animado morado con verde */}
       <div 
         className="absolute inset-0"
         style={{
           background: `
             linear-gradient(${gradientAngle}deg, 
-              rgba(147, 197, 253, 0.9) 0%, 
-              rgba(255, 255, 255, 0.7) 25%,
-              rgba(167, 243, 208, 0.8) 50%,
-              rgba(196, 181, 253, 0.6) 75%,
-              rgba(147, 197, 253, 0.9) 100%
+              rgba(147, 51, 234, 0.7) 0%, 
+              rgba(34, 197, 94, 0.6) 25%,
+              rgba(167, 139, 250, 0.5) 50%,
+              rgba(74, 222, 128, 0.6) 75%,
+              rgba(147, 51, 234, 0.7) 100%
             )
           `,
         }}
@@ -180,13 +279,13 @@ export default function InicioPage() {
       
       {/* Capa de matices radiales */}
       <div 
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-50"
         style={{
           background: `
-            radial-gradient(circle at 20% 20%, rgba(147, 197, 253, 0.6) 0%, transparent 40%),
-            radial-gradient(circle at 80% 20%, rgba(167, 243, 208, 0.6) 0%, transparent 40%),
-            radial-gradient(circle at 50% 80%, rgba(196, 181, 253, 0.5) 0%, transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 30%)
+            radial-gradient(circle at 20% 20%, rgba(167, 139, 250, 0.7) 0%, transparent 40%),
+            radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.7) 0%, transparent 40%),
+            radial-gradient(circle at 50% 80%, rgba(192, 132, 252, 0.6) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 30%)
           `,
         }}
       />
@@ -205,7 +304,7 @@ export default function InicioPage() {
       </header>
 
       {/* Contenido principal con logo al fondo y carruseles girando alrededor */}
-      <div className="flex-1 flex items-center justify-center relative p-4 min-h-[600px]">
+      <div className="flex-1 flex items-center justify-center relative p-4 min-h-[650px]">
         
         {/* Logo SINALTRACOMFENALCO al fondo (detrás de los carruseles) */}
         <div 
@@ -220,45 +319,82 @@ export default function InicioPage() {
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo_Sinaltracomfenalco_Libre-Sin-Fondo-fJt75CzVWSrdW4pwclX3vOdmtZ1B1Z.png"
             alt="SINALTRACOMFENALCO - 15 Años"
-            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain drop-shadow-xl"
+            className="w-40 h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 object-contain drop-shadow-xl"
             loading="eager"
           />
         </div>
 
-        {/* Carrusel 1 - Muestra imagen cada 1 segundo de delay inicial, pausa 2 segundos */}
+        {/* Carrusel 1 - Morado */}
         <Carrusel3D 
           images={carrusel1Images} 
           initialDelay={1}
           pauseDuration={2}
           orbitPosition={0}
+          carruselNumber={1}
+          onImageClick={handleImageClick}
         />
 
-        {/* Carrusel 2 - Muestra imagen después de 2 segundos de delay, pausa 2 segundos */}
+        {/* Carrusel 2 - Verde */}
         <Carrusel3D 
           images={carrusel2Images} 
           initialDelay={2}
           pauseDuration={2}
           orbitPosition={1}
+          carruselNumber={2}
+          onImageClick={handleImageClick}
         />
 
-        {/* Carrusel 3 - Muestra imagen cada 3 segundos, pausa 2 segundos */}
+        {/* Carrusel 3 - Azul */}
         <Carrusel3D 
           images={carrusel3Images} 
           initialDelay={3}
           pauseDuration={2}
           orbitPosition={2}
+          carruselNumber={3}
+          onImageClick={handleImageClick}
         />
       </div>
 
       {/* Texto decorativo inferior */}
       <div className="relative z-30 text-center pb-6">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 drop-shadow-md">
+        <h2 className="text-xl md:text-2xl font-bold text-white drop-shadow-lg">
           Convención Colectiva 2026 - 2027
         </h2>
-        <p className="text-gray-600 text-sm mt-1">
+        <p className="text-white/80 text-sm mt-1 drop-shadow">
           15 Años Construyendo Bienestar, Juntos
         </p>
       </div>
+
+      {/* Modal de imagen ampliada */}
+      {zoomedImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setZoomedImage(null)}
+        >
+          <div 
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={() => setZoomedImage(null)}
+          >
+            <button
+              onClick={() => setZoomedImage(null)}
+              className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="rounded-lg overflow-hidden bg-white max-w-full max-h-full shadow-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={zoomedImage}
+                alt="Imagen ampliada"
+                style={{ maxWidth: '95vw', maxHeight: '90vh', width: 'auto', height: 'auto', display: 'block' }}
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
