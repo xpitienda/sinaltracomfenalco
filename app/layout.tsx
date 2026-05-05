@@ -10,10 +10,20 @@ export const metadata: Metadata = {
   title: 'SINALTRACOMFENALCO - Una Expresion de Solidaridad',
   description: 'Sindicato Nacional de Trabajadores de Comfenalco - Somos Alianza para tu Bienestar',
   generator: 'v0.app',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'SINALTRACOMFENALCO',
+  },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
 }
 
@@ -24,6 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="bg-transparent">
+      <head>
+        <meta name="application-name" content="SINALTRACOMFENALCO" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="SINALTRACOMFENALCO" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#166534" />
+      </head>
       <body className="font-sans antialiased bg-transparent">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
