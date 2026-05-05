@@ -17,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "MinTrabajo", href: "https://www.mintrabajo.gov.co/web/guest/inicio", color: "#3b82f6", description: "Ministerio del Trabajo", isExternal: true },
   { label: "Facebook", href: "https://www.facebook.com/Sinaltracomfenalco2011", color: "#1877f2", description: "Síguenos en Facebook", isExternal: true },
   { label: "WhatsApp", href: "https://wa.me/573164721077", color: "#25d366", description: "Escríbenos al WhatsApp", isExternal: true },
-  { label: "CGT", href: "https://cgtcolombia.org/", color: "#ef4444", description: "Confederación General del Trabajo", isExternal: true },
+  { label: "CGT", href: "https://cgtcolombia.co", color: "#ef4444", description: "Confederación General del Trabajo", isExternal: true },
   { label: "Contacto", href: "/contacto", color: "#a855f7", description: "Información de contacto", isExternal: false },
 ]
 
