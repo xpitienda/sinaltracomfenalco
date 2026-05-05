@@ -1,0 +1,24 @@
+{
+  "name": "SINALTRACOMFENALCO",
+  "short_name": "SINALTRA",
+  "description": "Sindicato Nacional de Trabajadores de Comfenalco - Una Expresión de Solidaridad",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#166534",
+  "theme_color": "#166534",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
