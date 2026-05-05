@@ -300,31 +300,17 @@ export default function CosechandoBienestarPage() {
         </div>
       </div>
 
-      {/* Header */}
+      {/* Header con Navbar */}
       <header 
-        className="sticky top-0 z-40 px-6 py-2"
+        className="sticky top-0 z-40 px-2 md:px-6 py-1"
         style={{
           background: "linear-gradient(135deg, #166534 0%, #15803d 50%, #1e40af 100%)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
         }}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          {/* Modern Navbar */}
-          <div className="hidden md:block">
-            <ModernNavbar activeSection="bienestar" />
-          </div>
-          
-          {/* Mobile: titulo */}
-          <h1 className="md:hidden text-xl font-bold text-white">
-            Cosechando Bienestar
-          </h1>
-          
-          <Link
-            href="/"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition-colors"
-          >
-            SINALTRACOMFENALCO
-          </Link>
+        <div className="max-w-7xl mx-auto">
+          {/* Modern Navbar - visible en todas las pantallas */}
+          <ModernNavbar activeSection="bienestar" compact={true} />
         </div>
       </header>
 
