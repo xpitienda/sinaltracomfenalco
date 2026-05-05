@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { ModernNavbar } from "@/components/modern-navbar"
-import Image from "next/image"
 
 // Imágenes del carrusel desde GitHub
-const carrusel1 = [
+const carrusel1Images = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S1.png",
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S2.png",
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S3.png",
@@ -13,7 +12,7 @@ const carrusel1 = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S5.png",
 ]
 
-const carrusel2 = [
+const carrusel2Images = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S6.png",
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S7.png",
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S8.png",
@@ -21,7 +20,7 @@ const carrusel2 = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S10.png",
 ]
 
-const carrusel3 = [
+const carrusel3Images = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S11.png",
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S12.png",
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S13.png",
@@ -29,54 +28,123 @@ const carrusel3 = [
   "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/S15.png",
 ]
 
-// Componente de carrusel individual
-function Carrusel({ images, position, rotation }: { images: string[], position: string, rotation: number }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+// Componente de carrusel 3D giratorio
+function Carrusel3D({ 
+  images, 
+  initialDelay, 
+  pauseDuration,
+  orbitPosition 
+}: { 
+  images: string[]
+  initialDelay: number // segundos antes de mostrar primera imagen
+  pauseDuration: number // segundos que se pausa en cada imagen
+  orbitPosition: number // posición orbital (0, 1, 2) para distribuir alrededor del logo
+}) {
+  const [rotationY, setRotationY] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [currentFace, setCurrentFace] = useState(0)
+  const [hasStarted, setHasStarted] = useState(false)
+
+  const anglePerImage = 360 / images.length // 72 grados por imagen (5 imágenes)
+  const radius = 80 // Radio del carrusel 3D
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [images.length])
+    // Delay inicial antes de empezar
+    const startTimeout = setTimeout(() => {
+      setHasStarted(true)
+    }, initialDelay * 1000)
+
+    return () => clearTimeout(startTimeout)
+  }, [initialDelay])
+
+  useEffect(() => {
+    if (!hasStarted) return
+
+    let animationFrame: number
+    let lastTime = performance.now()
+    const rotationSpeed = 0.5 // grados por frame cuando gira
+
+    const animate = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime
+      
+      if (!isPaused) {
+        setRotationY(prev => {
+          const newRotation = prev + rotationSpeed
+          
+          // Detectar cuando una imagen está al frente (cada 72 grados)
+          const normalizedRotation = newRotation % 360
+          const faceIndex = Math.round(normalizedRotation / anglePerImage) % images.length
+          
+          if (faceIndex !== currentFace && Math.abs(normalizedRotation - faceIndex * anglePerImage) < 2) {
+            setCurrentFace(faceIndex)
+            setIsPaused(true)
+            
+            // Pausar por la duración especificada
+            setTimeout(() => {
+              setIsPaused(false)
+            }, pauseDuration * 1000)
+          }
+          
+          return newRotation
+        })
+      }
+      
+      lastTime = currentTime
+      animationFrame = requestAnimationFrame(animate)
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationFrame)
+  }, [hasStarted, isPaused, currentFace, anglePerImage, images.length, pauseDuration])
+
+  // Calcular posición orbital alrededor del logo
+  const orbitAngle = (orbitPosition * 120) - 90 // 0°, 120°, 240° distribuidos
+  const orbitRadius = 180 // Radio de la órbita alrededor del logo
+  const orbitX = Math.cos((orbitAngle * Math.PI) / 180) * orbitRadius
+  const orbitY = Math.sin((orbitAngle * Math.PI) / 180) * orbitRadius
 
   return (
     <div 
-      className={`absolute ${position} w-32 h-44 md:w-48 md:h-64 lg:w-56 lg:h-72`}
+      className="absolute"
       style={{
-        transform: `rotate(${rotation}deg)`,
+        left: `calc(50% + ${orbitX}px)`,
+        top: `calc(50% + ${orbitY}px)`,
+        transform: 'translate(-50%, -50%)',
+        perspective: '1000px',
+        zIndex: 20,
       }}
     >
-      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/30 bg-white/10 backdrop-blur-sm">
-        {images.map((src, index) => (
-          <div
-            key={src}
-            className={`absolute inset-0 transition-all duration-700 ${
-              index === currentIndex 
-                ? 'opacity-100 scale-100' 
-                : 'opacity-0 scale-95'
-            }`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={src}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading="eager"
-            />
-          </div>
-        ))}
-        {/* Indicadores */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-          {images.map((_, index) => (
+      <div
+        className="relative"
+        style={{
+          width: '120px',
+          height: '160px',
+          transformStyle: 'preserve-3d',
+          transform: `rotateY(${rotationY}deg)`,
+          transition: isPaused ? 'none' : 'transform 0.1s linear',
+        }}
+      >
+        {images.map((src, index) => {
+          const angle = index * anglePerImage
+          return (
             <div
               key={index}
-              className={`w-1.5 h-1.5 rounded-full transition-all ${
-                index === currentIndex ? 'bg-white w-3' : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
+              className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl border-2 border-white/50 bg-white"
+              style={{
+                transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                backfaceVisibility: 'hidden',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-full object-contain bg-white"
+                loading="eager"
+              />
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -87,7 +155,7 @@ export default function InicioPage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setGradientAngle((prev) => (prev + 1) % 360)
+      setGradientAngle((prev) => (prev + 0.5) % 360)
     }, 50)
     return () => clearInterval(interval)
   }, [])
@@ -96,36 +164,36 @@ export default function InicioPage() {
     <main className="min-h-screen flex flex-col relative overflow-hidden">
       {/* Fondo animado azul claro a verde claro con matices */}
       <div 
-        className="absolute inset-0 transition-all duration-100"
+        className="absolute inset-0"
         style={{
           background: `
             linear-gradient(${gradientAngle}deg, 
-              rgba(147, 197, 253, 0.8) 0%, 
-              rgba(255, 255, 255, 0.6) 20%,
-              rgba(167, 243, 208, 0.7) 40%,
-              rgba(196, 181, 253, 0.5) 60%,
-              rgba(255, 255, 255, 0.6) 80%,
-              rgba(147, 197, 253, 0.8) 100%
+              rgba(147, 197, 253, 0.9) 0%, 
+              rgba(255, 255, 255, 0.7) 25%,
+              rgba(167, 243, 208, 0.8) 50%,
+              rgba(196, 181, 253, 0.6) 75%,
+              rgba(147, 197, 253, 0.9) 100%
             )
           `,
         }}
       />
       
-      {/* Capa de matices adicionales */}
+      {/* Capa de matices radiales */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-40"
         style={{
           background: `
-            radial-gradient(circle at 30% 30%, rgba(147, 197, 253, 0.5) 0%, transparent 50%),
-            radial-gradient(circle at 70% 70%, rgba(167, 243, 208, 0.5) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(196, 181, 253, 0.4) 0%, transparent 40%)
+            radial-gradient(circle at 20% 20%, rgba(147, 197, 253, 0.6) 0%, transparent 40%),
+            radial-gradient(circle at 80% 20%, rgba(167, 243, 208, 0.6) 0%, transparent 40%),
+            radial-gradient(circle at 50% 80%, rgba(196, 181, 253, 0.5) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 30%)
           `,
         }}
       />
 
       {/* Header con Navbar */}
       <header 
-        className="sticky top-0 z-40 px-2 md:px-6 py-1"
+        className="sticky top-0 z-50 px-2 md:px-6 py-1"
         style={{
           background: "linear-gradient(135deg, #166534 0%, #15803d 50%, #1e40af 100%)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
@@ -136,54 +204,59 @@ export default function InicioPage() {
         </div>
       </header>
 
-      {/* Contenido principal con logo central y carruseles */}
-      <div className="flex-1 flex items-center justify-center relative p-4">
-        {/* Logo central */}
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="w-40 h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full bg-white/80 backdrop-blur-md shadow-2xl flex items-center justify-center border-4 border-white/50 overflow-hidden">
-            <Image
-              src="/images/Logo_Sinaltracomfenalco.png"
-              alt="SINALTRACOMFENALCO"
-              width={250}
-              height={250}
-              className="w-32 h-32 md:w-44 md:h-44 lg:w-56 lg:h-56 object-contain"
-              priority
-            />
-          </div>
-          <h1 className="mt-4 text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 text-center drop-shadow-lg">
-            SINALTRACOMFENALCO
-          </h1>
-          <p className="text-sm md:text-base text-gray-600 text-center mt-2">
-            15 Años Construyendo Bienestar
-          </p>
+      {/* Contenido principal con logo al fondo y carruseles girando alrededor */}
+      <div className="flex-1 flex items-center justify-center relative p-4 min-h-[600px]">
+        
+        {/* Logo SINALTRACOMFENALCO al fondo (detrás de los carruseles) */}
+        <div 
+          className="absolute z-10"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo_Sinaltracomfenalco_Libre-Sin-Fondo-fJt75CzVWSrdW4pwclX3vOdmtZ1B1Z.png"
+            alt="SINALTRACOMFENALCO - 15 Años"
+            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain drop-shadow-xl"
+            loading="eager"
+          />
         </div>
 
-        {/* Carrusel 1 - Arriba izquierda */}
-        <Carrusel 
-          images={carrusel1} 
-          position="top-8 left-4 md:top-16 md:left-16 lg:top-20 lg:left-32" 
-          rotation={-15} 
+        {/* Carrusel 1 - Muestra imagen cada 1 segundo de delay inicial, pausa 2 segundos */}
+        <Carrusel3D 
+          images={carrusel1Images} 
+          initialDelay={1}
+          pauseDuration={2}
+          orbitPosition={0}
         />
 
-        {/* Carrusel 2 - Arriba derecha */}
-        <Carrusel 
-          images={carrusel2} 
-          position="top-8 right-4 md:top-16 md:right-16 lg:top-20 lg:right-32" 
-          rotation={15} 
+        {/* Carrusel 2 - Muestra imagen después de 2 segundos de delay, pausa 2 segundos */}
+        <Carrusel3D 
+          images={carrusel2Images} 
+          initialDelay={2}
+          pauseDuration={2}
+          orbitPosition={1}
         />
 
-        {/* Carrusel 3 - Abajo centro */}
-        <Carrusel 
-          images={carrusel3} 
-          position="bottom-8 left-1/2 -translate-x-1/2 md:bottom-16 lg:bottom-20" 
-          rotation={0} 
+        {/* Carrusel 3 - Muestra imagen cada 3 segundos, pausa 2 segundos */}
+        <Carrusel3D 
+          images={carrusel3Images} 
+          initialDelay={3}
+          pauseDuration={2}
+          orbitPosition={2}
         />
       </div>
 
       {/* Texto decorativo inferior */}
-      <div className="relative z-10 text-center pb-4">
-        <p className="text-gray-600 text-sm">
+      <div className="relative z-30 text-center pb-6">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 drop-shadow-md">
           Convención Colectiva 2026 - 2027
+        </h2>
+        <p className="text-gray-600 text-sm mt-1">
+          15 Años Construyendo Bienestar, Juntos
         </p>
       </div>
     </main>
