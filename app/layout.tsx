@@ -41,6 +41,13 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="SINALTRACOMFENALCO" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#166534" />
+        {/* Windows/Microsoft meta tags */}
+        <meta name="msapplication-TileColor" content="#166534" />
+        <meta name="msapplication-TileImage" content="/icon-144x144.png" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon-16x16.png" />
       </head>
       <body className="font-sans antialiased bg-transparent">
         {children}
