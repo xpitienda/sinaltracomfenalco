@@ -8,17 +8,18 @@ interface NavItem {
   color: string
   description?: string
   isExternal?: boolean
+  icon: string
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Inicio", href: "/inicio", color: "#22c55e", description: "Página principal", isExternal: false },
-  { label: "Web", href: "https://www.sinaltracomfenalco.com/", color: "#00d9ff", description: "Sitio Web Oficial", isExternal: true },
-  { label: "Mutual", href: "https://www.asmucom.com/", color: "#fbbf24", description: "ASMUCOM - Asociación Mutual", isExternal: true },
-  { label: "MinTrabajo", href: "https://www.mintrabajo.gov.co/web/guest/inicio", color: "#3b82f6", description: "Ministerio del Trabajo", isExternal: true },
-  { label: "Facebook", href: "https://www.facebook.com/Sinaltracomfenalco2011", color: "#1877f2", description: "Síguenos en Facebook", isExternal: true },
-  { label: "WhatsApp", href: "https://wa.me/573164721077", color: "#25d366", description: "Escríbenos al WhatsApp", isExternal: true },
-  { label: "CGT", href: "https://cgtcolombia.co", color: "#ef4444", description: "Confederación General del Trabajo", isExternal: true },
-  { label: "Contacto", href: "/contacto", color: "#a855f7", description: "Información de contacto", isExternal: false },
+  { label: "Inicio", href: "/inicio", color: "#22c55e", description: "Página principal", isExternal: false, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Inicio.ico-htZo4rjBP0Wj69lESIOJzalpLPI0B4.x-icon" },
+  { label: "Web", href: "https://www.sinaltracomfenalco.com/", color: "#00d9ff", description: "Sitio Web Oficial", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Web.ico-diZhoZEoW41B0Hz6dJQOSFtPAtbZ9E.x-icon" },
+  { label: "Mutual", href: "https://www.asmucom.com/", color: "#fbbf24", description: "ASMUCOM - Asociación Mutual", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Asmucom.ico-2roXcnWFHtGsWGuPSGz3N1kSAw4oEJ.x-icon" },
+  { label: "MinTrabajo", href: "https://www.mintrabajo.gov.co/web/guest/inicio", color: "#3b82f6", description: "Ministerio del Trabajo", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mintrabajo.ico-i5XANGgvpqgdkdLMPxEkGhrwz8nMkn.x-icon" },
+  { label: "Facebook", href: "https://www.facebook.com/Sinaltracomfenalco2011", color: "#1877f2", description: "Síguenos en Facebook", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Facebook.ico-5jMEC6VABVXeWCguF2B5Gy48p1Vd6b.x-icon" },
+  { label: "WhatsApp", href: "https://wa.me/573164721077", color: "#25d366", description: "Escríbenos al WhatsApp", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Wassap.ico-DfYPap9TelmGk799meLUXAfsQVFOoW.x-icon" },
+  { label: "CGT", href: "https://cgtcolombia.co", color: "#ef4444", description: "Confederación General del Trabajo", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CGT_1.ico-9QulFBF3VReRKatD5sdqtJg9fMGQUK.x-icon" },
+  { label: "Contacto", href: "/contacto", color: "#a855f7", description: "Información de contacto", isExternal: false, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Contacto.ico-fr4GYT1nafgmVc66ByDvExPdi3WvsG.x-icon" },
 ]
 
 export function RadioKnob() {
@@ -194,24 +195,32 @@ export function RadioKnob() {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Punto indicador */}
+              {/* Icono del enlace */}
               <div
-                className="w-4 h-4 rounded-full transition-all duration-500 cursor-pointer"
+                className="w-10 h-10 rounded-full transition-all duration-500 cursor-pointer overflow-hidden flex items-center justify-center"
                 style={{ 
-                  backgroundColor: item.color,
+                  backgroundColor: isActive || isHovered ? item.color : "rgba(255,255,255,0.9)",
                   boxShadow: isActive 
                     ? `0 0 20px ${item.color}, 0 0 40px ${item.color}, 0 0 60px ${item.color}80` 
                     : isHovered 
                     ? `0 0 15px ${item.color}, 0 0 30px ${item.color}80`
                     : `0 0 5px ${item.color}40`,
-                  transform: isActive ? "scale(1.5)" : isHovered ? "scale(1.3)" : "scale(1)",
-                  opacity: isActive ? 1 : isHovered ? 0.9 : 0.5
+                  transform: isActive ? "scale(1.3)" : isHovered ? "scale(1.2)" : "scale(1)",
+                  border: `2px solid ${item.color}`,
                 }}
                 onClick={() => {
                   setSelectedIndex(index)
                   setRotation(index * STEP_ANGLE)
                 }}
-              />
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={item.icon} 
+                  alt={item.label} 
+                  className="w-6 h-6 object-contain"
+                  style={{ filter: isActive || isHovered ? "brightness(0) invert(1)" : "none" }}
+                />
+              </div>
               
               {/* Boton con nombre - Clickeable para navegar */}
               <button
