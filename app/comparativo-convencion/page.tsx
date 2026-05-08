@@ -992,6 +992,17 @@ export default function ComparativoConvencionPage() {
               </span>
             </Link>
 
+            {/* Feria de Economía Familiar - Link */}
+            <Link
+              href="/feria-economia"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all text-white/80 hover:bg-gradient-to-r hover:from-pink-500/20 hover:to-rose-500/20 hover:text-white group"
+            >
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-pink-400 to-rose-400"></div>
+              <span className="font-medium bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent group-hover:from-pink-300 group-hover:to-rose-300">
+                Feria de Economía Familiar
+              </span>
+            </Link>
+
             {/* ASMUCOM - MUTUAL - Link externo */}
             <a
               href="https://www.asmucom.com"

@@ -19,6 +19,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Facebook", href: "https://www.facebook.com/Sinaltracomfenalco2011", color: "#1877f2", description: "Síguenos en Facebook", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Facebook.ico-5jMEC6VABVXeWCguF2B5Gy48p1Vd6b.x-icon" },
   { label: "WhatsApp", href: "https://wa.me/573164721077", color: "#25d366", description: "Escríbenos al WhatsApp", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Wassap.ico-DfYPap9TelmGk799meLUXAfsQVFOoW.x-icon" },
   { label: "CGT", href: "https://cgtcolombia.co", color: "#ef4444", description: "Confederación General del Trabajo", isExternal: true, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CGT_1.ico-9QulFBF3VReRKatD5sdqtJg9fMGQUK.x-icon" },
+  { label: "Feria", href: "/feria-economia", color: "#ec4899", description: "Feria de Economía Familiar", isExternal: false, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Inicio.ico-htZo4rjBP0Wj69lESIOJzalpLPI0B4.x-icon" },
   { label: "Contacto", href: "/contacto", color: "#a855f7", description: "Información de contacto", isExternal: false, icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Contacto.ico-fr4GYT1nafgmVc66ByDvExPdi3WvsG.x-icon" },
 ]
 

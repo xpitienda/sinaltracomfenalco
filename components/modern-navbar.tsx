@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useRouter } from "next/navigation"
-import { Home, GitCompare, Leaf, Phone, Search, FileText, ExternalLink } from "lucide-react"
+import { Home, GitCompare, Leaf, Phone, Search, FileText, ExternalLink, ShoppingBag } from "lucide-react"
 
 interface NavItem {
   id: string
@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
   { id: "documentos", label: "Documentos", href: "/documentos", icon: <FileText className="w-5 h-5" />, color: "#3b82f6" },
   { id: "asmucom", label: "ASMUCOM", href: "https://www.asmucom.com", icon: <ExternalLink className="w-5 h-5" />, color: "#14b8a6" },
   { id: "consulta", label: "Consulta", href: "/consulta.html", icon: <Search className="w-5 h-5" />, color: "#f97316" },
+  { id: "feria", label: "Feria", href: "/feria-economia", icon: <ShoppingBag className="w-5 h-5" />, color: "#ec4899" },
   { id: "contactos", label: "Contactos", href: "/?contactos=true", icon: <Phone className="w-5 h-5" />, color: "#8b5cf6" },
 ]
 
