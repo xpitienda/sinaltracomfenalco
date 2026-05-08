@@ -9,7 +9,7 @@ const feriaBlocks = [
     id: 1,
     title: "Bono D1 - Productos de Aseo y Cuidado Personal",
     description: "Bono D1 por $40.000 pesos para 410 afiliados. Canjeable en Tiendas D1 para productos de aseo y cuidado personal.",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20D1-6XaNaGKgVEBfVAMSBCUQHrpn7PaEA5.jpeg",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20D1%201-uIQpIViYFKzCanecDQnjBfwZJ4XMXL.jpeg",
     borderColor: "#8B5CF6", // Morado
   },
   {
@@ -42,14 +42,18 @@ const feriaBlocks = [
   },
 ]
 
-// Componente de borde animado con llenado continuo por segmentos
+// Componente de borde animado: gira como reloj y luego antireloj
 function AnimatedBorderBlock({ color, delay }: { color: string; delay: number }) {
+  const [phase, setPhase] = useState<'clockwise' | 'counterclockwise'>('clockwise')
   const [progress, setProgress] = useState(0)
   
   useEffect(() => {
-    const timer = setTimeout(() => {
+    let animationId: number
+    let timeoutId: NodeJS.Timeout
+    
+    const startAnimation = () => {
       const startTime = Date.now()
-      const duration = 2000 // 2 segundos para completar (0.5s por lado)
+      const duration = 4000 // 4 segundos (1s por lado)
       
       const animate = () => {
         const elapsed = Date.now() - startTime
@@ -57,62 +61,91 @@ function AnimatedBorderBlock({ color, delay }: { color: string; delay: number })
         setProgress(newProgress)
         
         if (newProgress < 100) {
-          requestAnimationFrame(animate)
+          animationId = requestAnimationFrame(animate)
+        } else {
+          // Cambiar de fase
+          setTimeout(() => {
+            setProgress(0)
+            setPhase(prev => prev === 'clockwise' ? 'counterclockwise' : 'clockwise')
+          }, 500)
         }
       }
       
-      requestAnimationFrame(animate)
-    }, delay)
+      animationId = requestAnimationFrame(animate)
+    }
     
-    return () => clearTimeout(timer)
-  }, [delay])
+    timeoutId = setTimeout(startAnimation, delay)
+    
+    return () => {
+      clearTimeout(timeoutId)
+      cancelAnimationFrame(animationId)
+    }
+  }, [delay, phase])
   
-  // Calcular segmentos (cada 25% es un lado)
-  const topWidth = Math.min(progress * 4, 100)
-  const rightHeight = Math.min(Math.max((progress - 25) * 4, 0), 100)
-  const bottomWidth = Math.min(Math.max((progress - 50) * 4, 0), 100)
-  const leftHeight = Math.min(Math.max((progress - 75) * 4, 0), 100)
+  // Calcular segmentos segun la fase (cada 25% es un lado, 1 segundo cada uno)
+  let topWidth = 0, rightHeight = 0, bottomWidth = 0, leftHeight = 0
+  let topLeft = true, rightTop = true, bottomRight = true, leftBottom = true
+  
+  if (phase === 'clockwise') {
+    // Sentido horario: arriba (izq->der), derecha (arr->abajo), abajo (der->izq), izquierda (abajo->arr)
+    topWidth = Math.min(progress * 4, 100)
+    rightHeight = Math.min(Math.max((progress - 25) * 4, 0), 100)
+    bottomWidth = Math.min(Math.max((progress - 50) * 4, 0), 100)
+    leftHeight = Math.min(Math.max((progress - 75) * 4, 0), 100)
+    topLeft = true; rightTop = true; bottomRight = true; leftBottom = true
+  } else {
+    // Sentido antihorario: arriba (der->izq), izquierda (arr->abajo), abajo (izq->der), derecha (abajo->arr)
+    topWidth = Math.min(progress * 4, 100)
+    leftHeight = Math.min(Math.max((progress - 25) * 4, 0), 100)
+    bottomWidth = Math.min(Math.max((progress - 50) * 4, 0), 100)
+    rightHeight = Math.min(Math.max((progress - 75) * 4, 0), 100)
+    topLeft = false; rightTop = false; bottomRight = false; leftBottom = false
+  }
   
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      {/* Borde superior - izquierda a derecha */}
+    <div className="absolute inset-0 pointer-events-none rounded-2xl overflow-hidden">
+      {/* Borde superior */}
       <div 
-        className="absolute top-0 left-0 h-1"
+        className="absolute top-0 h-1"
         style={{ 
           width: `${topWidth}%`, 
+          left: topLeft ? 0 : 'auto',
+          right: topLeft ? 'auto' : 0,
           backgroundColor: color,
           boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
-          transition: 'width 0.05s linear'
         }}
       />
-      {/* Borde derecho - arriba a abajo */}
+      {/* Borde derecho */}
       <div 
-        className="absolute top-0 right-0 w-1"
+        className="absolute right-0 w-1"
         style={{ 
           height: `${rightHeight}%`, 
+          top: rightTop ? 0 : 'auto',
+          bottom: rightTop ? 'auto' : 0,
           backgroundColor: color,
           boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
-          transition: 'height 0.05s linear'
         }}
       />
-      {/* Borde inferior - derecha a izquierda */}
+      {/* Borde inferior */}
       <div 
-        className="absolute bottom-0 right-0 h-1"
+        className="absolute bottom-0 h-1"
         style={{ 
           width: `${bottomWidth}%`, 
+          right: bottomRight ? 0 : 'auto',
+          left: bottomRight ? 'auto' : 0,
           backgroundColor: color,
           boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
-          transition: 'width 0.05s linear'
         }}
       />
-      {/* Borde izquierdo - abajo a arriba */}
+      {/* Borde izquierdo */}
       <div 
-        className="absolute bottom-0 left-0 w-1"
+        className="absolute left-0 w-1"
         style={{ 
           height: `${leftHeight}%`, 
+          bottom: leftBottom ? 0 : 'auto',
+          top: leftBottom ? 'auto' : 0,
           backgroundColor: color,
           boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
-          transition: 'height 0.05s linear'
         }}
       />
     </div>

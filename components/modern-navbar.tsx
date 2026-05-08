@@ -14,12 +14,12 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: "carrusel", label: "Carrusel", href: "/inicio", icon: <Home className="w-5 h-5" />, color: "#22c55e" },
-  { id: "feria", label: "Feria", href: "/feria-economia", icon: <ShoppingBag className="w-5 h-5" />, color: "#ec4899" },
   { id: "comparativo", label: "Comparativo", href: "/comparativo-convencion?section=comparativo", icon: <GitCompare className="w-5 h-5" />, color: "#f59e0b" },
   { id: "bienestar", label: "Bienestar", href: "/cosechando-bienestar", icon: <Leaf className="w-5 h-5" />, color: "#10b981" },
   { id: "documentos", label: "Documentos", href: "/documentos", icon: <FileText className="w-5 h-5" />, color: "#3b82f6" },
   { id: "asmucom", label: "ASMUCOM", href: "https://www.asmucom.com", icon: <ExternalLink className="w-5 h-5" />, color: "#14b8a6" },
   { id: "consulta", label: "Consulta", href: "/consulta.html", icon: <Search className="w-5 h-5" />, color: "#f97316" },
+  { id: "feria", label: "Feria", href: "/feria-economia", icon: <ShoppingBag className="w-5 h-5" />, color: "#ec4899" },
   { id: "contactos", label: "Contactos", href: "/?contactos=true", icon: <Phone className="w-5 h-5" />, color: "#8b5cf6" },
 ]
 
