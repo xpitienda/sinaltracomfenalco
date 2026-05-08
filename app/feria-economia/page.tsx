@@ -3,49 +3,56 @@
 import { useState, useEffect } from "react"
 import { ModernNavbar } from "@/components/modern-navbar"
 
-// Datos de los bloques de la feria
+// Datos de los bloques de la feria con colores para reloj y antireloj
 const feriaBlocks = [
   {
     id: 1,
     title: "Bono D1 - Productos de Aseo y Cuidado Personal",
     description: "Bono D1 por $40.000 pesos para 410 afiliados. Canjeable en Tiendas D1 para productos de aseo y cuidado personal.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20D1%201-uIQpIViYFKzCanecDQnjBfwZJ4XMXL.jpeg",
-    borderColor: "#8B5CF6", // Morado
+    borderColorClock: "#8B5CF6", // Morado (reloj)
+    borderColorAnti: "#EC4899", // Rosa (antireloj)
   },
   {
     id: 2,
     title: "BR Comunicaciones - Productos de Belleza y Bienestar",
     description: "Productos para el cuidado de la salud y bienestar. Convenio exclusivo con BR Comunicaciones para productos de belleza y milagros.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20BR%20Comunicaciones-14iQj698ChgY8zT13WPQbxbjNioZ64.jpeg",
-    borderColor: "#22C55E", // Verde
+    borderColorClock: "#22C55E", // Verde (reloj)
+    borderColorAnti: "#14B8A6", // Teal (antireloj)
   },
   {
     id: 3,
     title: "Óptica PrismaLens - Servicios de Salud Visual",
     description: "Servicios de óptica, salud preventiva y promoción de hábitos saludables. Examen visual completo gratuito, asesoría profesional en lentes y talleres de prevención.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20Prisma%20Lens-gTRMTciMjGpWebWGjJE5WF4FAMaxuk.jpeg",
-    borderColor: "#3B82F6", // Azul
+    borderColorClock: "#3B82F6", // Azul (reloj)
+    borderColorAnti: "#6366F1", // Indigo (antireloj)
   },
   {
     id: 4,
     title: "Bono Parques, Hoteles y Servicios de Caja",
     description: "382 bonos por valor de $60.000 pesos para parques, hoteles y/o servicios de Caja. Corte al 30 de abril, de acuerdo a política de afiliados a 31/10/2025.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20Parques%20y%20Hoteles-kdyRAKGCHSIoyzmiTA7UU33R9UMzbs.jpeg",
-    borderColor: "#F59E0B", // Oro
+    borderColorClock: "#F59E0B", // Oro (reloj)
+    borderColorAnti: "#EF4444", // Rojo (antireloj)
   },
   {
     id: 5,
     title: "Fondo de Bienestar Social - Bono Mutual ASMUCOM",
     description: "Bono de $60.000 pesos para afiliados con mínimo 1 año de antigüedad continua en SINALTRACOMFENALCO y la Asociación Mutual Comfraternidad ASMUCOM. Corte 30/08/2025.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20Mutual-HojlWUTzVfDG9LVa3ufAhsQGHW8wRf.jpeg",
-    borderColor: "#D97706", // Ocre
+    borderColorClock: "#D97706", // Ocre (reloj)
+    borderColorAnti: "#A855F7", // Violeta (antireloj)
   },
 ]
 
-// Componente de borde animado: gira como reloj y luego antireloj
-function AnimatedBorderBlock({ color, delay }: { color: string; delay: number }) {
+// Componente de borde animado: gira como reloj y luego antireloj con colores diferentes
+function AnimatedBorderBlock({ colorClock, colorAnti, delay }: { colorClock: string; colorAnti: string; delay: number }) {
   const [phase, setPhase] = useState<'clockwise' | 'counterclockwise'>('clockwise')
   const [progress, setProgress] = useState(0)
+  
+  const currentColor = phase === 'clockwise' ? colorClock : colorAnti
   
   useEffect(() => {
     let animationId: number
@@ -111,8 +118,8 @@ function AnimatedBorderBlock({ color, delay }: { color: string; delay: number })
           width: `${topWidth}%`, 
           left: topLeft ? 0 : 'auto',
           right: topLeft ? 'auto' : 0,
-          backgroundColor: color,
-          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          backgroundColor: currentColor,
+          boxShadow: `0 0 15px ${currentColor}, 0 0 30px ${currentColor}`,
         }}
       />
       {/* Borde derecho */}
@@ -122,8 +129,8 @@ function AnimatedBorderBlock({ color, delay }: { color: string; delay: number })
           height: `${rightHeight}%`, 
           top: rightTop ? 0 : 'auto',
           bottom: rightTop ? 'auto' : 0,
-          backgroundColor: color,
-          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          backgroundColor: currentColor,
+          boxShadow: `0 0 15px ${currentColor}, 0 0 30px ${currentColor}`,
         }}
       />
       {/* Borde inferior */}
@@ -133,8 +140,8 @@ function AnimatedBorderBlock({ color, delay }: { color: string; delay: number })
           width: `${bottomWidth}%`, 
           right: bottomRight ? 0 : 'auto',
           left: bottomRight ? 'auto' : 0,
-          backgroundColor: color,
-          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          backgroundColor: currentColor,
+          boxShadow: `0 0 15px ${currentColor}, 0 0 30px ${currentColor}`,
         }}
       />
       {/* Borde izquierdo */}
@@ -144,17 +151,18 @@ function AnimatedBorderBlock({ color, delay }: { color: string; delay: number })
           height: `${leftHeight}%`, 
           bottom: leftBottom ? 0 : 'auto',
           top: leftBottom ? 'auto' : 0,
-          backgroundColor: color,
-          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          backgroundColor: currentColor,
+          boxShadow: `0 0 15px ${currentColor}, 0 0 30px ${currentColor}`,
         }}
       />
     </div>
   )
 }
 
-// Componente de bloque de feria
+// Componente de bloque de feria con intercalado de imagen/texto
 function FeriaBlock({ block, index }: { block: typeof feriaBlocks[0]; index: number }) {
   const [imageOpen, setImageOpen] = useState(false)
+  const isImageFirst = index % 2 === 0 // Pares: imagen primero, Impares: texto primero
   
   return (
     <>
@@ -162,9 +170,9 @@ function FeriaBlock({ block, index }: { block: typeof feriaBlocks[0]; index: num
         className="relative rounded-2xl overflow-hidden bg-white/90 backdrop-blur-sm shadow-2xl"
         style={{ minHeight: '300px' }}
       >
-        <AnimatedBorderBlock color={block.borderColor} delay={index * 500} />
+        <AnimatedBorderBlock colorClock={block.borderColorClock} colorAnti={block.borderColorAnti} delay={index * 500} />
         
-        <div className="p-6 flex flex-col md:flex-row gap-6">
+        <div className={`p-6 flex flex-col md:flex-row gap-6 ${!isImageFirst ? 'md:flex-row-reverse' : ''}`}>
           {/* Imagen */}
           <div 
             className="w-full md:w-1/2 cursor-pointer hover:scale-[1.02] transition-transform"
@@ -175,7 +183,7 @@ function FeriaBlock({ block, index }: { block: typeof feriaBlocks[0]; index: num
               src={block.image}
               alt={block.title}
               className="w-full h-auto rounded-xl shadow-lg"
-              style={{ border: `3px solid ${block.borderColor}` }}
+              style={{ border: `3px solid ${block.borderColorClock}` }}
             />
           </div>
           
@@ -183,7 +191,7 @@ function FeriaBlock({ block, index }: { block: typeof feriaBlocks[0]; index: num
           <div className="w-full md:w-1/2 flex flex-col justify-center">
             <h3 
               className="text-2xl font-bold mb-4"
-              style={{ color: block.borderColor }}
+              style={{ color: block.borderColorClock }}
             >
               {block.title}
             </h3>
