@@ -1,0 +1,277 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { ModernNavbar } from "@/components/modern-navbar"
+
+// Datos de los bloques de la feria
+const feriaBlocks = [
+  {
+    id: 1,
+    title: "Bono D1 - Productos de Aseo y Cuidado Personal",
+    description: "Bono D1 por $40.000 pesos para 410 afiliados. Canjeable en Tiendas D1 para productos de aseo y cuidado personal.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20D1-6XaNaGKgVEBfVAMSBCUQHrpn7PaEA5.jpeg",
+    borderColor: "#8B5CF6", // Morado
+  },
+  {
+    id: 2,
+    title: "BR Comunicaciones - Productos de Belleza y Bienestar",
+    description: "Productos para el cuidado de la salud y bienestar. Convenio exclusivo con BR Comunicaciones para productos de belleza y milagros.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20BR%20Comunicaciones-14iQj698ChgY8zT13WPQbxbjNioZ64.jpeg",
+    borderColor: "#22C55E", // Verde
+  },
+  {
+    id: 3,
+    title: "Óptica PrismaLens - Servicios de Salud Visual",
+    description: "Servicios de óptica, salud preventiva y promoción de hábitos saludables. Examen visual completo gratuito, asesoría profesional en lentes y talleres de prevención.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20Prisma%20Lens-gTRMTciMjGpWebWGjJE5WF4FAMaxuk.jpeg",
+    borderColor: "#3B82F6", // Azul
+  },
+  {
+    id: 4,
+    title: "Bono Parques, Hoteles y Servicios de Caja",
+    description: "382 bonos por valor de $60.000 pesos para parques, hoteles y/o servicios de Caja. Corte al 30 de abril, de acuerdo a política de afiliados a 31/10/2025.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20Parques%20y%20Hoteles-kdyRAKGCHSIoyzmiTA7UU33R9UMzbs.jpeg",
+    borderColor: "#F59E0B", // Oro
+  },
+  {
+    id: 5,
+    title: "Fondo de Bienestar Social - Bono Mutual ASMUCOM",
+    description: "Bono de $60.000 pesos para afiliados con mínimo 1 año de antigüedad continua en SINALTRACOMFENALCO y la Asociación Mutual Comfraternidad ASMUCOM. Corte 30/08/2025.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bono%20Mutual-HojlWUTzVfDG9LVa3ufAhsQGHW8wRf.jpeg",
+    borderColor: "#D97706", // Ocre
+  },
+]
+
+// Componente de borde animado con llenado continuo por segmentos
+function AnimatedBorderBlock({ color, delay }: { color: string; delay: number }) {
+  const [progress, setProgress] = useState(0)
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const startTime = Date.now()
+      const duration = 2000 // 2 segundos para completar (0.5s por lado)
+      
+      const animate = () => {
+        const elapsed = Date.now() - startTime
+        const newProgress = Math.min((elapsed / duration) * 100, 100)
+        setProgress(newProgress)
+        
+        if (newProgress < 100) {
+          requestAnimationFrame(animate)
+        }
+      }
+      
+      requestAnimationFrame(animate)
+    }, delay)
+    
+    return () => clearTimeout(timer)
+  }, [delay])
+  
+  // Calcular segmentos (cada 25% es un lado)
+  const topWidth = Math.min(progress * 4, 100)
+  const rightHeight = Math.min(Math.max((progress - 25) * 4, 0), 100)
+  const bottomWidth = Math.min(Math.max((progress - 50) * 4, 0), 100)
+  const leftHeight = Math.min(Math.max((progress - 75) * 4, 0), 100)
+  
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {/* Borde superior - izquierda a derecha */}
+      <div 
+        className="absolute top-0 left-0 h-1"
+        style={{ 
+          width: `${topWidth}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          transition: 'width 0.05s linear'
+        }}
+      />
+      {/* Borde derecho - arriba a abajo */}
+      <div 
+        className="absolute top-0 right-0 w-1"
+        style={{ 
+          height: `${rightHeight}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          transition: 'height 0.05s linear'
+        }}
+      />
+      {/* Borde inferior - derecha a izquierda */}
+      <div 
+        className="absolute bottom-0 right-0 h-1"
+        style={{ 
+          width: `${bottomWidth}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          transition: 'width 0.05s linear'
+        }}
+      />
+      {/* Borde izquierdo - abajo a arriba */}
+      <div 
+        className="absolute bottom-0 left-0 w-1"
+        style={{ 
+          height: `${leftHeight}%`, 
+          backgroundColor: color,
+          boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+          transition: 'height 0.05s linear'
+        }}
+      />
+    </div>
+  )
+}
+
+// Componente de bloque de feria
+function FeriaBlock({ block, index }: { block: typeof feriaBlocks[0]; index: number }) {
+  const [imageOpen, setImageOpen] = useState(false)
+  
+  return (
+    <>
+      <div 
+        className="relative rounded-2xl overflow-hidden bg-white/90 backdrop-blur-sm shadow-2xl"
+        style={{ minHeight: '300px' }}
+      >
+        <AnimatedBorderBlock color={block.borderColor} delay={index * 500} />
+        
+        <div className="p-6 flex flex-col md:flex-row gap-6">
+          {/* Imagen */}
+          <div 
+            className="w-full md:w-1/2 cursor-pointer hover:scale-[1.02] transition-transform"
+            onClick={() => setImageOpen(true)}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={block.image}
+              alt={block.title}
+              className="w-full h-auto rounded-xl shadow-lg"
+              style={{ border: `3px solid ${block.borderColor}` }}
+            />
+          </div>
+          
+          {/* Contenido */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center">
+            <h3 
+              className="text-2xl font-bold mb-4"
+              style={{ color: block.borderColor }}
+            >
+              {block.title}
+            </h3>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              {block.description}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Modal de imagen ampliada */}
+      {imageOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setImageOpen(false)}
+        >
+          <div className="relative max-w-5xl w-full">
+            <button
+              onClick={() => setImageOpen(false)}
+              className="absolute -top-12 right-0 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center"
+            >
+              <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={block.image}
+              alt={block.title}
+              className="w-full h-auto rounded-xl"
+              style={{ maxHeight: '90vh', objectFit: 'contain' }}
+            />
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
+export default function FeriaEconomiaPage() {
+  return (
+    <main className="min-h-screen relative overflow-hidden">
+      {/* Fondo animado morado y verde */}
+      <div 
+        className="fixed inset-0 -z-10"
+        style={{
+          background: `
+            radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 70%, rgba(34, 197, 94, 0.4) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 70%),
+            linear-gradient(135deg, #7C3AED 0%, #22C55E 50%, #8B5CF6 100%)
+          `
+        }}
+      />
+      
+      {/* Logo SINALTRACOMFENALCO como fondo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none -z-5">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo_Sinaltracomfenalco_Libre-Sin-Fondo-fJt75CzVWSrdW4pwclX3vOdmtZ1B1Z.png"
+          alt="SINALTRACOMFENALCO"
+          className="w-[600px] h-auto opacity-20"
+        />
+      </div>
+      
+      {/* Header con Navbar */}
+      <header 
+        className="sticky top-0 z-40 px-2 md:px-6 py-1"
+        style={{
+          background: "linear-gradient(135deg, #7C3AED 0%, #22C55E 50%, #166534 100%)",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.3)"
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <ModernNavbar activeSection="feria" compact={true} />
+        </div>
+      </header>
+      
+      {/* Contenido principal */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-8">
+        {/* Titulo */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+            FERIA DE ECONOMÍA FAMILIAR
+          </h1>
+          <h2 className="text-2xl md:text-3xl font-semibold text-yellow-300 drop-shadow-md">
+            SINALTRACOMFENALCO
+          </h2>
+          <p className="text-white/90 text-lg mt-4 max-w-3xl mx-auto">
+            Cronograma de beneficios exclusivos para nuestros afiliados
+          </p>
+        </div>
+        
+        {/* Bloques de la feria */}
+        <div className="space-y-8">
+          {feriaBlocks.map((block, index) => (
+            <FeriaBlock key={block.id} block={block} index={index} />
+          ))}
+        </div>
+        
+        {/* Nota informativa */}
+        <div className="mt-12 p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl">
+          <h3 className="text-2xl font-bold text-purple-700 mb-4 text-center">
+            Productos y Servicios Adicionales
+          </h3>
+          <ul className="space-y-3 text-gray-700">
+            <li className="flex items-start gap-3">
+              <span className="w-3 h-3 mt-2 rounded-full bg-purple-500 flex-shrink-0"></span>
+              <span><strong>BR Comunicaciones:</strong> Electrodomésticos, Portátiles, Celulares, Patinetas eléctricas y más.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-3 h-3 mt-2 rounded-full bg-green-500 flex-shrink-0"></span>
+              <span><strong>Productos de aseo y cuidado personal</strong> disponibles en la feria.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-3 h-3 mt-2 rounded-full bg-blue-500 flex-shrink-0"></span>
+              <span><strong>Productos para el bienestar del hogar</strong> a precios especiales para afiliados.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  )
+}
