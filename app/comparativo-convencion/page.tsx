@@ -630,16 +630,63 @@ function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => 
   )
 }
 
-// Imagenes para los articulos 0, 1 y 2 (URLs de blob para compatibilidad con Android)
+// Imagenes para todos los articulos (URLs de GitHub y blob para compatibilidad)
 const articuloImages: { [key: number]: string } = {
   0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-rHu2QkPRtZIpEbjsF78FcFm62TQwxu.png",
   1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C2A-ffqXawgJGXmgJRWY7E8XDBIx2PZFtD.png",
   2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C2B-ZJPMmJtaK1EASXSJm4weOkoqOCEDl7.png",
+  3: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C3A.png",
+  4: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C3B_4.png",
+  5: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C4_5.png",
+  6: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C4_6.png",
+  7: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C4_7.png",
+  8: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_8.png",
+  9: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_9.png",
+  10: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_10.png",
+  11: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_11.png",
+  12: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_12.png",
+  13: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_13.png",
+  14: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C5_14.png",
+  15: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_15.png",
+  16: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_16.png",
+  17: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_17.png",
+  18: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_18.png",
+  19: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_19.png",
+  20: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_20.png",
+  21: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_21.png",
+  22: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_22.png",
+  23: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_23.png",
+  24: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C6_24.png",
+  25: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_25.png",
+  26: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_26.png",
+  27: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_27.png",
+  28: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_28.png",
+  29: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_29.png",
+  30: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_30.png",
+  31: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_31.png",
+  32: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_32.png",
+  33: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C7_33.png",
+  34: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_34.png",
+  35: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_35.png",
+  36: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_36.png",
+  37: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_37.png",
+  38: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_38.png",
+  39: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_39.png",
+  40: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_40.png",
+  41: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C8_41.png",
+  42: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_42.png",
+  43: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_43.png",
+  44: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_44.png",
+  45: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_45.png",
+  46: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_46.png",
+  47: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_47.png",
+  48: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C9_48.png",
+  49: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C10_49.png",
 }
 
 // Componente de linea de tiempo animada
 function TimelineArticle({ articulo, articleIndex }: { articulo: typeof articulosData[0], articleIndex: number }) {
-  const showImage = articleIndex === 0 || articleIndex === 1 || articleIndex === 2
+  const showImage = articleIndex >= 0 && articleIndex <= 49 && articuloImages[articleIndex] !== undefined
   const imageUrl = articuloImages[articleIndex] || ""
   const [timelineProgress, setTimelineProgress] = useState(0)
   const [imageZoomed, setImageZoomed] = useState(false)
