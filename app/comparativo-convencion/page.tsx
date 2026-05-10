@@ -631,12 +631,13 @@ function PresentacionSection({ onNavigate }: { onNavigate: (section: string) => 
 }
 
 // Imagenes para todos los articulos (URLs de GitHub y blob para compatibilidad)
+// Formato: C[capitulo]_[articulo].png - Ejemplo: C3_4.png es para Articulo 4
 const articuloImages: { [key: number]: string } = {
   0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C1-rHu2QkPRtZIpEbjsF78FcFm62TQwxu.png",
   1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C2A-ffqXawgJGXmgJRWY7E8XDBIx2PZFtD.png",
   2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/C2B-ZJPMmJtaK1EASXSJm4weOkoqOCEDl7.png",
   3: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C3A.png",
-  4: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C3B_4.png",
+  4: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C3_4.png",
   5: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C4_5.png",
   6: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C4_6.png",
   7: "https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/C4_7.png",
