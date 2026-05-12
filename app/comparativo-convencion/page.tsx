@@ -1255,11 +1255,7 @@ export default function ComparativoConvencionPage() {
               className="w-full aspect-video bg-black"
             >
               <source 
-                src="https://github.com/xpitienda/sinaltracomfenalco/raw/refs/heads/catalogo-de-bienestar/CONVENCI%C3%93N%202026_2027.mp4" 
-                type="video/mp4" 
-              />
-              <source 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Convencion-LnFUdbIeJ8O0CGkfZ3sOhl7CZlUB7O.mp4" 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Video%20Convencion-13OaV5VSzDeA8ETJgrXf9qBwQbB1yv.mp4" 
                 type="video/mp4" 
               />
               Tu navegador no soporta el elemento de video.
