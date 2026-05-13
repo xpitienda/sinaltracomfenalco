@@ -1321,12 +1321,14 @@ export default function ComparativoConvencionPage() {
 
             {/* Content */}
             <div className="p-6 text-center space-y-4">
-              {/* Logo XpiEsentials - GIF original */}
+              {/* Logo XpiEsentials - Video MP4 animado en loop */}
               <div className="flex justify-center mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%2B%281%29.gif-FoH8FQkuNi8p5hRVBNKChnXxo69bsu.jpeg"
-                  alt="XpiEsentials Logo"
+                <video 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1-8k88wstdiwqMZvKt6HXB7b4NvFjvRM.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-24 h-24 rounded-xl shadow-lg object-contain"
                 />
               </div>
