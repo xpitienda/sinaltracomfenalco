@@ -1321,10 +1321,10 @@ export default function ComparativoConvencionPage() {
 
             {/* Content */}
             <div className="p-6 text-center space-y-4">
-              {/* Logo XpiEsentials - Video MP4 animado en loop */}
+              {/* Logo XpiEsentials - Video WebM animado en loop */}
               <div className="flex justify-center mb-4">
                 <video 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1-8k88wstdiwqMZvKt6HXB7b4NvFjvRM.mp4"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1-Pic-eOXCmKkkTzV1tnFsEp50WeAdWugnPc.webm"
                   autoPlay
                   loop
                   muted
