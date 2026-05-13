@@ -1323,13 +1323,14 @@ export default function ComparativoConvencionPage() {
 
             {/* Content */}
             <div className="p-6 text-center space-y-4">
-              {/* Logo XpiEsentials */}
+              {/* Logo XpiEsentials - GIF animado */}
               <div className="flex justify-center mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%2B%281%29.gif-RRbqKnFp4Ih03yOcOxndaFINsljoRw.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%20%281%29.gif-Poy2wpLmidGHce4gxSKXZHKtl7dI8K.jpeg"
                   alt="XpiEsentials Logo"
-                  className="w-20 h-20 rounded-xl shadow-lg"
+                  className="w-24 h-24 rounded-xl shadow-lg object-contain"
+                  style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)' }}
                 />
               </div>
 
