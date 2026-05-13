@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play } from "lucide-react"
+import { ChevronDown, ChevronRight, ArrowUp, Menu, X, Phone, Play, Info } from "lucide-react"
 import { ModernNavbar } from "@/components/modern-navbar"
 
 // Datos del cuadro comparativo
@@ -882,6 +882,7 @@ export default function ComparativoConvencionPage() {
   const [activeSection, setActiveSection] = useState<string>("presentacion")
   const [comparativoExpanded, setComparativoExpanded] = useState(false)
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const [showAboutModal, setShowAboutModal] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   // Función para cerrar el video
@@ -1078,6 +1079,19 @@ export default function ComparativoConvencionPage() {
               <Phone className="w-5 h-5" />
               Contactos
             </Link>
+            
+            {/* Acerca de... Button */}
+            <button
+              onClick={() => setShowAboutModal(true)}
+              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-bold text-white transition-all hover:scale-105 mt-3"
+              style={{
+                background: "linear-gradient(135deg, #6b7280 0%, #4b5563 100%)",
+                boxShadow: "0 4px 15px rgba(107,114,128,0.4)"
+              }}
+            >
+              <Info className="w-5 h-5" />
+              Acerca de...
+            </button>
           </div>
         </div>
       </aside>
@@ -1279,6 +1293,88 @@ export default function ComparativoConvencionPage() {
               >
                 Ir a Inicio
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* About Modal */}
+      {showAboutModal && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black/90 p-4"
+          style={{ zIndex: 9999 }}
+          onClick={() => setShowAboutModal(false)}
+        >
+          <div 
+            className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-white/20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="relative p-6 text-center border-b border-white/10 bg-gradient-to-r from-green-900/30 to-emerald-900/30">
+              <button
+                onClick={() => setShowAboutModal(false)}
+                className="absolute top-3 right-3 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <h2 className="text-2xl font-bold text-white mb-2">Acerca de...</h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-emerald-400 mx-auto rounded-full"></div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 text-center space-y-4">
+              {/* Logo XpiEsentials */}
+              <div className="flex justify-center mb-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%2B%281%29.gif-RRbqKnFp4Ih03yOcOxndaFINsljoRw.jpeg"
+                  alt="XpiEsentials Logo"
+                  className="w-20 h-20 rounded-xl shadow-lg"
+                />
+              </div>
+
+              <div className="text-white/90 space-y-3">
+                <p className="text-lg font-bold text-green-400">
+                  SINALTRACOMFENALCO
+                </p>
+                <p className="text-sm text-white/70">
+                  Derechos Reservados
+                </p>
+                <p className="text-xs text-white/50 font-mono">
+                  Version 1.0
+                </p>
+              </div>
+
+              <div className="border-t border-white/10 pt-4 space-y-2">
+                <p className="text-sm text-white/80">
+                  <span className="text-amber-400 font-semibold">Proyecto:</span> Jose Maria Ramirez
+                </p>
+                <p className="text-sm text-white/80">
+                  <span className="text-cyan-400 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
+                </p>
+              </div>
+
+              <div className="border-t border-white/10 pt-4">
+                <p className="text-xs text-white/60 leading-relaxed">
+                  Equipo de Produccion <span className="text-purple-400 font-bold">XpiEsentials</span>
+                </p>
+                <p className="text-xs text-white/50 mt-1">
+                  Un producto <span className="text-green-400 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                </p>
+              </div>
+
+              <div className="border-t border-white/10 pt-4 text-xs text-white/40 space-y-1">
+                <p>Medellin, Colombia</p>
+                <a 
+                  href="https://wa.me/573234475311" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors"
+                >
+                  WhatsApp: +57 323 447 5311
+                </a>
+                <p className="mt-2">2026</p>
+              </div>
             </div>
           </div>
         </div>
