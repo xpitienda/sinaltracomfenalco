@@ -1064,13 +1064,11 @@ export default function ComparativoConvencionPage() {
                 ASMUCOM - MUTUAL
               </span>
             </a>
-          </nav>
 
-          {/* Contactos Button */}
-          <div className="p-4 border-t border-white/10">
+            {/* Contactos Button - dentro del nav */}
             <Link
               href="/?contactos=true"
-              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-bold text-white transition-all hover:scale-105"
+              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-bold text-white transition-all hover:scale-105 mt-3"
               style={{
                 background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
                 boxShadow: "0 4px 15px rgba(59,130,246,0.4)"
@@ -1080,7 +1078,7 @@ export default function ComparativoConvencionPage() {
               Contactos
             </Link>
             
-            {/* Acerca de... Button */}
+            {/* Acerca de... Button - dentro del nav */}
             <button
               onClick={() => setShowAboutModal(true)}
               className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-bold text-white transition-all hover:scale-105 mt-3"
@@ -1092,7 +1090,7 @@ export default function ComparativoConvencionPage() {
               <Info className="w-5 h-5" />
               Acerca de...
             </button>
-          </div>
+          </nav>
         </div>
       </aside>
 
@@ -1323,15 +1321,28 @@ export default function ComparativoConvencionPage() {
 
             {/* Content */}
             <div className="p-6 text-center space-y-4">
-              {/* Logo XpiEsentials - GIF animado */}
+              {/* Logo XpiEsentials - con animacion */}
               <div className="flex justify-center mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%20%281%29.gif-Poy2wpLmidGHce4gxSKXZHKtl7dI8K.jpeg"
-                  alt="XpiEsentials Logo"
-                  className="w-24 h-24 rounded-xl shadow-lg object-contain"
-                  style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)' }}
-                />
+                <div 
+                  className="relative w-28 h-28 rounded-xl shadow-lg overflow-hidden"
+                  style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)' }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%20%281%29.gif-Poy2wpLmidGHce4gxSKXZHKtl7dI8K.jpeg"
+                    alt="XpiEsentials Logo"
+                    className="w-full h-full object-contain animate-pulse"
+                  />
+                  {/* Esferas animadas alrededor del logo */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
+                    <div className="absolute top-1/2 right-1 -translate-y-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
+                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
+                    <div className="absolute top-1/2 left-1 -translate-y-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.9s', animationDuration: '1.5s' }}></div>
+                    <div className="absolute top-3 right-3 w-2 h-2 bg-purple-500 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
+                    <div className="absolute bottom-3 left-3 w-2 h-2 bg-purple-500 rounded-full animate-ping" style={{ animationDelay: '1s', animationDuration: '2s' }}></div>
+                  </div>
+                </div>
               </div>
 
               <div className="text-white/90 space-y-3">
