@@ -1321,28 +1321,14 @@ export default function ComparativoConvencionPage() {
 
             {/* Content */}
             <div className="p-6 text-center space-y-4">
-              {/* Logo XpiEsentials - con animacion */}
+              {/* Logo XpiEsentials - GIF original */}
               <div className="flex justify-center mb-4">
-                <div 
-                  className="relative w-28 h-28 rounded-xl shadow-lg overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)' }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%20%281%29.gif-Poy2wpLmidGHce4gxSKXZHKtl7dI8K.jpeg"
-                    alt="XpiEsentials Logo"
-                    className="w-full h-full object-contain animate-pulse"
-                  />
-                  {/* Esferas animadas alrededor del logo */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
-                    <div className="absolute top-1/2 right-1 -translate-y-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
-                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
-                    <div className="absolute top-1/2 left-1 -translate-y-1/2 w-3 h-3 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.9s', animationDuration: '1.5s' }}></div>
-                    <div className="absolute top-3 right-3 w-2 h-2 bg-purple-500 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
-                    <div className="absolute bottom-3 left-3 w-2 h-2 bg-purple-500 rounded-full animate-ping" style={{ animationDelay: '1s', animationDuration: '2s' }}></div>
-                  </div>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1%2B%281%29.gif-FoH8FQkuNi8p5hRVBNKChnXxo69bsu.jpeg"
+                  alt="XpiEsentials Logo"
+                  className="w-24 h-24 rounded-xl shadow-lg object-contain"
+                />
               </div>
 
               <div className="text-white/90 space-y-3">
