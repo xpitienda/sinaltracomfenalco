@@ -1299,81 +1299,84 @@ export default function ComparativoConvencionPage() {
       {/* About Modal */}
       {showAboutModal && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 flex items-start justify-end bg-black/70 p-2"
           style={{ zIndex: 9999 }}
           onClick={() => setShowAboutModal(false)}
         >
           <div 
-            className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-white/20"
+            className="relative rounded-2xl shadow-2xl w-72 overflow-hidden border-2 border-purple-300/50"
+            style={{ 
+              background: 'linear-gradient(135deg, #FED7AA 0%, #BBF7D0 50%, #E9D5FF 100%)'
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="relative p-6 text-center border-b border-white/10 bg-gradient-to-r from-green-900/30 to-emerald-900/30">
+            <div className="relative p-3 text-center border-b border-purple-300/30">
               <button
                 onClick={() => setShowAboutModal(false)}
-                className="absolute top-3 right-3 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+                className="absolute top-2 right-2 p-1.5 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition-colors text-purple-700"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
-              <h2 className="text-2xl font-bold text-white mb-2">Acerca de...</h2>
-              <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-emerald-400 mx-auto rounded-full"></div>
+              <h2 className="text-lg font-bold text-purple-800">Acerca de...</h2>
+              <div className="w-12 h-0.5 bg-gradient-to-r from-orange-400 via-green-400 to-purple-400 mx-auto rounded-full mt-1"></div>
             </div>
 
             {/* Content */}
-            <div className="p-6 text-center space-y-4">
+            <div className="p-3 text-center space-y-2">
               {/* Logo XpiEsentials - Video WebM animado en loop */}
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-2">
                 <video 
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/XpiLogo1-Pic-eOXCmKkkTzV1tnFsEp50WeAdWugnPc.webm"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  className="w-24 h-24 rounded-xl shadow-lg object-contain"
+                  className="w-16 h-16 rounded-lg shadow-md object-contain"
                 />
               </div>
 
-              <div className="text-white/90 space-y-3">
-                <p className="text-lg font-bold text-green-400">
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-green-700">
                   SINALTRACOMFENALCO
                 </p>
-                <p className="text-sm text-white/70">
+                <p className="text-xs text-gray-600">
                   Derechos Reservados
                 </p>
-                <p className="text-xs text-white/50 font-mono">
+                <p className="text-[10px] text-gray-500 font-mono">
                   Version 1.0
                 </p>
               </div>
 
-              <div className="border-t border-white/10 pt-4 space-y-2">
-                <p className="text-sm text-white/80">
-                  <span className="text-amber-400 font-semibold">Proyecto:</span> Jose Maria Ramirez
+              <div className="border-t border-purple-200/50 pt-2 space-y-1">
+                <p className="text-xs text-gray-700">
+                  <span className="text-orange-600 font-semibold">Proyecto:</span> Jose Maria Ramirez
                 </p>
-                <p className="text-sm text-white/80">
-                  <span className="text-cyan-400 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
-                </p>
-              </div>
-
-              <div className="border-t border-white/10 pt-4">
-                <p className="text-xs text-white/60 leading-relaxed">
-                  Equipo de Produccion <span className="text-purple-400 font-bold">XpiEsentials</span>
-                </p>
-                <p className="text-xs text-white/50 mt-1">
-                  Un producto <span className="text-green-400 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                <p className="text-xs text-gray-700">
+                  <span className="text-green-600 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
                 </p>
               </div>
 
-              <div className="border-t border-white/10 pt-4 text-xs text-white/40 space-y-1">
+              <div className="border-t border-purple-200/50 pt-2">
+                <p className="text-[10px] text-gray-600 leading-relaxed">
+                  Equipo de Produccion <span className="text-purple-600 font-bold">XpiEsentials</span>
+                </p>
+                <p className="text-[10px] text-gray-500">
+                  Un producto <span className="text-green-600 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                </p>
+              </div>
+
+              <div className="border-t border-purple-200/50 pt-2 text-[10px] text-gray-500 space-y-0.5">
                 <p>Medellin, Colombia</p>
                 <a 
                   href="https://wa.me/573234475311" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors"
+                  className="inline-flex items-center gap-1 text-green-600 hover:text-green-500 transition-colors"
                 >
                   WhatsApp: +57 323 447 5311
                 </a>
-                <p className="mt-2">2026</p>
+                <p>2026</p>
               </div>
             </div>
           </div>
