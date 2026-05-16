@@ -1304,46 +1304,63 @@ export default function ComparativoConvencionPage() {
           onClick={() => setShowAboutModal(false)}
         >
           <div 
-            className="relative rounded-2xl shadow-2xl w-72 overflow-hidden animate-pulse"
+            className="relative rounded-2xl shadow-2xl w-72 overflow-visible"
             style={{ 
-              background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #60A5FA 100%)',
+              background: '#FFF8DC',
               borderWidth: '3px',
-              borderColor: '#00FF00',
-              borderStyle: 'solid',
-              boxShadow: '0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00, 0 0 40px #39FF14, inset 0 0 10px rgba(0,255,0,0.1)',
-              animation: 'none'
+              borderColor: '#8B4513',
+              borderStyle: 'solid'
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Efecto electrico animado */}
+            {/* Efecto de borde electrico cafe girando */}
             <div 
-              className="absolute inset-0 rounded-2xl pointer-events-none"
+              className="absolute -inset-1 rounded-2xl pointer-events-none"
               style={{
-                boxShadow: '0 0 15px #00FF00, 0 0 30px #39FF14, 0 0 45px #00FF00',
-                animation: 'electricPulse 1.5s ease-in-out infinite'
+                background: 'conic-gradient(from var(--angle), transparent 0%, #8B4513 10%, #D2691E 20%, transparent 30%)',
+                filter: 'blur(2px)',
+                animation: 'rotateBorder 4s steps(4, end) infinite'
               }}
             />
+            <div 
+              className="absolute -inset-0.5 rounded-2xl pointer-events-none"
+              style={{
+                background: 'conic-gradient(from var(--angle), transparent 0%, #CD853F 5%, #8B4513 15%, #D2691E 25%, transparent 35%)',
+                boxShadow: '0 0 15px #8B4513, 0 0 30px #D2691E',
+                animation: 'rotateBorder 4s steps(4, end) infinite'
+              }}
+            />
+            {/* Fondo crema interno para cubrir el gradiente */}
+            <div className="absolute inset-0 rounded-xl bg-[#FFF8DC]" />
             <style jsx>{`
-              @keyframes electricPulse {
-                0%, 100% { opacity: 1; box-shadow: 0 0 15px #00FF00, 0 0 30px #39FF14, 0 0 45px #00FF00; }
-                50% { opacity: 0.7; box-shadow: 0 0 25px #00FF00, 0 0 50px #39FF14, 0 0 75px #00FF00; }
+              @property --angle {
+                syntax: '<angle>';
+                initial-value: 0deg;
+                inherits: false;
+              }
+              @keyframes rotateBorder {
+                0% { --angle: 0deg; }
+                25% { --angle: 90deg; }
+                50% { --angle: 180deg; }
+                75% { --angle: 270deg; }
+                100% { --angle: 360deg; }
               }
             `}</style>
             {/* Header */}
-            <div className="relative p-3 text-center border-b-2 border-green-400/70">
+            <div className="relative p-3 text-center border-b-2 border-amber-600/50">
               <button
                 onClick={() => setShowAboutModal(false)}
-                className="absolute top-2 right-2 p-1.5 rounded-full bg-green-500 hover:bg-green-400 transition-colors text-blue-900 shadow-lg"
-                style={{ boxShadow: '0 0 8px #00FF00' }}
+                className="absolute top-2 right-2 p-1.5 rounded-full bg-amber-700 hover:bg-amber-600 transition-colors text-white shadow-lg"
+                style={{ boxShadow: '0 0 8px #8B4513' }}
               >
                 <X className="w-4 h-4" />
               </button>
-              <h2 className="text-lg font-bold text-white">Acerca de...</h2>
-              <div className="w-12 h-0.5 bg-green-400 mx-auto rounded-full mt-1"></div>
+              <h2 className="text-lg font-bold text-amber-800">Acerca de...</h2>
+              <div className="w-12 h-0.5 bg-amber-600 mx-auto rounded-full mt-1"></div>
             </div>
 
             {/* Content */}
-            <div className="p-3 text-center space-y-2">
+            <div className="relative p-3 text-center space-y-2">
               {/* Logo XpiEsentials - Video WebM animado en loop */}
               <div className="flex justify-center mb-2">
                 <video 
@@ -1352,47 +1369,47 @@ export default function ComparativoConvencionPage() {
                   loop
                   muted
                   playsInline
-                  className="w-16 h-16 rounded-lg shadow-md object-contain border-2 border-green-400"
+                  className="w-16 h-16 rounded-lg shadow-md object-contain border-2 border-amber-600"
                 />
               </div>
 
               <div className="space-y-1">
-                <p className="text-sm font-bold text-green-300">
+                <p className="text-sm font-bold text-amber-800">
                   SINALTRACOMFENALCO
                 </p>
-                <p className="text-xs text-white/90">
+                <p className="text-xs text-amber-700">
                   Derechos Reservados
                 </p>
-                <p className="text-[10px] text-green-200 font-mono">
+                <p className="text-[10px] text-amber-600 font-mono">
                   Version 1.0
                 </p>
               </div>
 
-              <div className="border-t-2 border-green-300/30 pt-2 space-y-1">
-                <p className="text-xs text-white">
-                  <span className="text-green-300 font-semibold">Proyecto:</span> Jose Maria Ramirez Giraldo
+              <div className="border-t-2 border-amber-400/50 pt-2 space-y-1">
+                <p className="text-xs text-amber-900">
+                  <span className="text-amber-700 font-semibold">Proyecto:</span> Jose Maria Ramirez Giraldo
                 </p>
-                <p className="text-xs text-white">
-                  <span className="text-green-300 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
-                </p>
-              </div>
-
-              <div className="border-t-2 border-green-300/30 pt-2">
-                <p className="text-[10px] text-white/90 leading-relaxed">
-                  Equipo de Produccion <span className="text-green-300 font-bold">XpiEsentials</span>
-                </p>
-                <p className="text-[10px] text-white/80">
-                  Un producto <span className="text-green-300 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                <p className="text-xs text-amber-900">
+                  <span className="text-amber-700 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
                 </p>
               </div>
 
-              <div className="border-t-2 border-green-300/30 pt-2 text-[10px] text-white/70 space-y-0.5">
+              <div className="border-t-2 border-amber-400/50 pt-2">
+                <p className="text-[10px] text-amber-800 leading-relaxed">
+                  Equipo de Produccion <span className="text-amber-900 font-bold">XpiEsentials</span>
+                </p>
+                <p className="text-[10px] text-amber-700">
+                  Un producto <span className="text-amber-900 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                </p>
+              </div>
+
+              <div className="border-t-2 border-amber-400/50 pt-2 text-[10px] text-amber-700 space-y-0.5">
                 <p>Medellin, Colombia</p>
                 <a 
                   href="https://wa.me/573234475311" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-green-300 hover:text-green-200 font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-amber-800 hover:text-amber-600 font-semibold transition-colors"
                 >
                   WhatsApp: +57 323 447 5311
                 </a>
