@@ -1304,20 +1304,37 @@ export default function ComparativoConvencionPage() {
           onClick={() => setShowAboutModal(false)}
         >
           <div 
-            className="relative rounded-2xl shadow-2xl w-72 overflow-hidden"
+            className="relative rounded-2xl shadow-2xl w-72 overflow-hidden animate-pulse"
             style={{ 
               background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #60A5FA 100%)',
               borderWidth: '3px',
-              borderColor: '#86EFAC',
-              borderStyle: 'solid'
+              borderColor: '#00FF00',
+              borderStyle: 'solid',
+              boxShadow: '0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00, 0 0 40px #39FF14, inset 0 0 10px rgba(0,255,0,0.1)',
+              animation: 'none'
             }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Efecto electrico animado */}
+            <div 
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              style={{
+                boxShadow: '0 0 15px #00FF00, 0 0 30px #39FF14, 0 0 45px #00FF00',
+                animation: 'electricPulse 1.5s ease-in-out infinite'
+              }}
+            />
+            <style jsx>{`
+              @keyframes electricPulse {
+                0%, 100% { opacity: 1; box-shadow: 0 0 15px #00FF00, 0 0 30px #39FF14, 0 0 45px #00FF00; }
+                50% { opacity: 0.7; box-shadow: 0 0 25px #00FF00, 0 0 50px #39FF14, 0 0 75px #00FF00; }
+              }
+            `}</style>
             {/* Header */}
-            <div className="relative p-3 text-center border-b-2 border-green-300/50">
+            <div className="relative p-3 text-center border-b-2 border-green-400/70">
               <button
                 onClick={() => setShowAboutModal(false)}
-                className="absolute top-2 right-2 p-1.5 rounded-full bg-green-400 hover:bg-green-500 transition-colors text-blue-900"
+                className="absolute top-2 right-2 p-1.5 rounded-full bg-green-500 hover:bg-green-400 transition-colors text-blue-900 shadow-lg"
+                style={{ boxShadow: '0 0 8px #00FF00' }}
               >
                 <X className="w-4 h-4" />
               </button>
