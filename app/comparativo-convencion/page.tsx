@@ -1304,23 +1304,25 @@ export default function ComparativoConvencionPage() {
           onClick={() => setShowAboutModal(false)}
         >
           <div 
-            className="relative rounded-2xl shadow-2xl w-72 overflow-hidden border-3 border-purple-500"
+            className="relative rounded-2xl shadow-2xl w-72 overflow-hidden"
             style={{ 
-              background: '#D1FAE5',
-              borderWidth: '3px'
+              background: '#E9D5FF',
+              borderWidth: '3px',
+              borderColor: '#86EFAC',
+              borderStyle: 'solid'
             }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="relative p-3 text-center border-b-2 border-purple-400">
+            <div className="relative p-3 text-center border-b-2 border-green-300">
               <button
                 onClick={() => setShowAboutModal(false)}
-                className="absolute top-2 right-2 p-1.5 rounded-full bg-purple-500 hover:bg-purple-600 transition-colors text-white"
+                className="absolute top-2 right-2 p-1.5 rounded-full bg-green-400 hover:bg-green-500 transition-colors text-purple-800"
               >
                 <X className="w-4 h-4" />
               </button>
-              <h2 className="text-lg font-bold text-purple-700">Acerca de...</h2>
-              <div className="w-12 h-0.5 bg-purple-500 mx-auto rounded-full mt-1"></div>
+              <h2 className="text-lg font-bold text-green-700">Acerca de...</h2>
+              <div className="w-12 h-0.5 bg-green-400 mx-auto rounded-full mt-1"></div>
             </div>
 
             {/* Content */}
@@ -1333,47 +1335,47 @@ export default function ComparativoConvencionPage() {
                   loop
                   muted
                   playsInline
-                  className="w-16 h-16 rounded-lg shadow-md object-contain border-2 border-purple-400"
+                  className="w-16 h-16 rounded-lg shadow-md object-contain border-2 border-green-400"
                 />
               </div>
 
               <div className="space-y-1">
-                <p className="text-sm font-bold text-purple-700">
+                <p className="text-sm font-bold text-green-700">
                   SINALTRACOMFENALCO
                 </p>
-                <p className="text-xs text-purple-600">
+                <p className="text-xs text-green-600">
                   Derechos Reservados
                 </p>
-                <p className="text-[10px] text-purple-500 font-mono">
+                <p className="text-[10px] text-green-600 font-mono">
                   Version 1.0
                 </p>
               </div>
 
-              <div className="border-t-2 border-purple-300 pt-2 space-y-1">
-                <p className="text-xs text-purple-800">
-                  <span className="text-purple-600 font-semibold">Proyecto:</span> Jose Maria Ramirez
+              <div className="border-t-2 border-green-300 pt-2 space-y-1">
+                <p className="text-xs text-green-800">
+                  <span className="text-green-600 font-semibold">Proyecto:</span> Jose Maria Ramirez Giraldo
                 </p>
-                <p className="text-xs text-purple-800">
-                  <span className="text-purple-600 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
-                </p>
-              </div>
-
-              <div className="border-t-2 border-purple-300 pt-2">
-                <p className="text-[10px] text-purple-700 leading-relaxed">
-                  Equipo de Produccion <span className="text-purple-800 font-bold">XpiEsentials</span>
-                </p>
-                <p className="text-[10px] text-purple-600">
-                  Un producto <span className="text-purple-800 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                <p className="text-xs text-green-800">
+                  <span className="text-green-600 font-semibold">Diseno y Desarrollo:</span> Jorge Hernan Posada Restrepo
                 </p>
               </div>
 
-              <div className="border-t-2 border-purple-300 pt-2 text-[10px] text-purple-600 space-y-0.5">
+              <div className="border-t-2 border-green-300 pt-2">
+                <p className="text-[10px] text-green-700 leading-relaxed">
+                  Equipo de Produccion <span className="text-green-800 font-bold">XpiEsentials</span>
+                </p>
+                <p className="text-[10px] text-green-600">
+                  Un producto <span className="text-green-800 font-semibold">XpiProyecs</span> para Sinaltracomfenalco
+                </p>
+              </div>
+
+              <div className="border-t-2 border-green-300 pt-2 text-[10px] text-green-600 space-y-0.5">
                 <p>Medellin, Colombia</p>
                 <a 
                   href="https://wa.me/573234475311" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-purple-700 hover:text-purple-900 font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-green-700 hover:text-green-900 font-semibold transition-colors"
                 >
                   WhatsApp: +57 323 447 5311
                 </a>
