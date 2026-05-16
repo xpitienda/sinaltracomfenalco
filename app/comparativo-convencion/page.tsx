@@ -1307,27 +1307,54 @@ export default function ComparativoConvencionPage() {
             className="relative rounded-2xl shadow-2xl w-72 overflow-visible"
             style={{ 
               background: '#FFF8DC',
-              borderWidth: '3px',
-              borderColor: '#8B4513',
+              borderWidth: '6px',
+              borderColor: 'transparent',
               borderStyle: 'solid'
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Efecto de borde electrico cafe girando */}
+            {/* Efecto de borde electrico multicolor girando - capa externa */}
             <div 
-              className="absolute -inset-1 rounded-2xl pointer-events-none"
+              className="absolute -inset-2 rounded-3xl pointer-events-none"
               style={{
-                background: 'conic-gradient(from var(--angle), transparent 0%, #8B4513 10%, #D2691E 20%, transparent 30%)',
-                filter: 'blur(2px)',
+                background: `conic-gradient(from var(--angle), 
+                  #0066FF 0%, #00BFFF 5%, #0066FF 10%, transparent 15%,
+                  #FFD700 25%, #FFA500 30%, #FFD700 35%, transparent 40%,
+                  #8B4513 50%, #D2691E 55%, #8B4513 60%, transparent 65%,
+                  #00FF00 75%, #32CD32 80%, #00FF00 85%, transparent 90%,
+                  transparent 100%
+                )`,
+                filter: 'blur(3px)',
                 animation: 'rotateBorder 4s steps(4, end) infinite'
               }}
             />
+            {/* Efecto de borde electrico multicolor - capa media con ondas */}
             <div 
-              className="absolute -inset-0.5 rounded-2xl pointer-events-none"
+              className="absolute -inset-1.5 rounded-2xl pointer-events-none"
               style={{
-                background: 'conic-gradient(from var(--angle), transparent 0%, #CD853F 5%, #8B4513 15%, #D2691E 25%, transparent 35%)',
-                boxShadow: '0 0 15px #8B4513, 0 0 30px #D2691E',
+                background: `conic-gradient(from var(--angle), 
+                  #0066FF 0%, #00BFFF 3%, #0066FF 6%, #00BFFF 9%, transparent 12%,
+                  #FFD700 25%, #FFA500 28%, #FFD700 31%, #FFA500 34%, transparent 37%,
+                  #8B4513 50%, #D2691E 53%, #8B4513 56%, #D2691E 59%, transparent 62%,
+                  #00FF00 75%, #32CD32 78%, #00FF00 81%, #32CD32 84%, transparent 87%,
+                  transparent 100%
+                )`,
+                boxShadow: '0 0 20px #0066FF, 0 0 20px #FFD700, 0 0 20px #8B4513, 0 0 20px #00FF00',
                 animation: 'rotateBorder 4s steps(4, end) infinite'
+              }}
+            />
+            {/* Capa interna de ondas electricas */}
+            <div 
+              className="absolute -inset-1 rounded-2xl pointer-events-none"
+              style={{
+                background: `conic-gradient(from var(--angle), 
+                  #0066FF 0%, transparent 2%, #00BFFF 4%, transparent 6%, #0066FF 8%, transparent 12%,
+                  #FFD700 25%, transparent 27%, #FFA500 29%, transparent 31%, #FFD700 33%, transparent 37%,
+                  #8B4513 50%, transparent 52%, #D2691E 54%, transparent 56%, #8B4513 58%, transparent 62%,
+                  #00FF00 75%, transparent 77%, #32CD32 79%, transparent 81%, #00FF00 83%, transparent 87%,
+                  transparent 100%
+                )`,
+                animation: 'rotateBorder 4s steps(4, end) infinite, electricWave 0.3s linear infinite'
               }}
             />
             {/* Fondo crema interno para cubrir el gradiente */}
@@ -1344,6 +1371,12 @@ export default function ComparativoConvencionPage() {
                 50% { --angle: 180deg; }
                 75% { --angle: 270deg; }
                 100% { --angle: 360deg; }
+              }
+              @keyframes electricWave {
+                0%, 100% { filter: blur(1px) brightness(1); }
+                25% { filter: blur(2px) brightness(1.3); }
+                50% { filter: blur(1px) brightness(1); }
+                75% { filter: blur(2px) brightness(1.2); }
               }
             `}</style>
             {/* Header */}
