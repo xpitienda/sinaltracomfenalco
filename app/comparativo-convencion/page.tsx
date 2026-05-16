@@ -1299,7 +1299,7 @@ export default function ComparativoConvencionPage() {
       {/* About Modal */}
       {showAboutModal && (
         <div
-          className="fixed inset-0 flex items-start justify-center bg-black/70 p-2 pt-4"
+          className="fixed inset-0 flex items-start justify-start bg-black/70 p-2 pt-4"
           style={{ zIndex: 9999 }}
           onClick={() => setShowAboutModal(false)}
         >
