@@ -1226,10 +1226,19 @@ export default function ComparativoConvencionPage() {
       {/* Video Modal */}
       {showVideoModal && (
         <div 
-          className="fixed inset-0 flex items-start md:items-center justify-center bg-black/95 p-2 pt-2 md:p-4"
-          style={{ zIndex: 9999 }}
+          className="fixed inset-0 flex items-start md:items-center justify-center p-2 pt-2 md:p-4"
+          style={{ 
+            zIndex: 9999,
+            backgroundImage: 'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Piedra%201-pODkEnQKo8fZU96qqrwCopxthgPSHr.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
           onClick={closeVideoModal}
         >
+          {/* Overlay semi-transparente para mejor contraste */}
+          <div className="absolute inset-0 bg-black/40" />
+          
           {/* Boton X flotante en esquina superior derecha */}
           <button
             onClick={closeVideoModal}
@@ -1241,7 +1250,7 @@ export default function ComparativoConvencionPage() {
           </button>
 
           <div 
-            className="relative w-full max-w-4xl bg-black rounded-xl md:rounded-2xl overflow-hidden shadow-2xl mt-10 md:mt-0"
+            className="relative w-full max-w-4xl bg-black/80 rounded-xl md:rounded-2xl overflow-hidden shadow-2xl mt-10 md:mt-0 border-2 border-white/30"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
