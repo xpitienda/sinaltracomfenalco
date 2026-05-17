@@ -1267,7 +1267,7 @@ export default function ComparativoConvencionPage() {
               className="w-full aspect-video bg-black"
             >
               <source 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Video%20Convencion-13OaV5VSzDeA8ETJgrXf9qBwQbB1yv.mp4" 
+                src="https://raw.githubusercontent.com/xpitienda/sinaltracomfenalco/main/Convenci%C3%B3n%20(1).mp4" 
                 type="video/mp4" 
               />
               Tu navegador no soporta el elemento de video.
