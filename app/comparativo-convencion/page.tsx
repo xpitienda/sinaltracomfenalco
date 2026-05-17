@@ -1226,22 +1226,22 @@ export default function ComparativoConvencionPage() {
       {/* Video Modal */}
       {showVideoModal && (
         <div 
-          className="fixed inset-0 flex items-center justify-center bg-black/95 p-4"
+          className="fixed inset-0 flex items-start md:items-center justify-center bg-black/95 p-2 pt-2 md:p-4"
           style={{ zIndex: 9999 }}
           onClick={closeVideoModal}
         >
           {/* Boton X flotante en esquina superior derecha */}
           <button
             onClick={closeVideoModal}
-            className="fixed top-4 right-4 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shadow-xl border-4 border-white"
+            className="fixed top-2 right-2 md:top-4 md:right-4 w-10 h-10 md:w-14 md:h-14 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shadow-xl border-2 md:border-4 border-white"
             style={{ zIndex: 10000 }}
             aria-label="Cerrar video"
           >
-            <X className="w-8 h-8" />
+            <X className="w-6 h-6 md:w-8 md:h-8" />
           </button>
 
           <div 
-            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-4xl bg-black rounded-xl md:rounded-2xl overflow-hidden shadow-2xl mt-10 md:mt-0"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
